@@ -1,4 +1,4 @@
-#Tue May 02 09:21:24 ICT 2023
-base.0=/Users/imac/Desktop/EV_Charging/ev_charging/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+#Tue May 02 12:04:17 ICT 2023
+base.0=/Users/imac/Desktop/ev_charging_app/ev_charging_app/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
