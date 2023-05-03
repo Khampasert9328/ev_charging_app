@@ -5,10 +5,17 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFormGlobal extends StatelessWidget {
-   TextFormGlobal({Key? key, required this.controller, required this.text, required this.validator}):super(key: key);
+  TextFormGlobal({
+    Key? key,
+    required this.controller,
+    required this.text,
+    required this.validator,
+    required this.obscureText,
+  }) : super(key: key);
   final TextEditingController controller;
-   String text;
-   FormFieldValidator validator;
+  String text;
+  FormFieldValidator validator;
+  bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +33,16 @@ class TextFormGlobal extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        obscureText: obscureText,
         validator: validator,
         controller: controller,
         decoration: InputDecoration(
-          hintText: text,
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.all(0),
-          hintStyle: TextStyle(height: 1,)
-        ),
+            hintText: text,
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.all(0),
+            hintStyle: TextStyle(
+              height: 1,
+            )),
       ),
     );
   }

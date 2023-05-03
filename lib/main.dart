@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
               secondary: EV_Colors.greycolor,
             ),
           ),
-          home: OnboardingScreen(),
+          home: const OnboardingScreen(),
         );
       },
     );
