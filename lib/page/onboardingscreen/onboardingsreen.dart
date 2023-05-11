@@ -1,10 +1,8 @@
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/page/register/login.dart';
+import 'package:ev_charging/page/home/homemaps.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -18,7 +16,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => const LoginScreen()));
+          context, MaterialPageRoute(builder: (_) => const HomeMaps()));
     });
     super.initState();
   }
@@ -26,24 +24,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: EV_Colors.greencolor,
+      backgroundColor: EV_Colors.yellowcolor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              "images/logo.png",
+              "images/MEM.png",
             ),
-            const Text("Lao Sharging Station"),
+           
             const SizedBox(height: 30),
             if (defaultTargetPlatform == TargetPlatform.iOS)
               const CupertinoActivityIndicator(
-                color: Colors.white,
+                color: EV_Colors.bluecolor,
                 radius: 10,
               )
             else
               const CupertinoActivityIndicator(
-                color: Colors.white,
+                color:EV_Colors.bluecolor,
               )
           ],
         ),

@@ -1,7 +1,5 @@
 import 'package:ev_charging/constant/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFormGlobal extends StatelessWidget {
@@ -11,11 +9,13 @@ class TextFormGlobal extends StatelessWidget {
     required this.text,
     required this.validator,
     required this.obscureText,
+    required this.icon
   }) : super(key: key);
   final TextEditingController controller;
   String text;
   FormFieldValidator validator;
   bool obscureText;
+  Icon icon;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,7 @@ class TextFormGlobal extends StatelessWidget {
         validator: validator,
         controller: controller,
         decoration: InputDecoration(
+          icon: icon,
             hintText: text,
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(0),

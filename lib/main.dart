@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             fontFamily: "NotoSan",
             colorScheme: ColorScheme.fromSwatch().copyWith(
-              primary: EV_Colors.greencolor,
+              primary: EV_Colors.whitecolor,
               secondary: EV_Colors.greycolor,
             ),
           ),
