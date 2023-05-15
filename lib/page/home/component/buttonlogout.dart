@@ -17,7 +17,12 @@ class _ButtonLogOutState extends State<ButtonLogOut> {
     return GestureDetector(
       onTap: () async{
         SharedPreferences preferences = await SharedPreferences.getInstance();
-        preferences.clear();
+        preferences.clear().then((value) {
+          Navigator.pop(context);
+
+          print("logoute success");
+
+        });
       },
       child: Container(
         alignment: Alignment.center,

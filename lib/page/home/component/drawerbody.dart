@@ -1,30 +1,50 @@
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/page/managemantstation/managementstation.dart';
 import 'package:ev_charging/page/settings/settings.dart';
 import 'package:ev_charging/page/stationall/stationall.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconly/iconly.dart';
 
-class EVDrawerBody extends StatelessWidget {
+class EVDrawerBody extends StatefulWidget {
   const EVDrawerBody({super.key});
+
+  @override
+  State<EVDrawerBody> createState() => _EVDrawerBodyState();
+}
+
+class _EVDrawerBodyState extends State<EVDrawerBody> {
+  String? token;
+  @override
+  void initState() {
+    PreFer().getToken().then((value) {
+      if (value != null) {
+        token = value;
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ListTile(
+         token==null?SizedBox():  ListTile(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_)=>ManagemaentStation()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const ManagemaentStation(),
+                ),
+              );
             },
-            leading: const Icon(
-              IconlyBold.location,
-              color: EV_Colors.yellowbtncolor,
-            ),
-            title: Text(
+            leading: SvgPicture.asset("images/icon_management_info.svg"),
+            title:Text(
               "ຈັດການຂໍ້ມູນສະຖານີ",
               style: TextStyle(
                 fontSize: 18.sp,
@@ -33,10 +53,7 @@ class EVDrawerBody extends StatelessWidget {
           ),
           ListTile(
             onTap: () {},
-            leading: const Icon(
-              IconlyBold.location,
-              color: EV_Colors.yellowbtncolor,
-            ),
+            leading: SvgPicture.asset("images/icon_location.svg"),
             title: Text(
               "ແຜນທີ່",
               style: TextStyle(
@@ -46,12 +63,14 @@ class EVDrawerBody extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-               Navigator.push(context, MaterialPageRoute(builder: (_)=>StationAll()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const StationAll(),
+                ),
+              );
             },
-            leading: const Icon(
-              IconlyBold.location,
-              color: EV_Colors.yellowbtncolor,
-            ),
+            leading: SvgPicture.asset("images/icon_station.svg"),
             title: Text(
               "ສະຖານີສາກທັງໝົດ",
               style: TextStyle(
@@ -61,12 +80,14 @@ class EVDrawerBody extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_)=>SettingsScreen()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const SettingsScreen(),
+                ),
+              );
             },
-            leading: const Icon(
-              IconlyBold.setting,
-              color: EV_Colors.yellowbtncolor,
-            ),
+            leading: SvgPicture.asset("images/icon _setting.svg"),
             title: Text(
               "ຕັ້ງຄ່າ",
               style: TextStyle(
@@ -76,10 +97,7 @@ class EVDrawerBody extends StatelessWidget {
           ),
           ListTile(
             onTap: () {},
-            leading: const Icon(
-              IconlyBold.info_square,
-              color: EV_Colors.yellowbtncolor,
-            ),
+            leading: SvgPicture.asset("images/icon_info.svg"),
             title: Text(
               "ກ່ຽວກັບ",
               style: TextStyle(
@@ -87,9 +105,7 @@ class EVDrawerBody extends StatelessWidget {
               ),
             ),
           ),
-
-          Divider(),
-          
+          const Divider(),
         ],
       ),
     );

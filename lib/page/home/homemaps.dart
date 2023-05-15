@@ -1,3 +1,4 @@
+import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/page/home/component/buttonlogout.dart';
@@ -6,6 +7,7 @@ import 'package:ev_charging/page/home/component/drawerheader.dart';
 import 'package:ev_charging/page/home/component/showmaps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class HomeMaps extends StatefulWidget {
   const HomeMaps({super.key});
@@ -17,21 +19,14 @@ class HomeMaps extends StatefulWidget {
 class _HomeMapsState extends State<HomeMaps> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   bool? check;
-  @override
-  void initState() {
-    PreFer().getChecklogin().then((value) {
-      if (value==true) {
-        check = value;
-      }
-     
-      
+  
 
-     
-    });
-    super.initState();
-  }
+  
+  
+
   @override
   Widget build(BuildContext context) {
+    final token = context.read<AuthProvider>().token;
     return SafeArea(
       child: Scaffold(
         key: _globalKey,
@@ -41,25 +36,24 @@ class _HomeMapsState extends State<HomeMaps> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                check==true?const CircleAvatar(
-                  radius: 30,
-                  child: Text("data")): EVDrawerHeader(),
+                token == null
+                    ? EVDrawerHeader()
+                    : const CircleAvatar(radius: 30, child: Text("data")),
                 SizedBox(
                   height: 10.h,
                 ),
-                Text(
-                  "ສະເພາະຜູ້ຮັບຜິດຊອບເທົ່ານັ້ນ",
-                  style: TextStyle(
-                    fontSize: 15.sp,
-                  ),
-                ),
+                token == null
+                    ? SizedBox()
+                    : Text(
+                        "ສະເພາະຜູ້ຮັບຜິດຊອບເທົ່ານັ້ນ",
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                        ),
+                      ),
                 const Divider(),
                 const EVDrawerBody(),
-
-               
-
-                check==true? ButtonLogOut():SizedBox()
-                
+                token == null
+                    ? SizedBox(): ButtonLogOut()
               ],
             ),
           ),
@@ -79,6 +73,8 @@ class _HomeMapsState extends State<HomeMaps> {
                 child: Center(
                   child: IconButton(
                     onPressed: () {
+                      print("token====$token");
+                    
                       _globalKey.currentState!.openDrawer();
                     },
                     icon: const Icon(

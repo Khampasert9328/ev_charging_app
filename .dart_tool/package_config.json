@@ -158,6 +158,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "http",
+      "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/http-0.13.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/http_parser-4.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "iconly",
       "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/iconly-1.0.1",
       "packageUri": "lib/",
@@ -196,6 +208,12 @@
     {
       "name": "meta",
       "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/meta-1.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "nested",
+      "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/nested-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -264,6 +282,12 @@
       "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/process-4.2.4",
       "packageUri": "lib/",
       "languageVersion": "2.14"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/provider-6.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "quickalert",
@@ -416,7 +440,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-10T08:35:34.004981Z",
+  "generated": "2023-05-15T08:36:38.543634Z",
   "generator": "pub",
   "generatorVersion": "2.19.6"
 }

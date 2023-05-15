@@ -1,9 +1,11 @@
+import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/page/home/homemaps.dart';
 import 'package:ev_charging/page/register/texformglobal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,8 +15,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController email = TextEditingController();
-  TextEditingController pwd = TextEditingController();
+  TextEditingController? email = TextEditingController();
+  TextEditingController? pwd = TextEditingController();
   bool check = false;
   final _key = GlobalKey<FormState>();
   @override
@@ -41,9 +43,23 @@ class _LoginScreenState extends State<LoginScreen> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(20.0),
         child: GestureDetector(
-          onTap: (){
-            PreFer().setChecklogin(true);
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>HomeMaps()), (route) => false);
+          onTap: () {
+            if (_key.currentState!.validate()) {
+              try {
+                AuthProvider()
+                    .loginprovider(email!.text, pwd!.text, context)
+                    .then((value) async{
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (_) => const HomeMaps()),
+                      (route) => false);
+
+                     
+                });
+              } catch (e) {
+                print("error===$e");
+              }
+            }
           },
           child: Container(
             alignment: Alignment.center,
@@ -82,39 +98,65 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Column(
-                  children: [
-                    TextFormGlobal(
-                      controller: email,
-                      text: "ອີເມລ",
-                      validator: (value) {},
-                      obscureText: false,
-                      icon: const Icon(
-                        Icons.email_outlined,
+                child: Form(
+                  key: _key,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        cursorColor: Colors.grey,
+                        obscureText: false,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "ກາລຸນາໃສ່ອີເມລໃຫ້ຄົບ";
+                          }
+                          return null;
+                        },
+                        controller: email,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.email_outlined,
+                            color: Colors.grey,
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                          hintText: "ອີເມລ",
+                          border: InputBorder.none,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    TextFormGlobal(
-                      controller: pwd,
-                      text: "ລະຫັດຜ່ານ",
-                      validator: (value) {},
-                      obscureText: true,
-                      icon: const Icon(
-                        Icons.lock_outline,
+                      SizedBox(
+                        height: 10.h,
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        
-                      },
-                      child: Text(
-                        "ລືມລະຫັດຜ່ານ?",
-                        style: TextStyle(color: Colors.black, fontSize: 15.sp),
+                      TextFormField(
+                        cursorColor: Colors.grey,
+                        obscureText: false,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "ກາລຸນາໃສ່ລະຫັດຜ່ານໃຫ້ຄົບ";
+                          }
+                          return null;
+                        },
+                        controller: pwd,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.lock_outline_rounded,
+                            color: Colors.grey,
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                          hintText: "ລະຫັດຜ່ານ",
+                          border: InputBorder.none,
+                        ),
                       ),
-                    ),
-                  ],
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "ລືມລະຫັດຜ່ານ?",
+                          style:
+                              TextStyle(color: Colors.black, fontSize: 15.sp),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

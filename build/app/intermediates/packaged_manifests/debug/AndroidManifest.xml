@@ -34,7 +34,7 @@
         android:label="ev_charging" >
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA8GqEFlHCcTUN9DjvUknCIjo_4RtKFXKY" />
+            android:value="AIzaSyCqK4IZAoxaHEGEvZ81Hcwia2MhRc0LvsE" />
 
         <activity
             android:name="com.example.ev_charging.MainActivity"

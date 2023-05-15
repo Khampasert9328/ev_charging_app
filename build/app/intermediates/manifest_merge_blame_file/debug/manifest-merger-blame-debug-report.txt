@@ -45,7 +45,7 @@
 34        android:label="ev_charging" >
 35        <meta-data
 36            android:name="com.google.android.geo.API_KEY"
-37            android:value="AIzaSyA8GqEFlHCcTUN9DjvUknCIjo_4RtKFXKY" />
+37            android:value="AIzaSyCqK4IZAoxaHEGEvZ81Hcwia2MhRc0LvsE" />
 38
 39        <activity
 40            android:name="com.example.ev_charging.MainActivity"
