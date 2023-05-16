@@ -1,4 +1,5 @@
 
+import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/page/managemantstation/managementstation.dart';
 import 'package:ev_charging/page/settings/settings.dart';
@@ -6,6 +7,7 @@ import 'package:ev_charging/page/stationall/stationall.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 
 class EVDrawerBody extends StatefulWidget {
@@ -16,14 +18,11 @@ class EVDrawerBody extends StatefulWidget {
 }
 
 class _EVDrawerBodyState extends State<EVDrawerBody> {
-  String? token;
+   String? token;
   @override
   void initState() {
-    PreFer().getToken().then((value) {
-      if (value != null) {
-        token = value;
-      }
-    });
+      Provider.of<AuthProvider>(context, listen: false).checklogin();
+      token = context.read<AuthProvider>().token;
     super.initState();
   }
 
@@ -34,7 +33,7 @@ class _EVDrawerBodyState extends State<EVDrawerBody> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         token==null?SizedBox():  ListTile(
+          ListTile(
             onTap: () {
               Navigator.push(
                 context,

@@ -136,69 +136,72 @@ class _BodyAddStationState extends State<BodyAddStation> {
             ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: 100.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: EV_Colors.whitecolor,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 7,
-                      color: Colors.black.withOpacity(0.1),
-                    )
-                  ],
-                ),
-                child: EasyStepper(
-                  unreachedLineColor: EV_Colors.greycolor,
-                  finishedLineColor: EV_Colors.yellowbtncolor,
-                  finishedStepTextColor: EV_Colors.yellowbtncolor,
-                  finishedStepBorderColor: EV_Colors.yellowbtncolor,
-                  finishedStepIconColor: EV_Colors.yellowbtncolor,
-                  activeStepTextColor: EV_Colors.yellowbtncolor,
-                  //activeStepIconColor: EV_Colors.yellowbtncolor,
-                  activeStepBorderColor: EV_Colors.yellowbtncolor,
-                  activeStep: activeStep,
-                  lineLength: 30.w,
-                  lineThickness: 3,
-                  lineSpace: 4,
-                  lineType: LineType.normal,
-                  defaultLineColor: EV_Colors.yellowbtncolor,
-                  defaultStepBorderType: BorderType.dotted,
-                  borderThickness: 10,
-                  internalPadding: 15,
-                  loadingAnimation: 'images/loading_circle.json',
-                  showLoadingAnimation: true,
-                  steps: const [
-                    EasyStep(
-                      icon: Icon(CupertinoIcons.person_alt_circle_fill),
-                      title: 'ຂໍ້ມູນເຈົ້າຂອງ',
-                    ),
-                    EasyStep(
-                      icon: Icon(CupertinoIcons.lock_circle),
-                      title: 'ຂໍ້ມູນຕູ້ສາກ',
-                    ),
-                    EasyStep(
-                      icon: Icon(CupertinoIcons.location_solid),
-                      title: 'ຂໍ້ມູນທີ່ຕັ້ງ',
-                    ),
-                    EasyStep(
-                      icon: Icon(CupertinoIcons.doc_chart_fill),
-                      title: 'ສະຫຼຸບ',
-                    ),
-                  ],
-                  onStepReached: (index) => setState(() => activeStep = index),
-                ),
+        child: Column(
+          children: [
+            Container(
+              height: 100.h,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: EV_Colors.yellowbtncolor),
+                color: EV_Colors.whitecolor,
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 7,
+                    color: Colors.black.withOpacity(0.1),
+                  )
+                ],
               ),
-              SizedBox(
-                height: 13.h,
+              child: EasyStepper(
+                unreachedLineColor: Colors.grey[200],
+                finishedLineColor: EV_Colors.yellowbtncolor,
+                finishedStepTextColor: EV_Colors.yellowbtncolor,
+                finishedStepBorderColor: EV_Colors.yellowbtncolor,
+                finishedStepIconColor: EV_Colors.yellowbtncolor,
+                activeStepTextColor: EV_Colors.yellowbtncolor,
+                //activeStepIconColor: EV_Colors.yellowbtncolor,
+                activeStepBorderColor: EV_Colors.yellowbtncolor,
+                activeStep: activeStep,
+                lineLength: 30.w,
+                lineThickness: 3,
+                lineSpace: 4,
+                lineType: LineType.normal,
+                defaultLineColor: EV_Colors.yellowbtncolor,
+                defaultStepBorderType: BorderType.dotted,
+                borderThickness: 10,
+                internalPadding: 15,
+                loadingAnimation: 'images/loading_circle.json',
+                showLoadingAnimation: true,
+                steps: const [
+                  EasyStep(
+                    icon: Icon(CupertinoIcons.person_alt_circle_fill),
+                    title: 'ຂໍ້ມູນເຈົ້າຂອງ',
+                  ),
+                  EasyStep(
+                    icon: Icon(CupertinoIcons.lock_circle),
+                    title: 'ຂໍ້ມູນຕູ້ສາກ',
+                  ),
+                  EasyStep(
+                    icon: Icon(CupertinoIcons.location_solid),
+                    title: 'ຂໍ້ມູນທີ່ຕັ້ງ',
+                  ),
+                  EasyStep(
+                    icon: Icon(CupertinoIcons.doc_chart_fill),
+                    title: 'ສະຫຼຸບ',
+                  ),
+                ],
+                onStepReached: (index) => setState(() => activeStep = index),
               ),
-              body()
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 13.h,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: body(),
+              ),
+            ),
+          ],
         ),
       ),
     );
