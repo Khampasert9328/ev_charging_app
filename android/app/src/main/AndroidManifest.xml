@@ -1,9 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ev_charging">
+    
    <application
         android:label="ev_charging"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyCqK4IZAoxaHEGEvZ81Hcwia2MhRc0LvsE"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -30,5 +33,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+         
     </application>
 </manifest>
