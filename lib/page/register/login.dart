@@ -44,9 +44,9 @@ class _LoginScreenState extends State<LoginScreen> {
           onTap: () {
             if (_key.currentState!.validate()) {
               try {
-            loginservice(email!.text, pwd!.text, context);
+                loginservice(email!.text, pwd!.text, context);
               } catch (e) {
-                print("error===$e");
+                rethrow;
               }
             }
           },
@@ -102,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         controller: email,
                         decoration: InputDecoration(
+                         
                           prefixIcon: const Icon(
                             Icons.email_outlined,
                             color: Colors.grey,
@@ -126,6 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         controller: pwd,
                         decoration: InputDecoration(
+                        
                           prefixIcon: const Icon(
                             Icons.lock_outline_rounded,
                             color: Colors.grey,

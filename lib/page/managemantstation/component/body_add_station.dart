@@ -89,10 +89,11 @@ class _BodyAddStationState extends State<BodyAddStation> {
                     },
                     child: activeStep >= 3
                         ? GestureDetector(
-                          onTap: (){
-                            EVDialog().showDialogSuccess(context, "ແຈ້ງເຕືອນ", "ບັນທຶກຂໍ້ມູນສຳເລັດແລ້ວ");
-                          },
-                          child: Container(
+                            onTap: () {
+                              EVDialog().showDialogSuccess(context, "ແຈ້ງເຕືອນ",
+                                  "ບັນທຶກຂໍ້ມູນສຳເລັດແລ້ວ");
+                            },
+                            child: Container(
                               margin: const EdgeInsets.only(
                                   right: 10, left: 10, bottom: 20),
                               alignment: Alignment.center,
@@ -110,7 +111,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
                                 ),
                               ),
                             ),
-                        )
+                          )
                         : Container(
                             margin: const EdgeInsets.only(
                                 right: 10, left: 10, bottom: 20),
@@ -152,6 +153,8 @@ class _BodyAddStationState extends State<BodyAddStation> {
                   ],
                 ),
                 child: EasyStepper(
+                  unreachedLineColor: EV_Colors.greycolor,
+                  finishedLineColor: EV_Colors.yellowbtncolor,
                   finishedStepTextColor: EV_Colors.yellowbtncolor,
                   finishedStepBorderColor: EV_Colors.yellowbtncolor,
                   finishedStepIconColor: EV_Colors.yellowbtncolor,
@@ -204,17 +207,17 @@ class _BodyAddStationState extends State<BodyAddStation> {
   Widget body() {
     switch (activeStep) {
       case 0:
-        return OwnerCompany();
+        return const OwnerCompany();
 
       case 1:
-        return InfoContainnaer();
+        return const InfoContainnaer();
 
       case 2:
-        return InfoLocationStation();
+        return const InfoLocationStation();
 
       case 3:
-        return Summary();
+        return const Summary();
     }
-    return SizedBox();
+    return const SizedBox();
   }
 }

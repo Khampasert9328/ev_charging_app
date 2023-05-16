@@ -22,10 +22,11 @@ class EVDialog {
      context: context,
       title: title,
       type: QuickAlertType.loading,
-     
-      confirmBtnColor: EV_Colors.yellowbtncolor,
       titleColor: Colors.black,
-      textColor: Colors.black,
+      textColor: Colors.white,
+      backgroundColor: Colors.white,
+   
+    
     );
   }
 
