@@ -1,11 +1,9 @@
 import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/page/home/homemaps.dart';
-import 'package:ev_charging/page/register/texformglobal.dart';
+import 'package:ev_charging/service/auth/login_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -46,16 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
           onTap: () {
             if (_key.currentState!.validate()) {
               try {
-                AuthProvider()
-                    .loginprovider(email!.text, pwd!.text, context)
-                    .then((value) async{
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (_) => const HomeMaps()),
-                      (route) => false);
-
-                     
-                });
+            loginservice(email!.text, pwd!.text, context);
               } catch (e) {
                 print("error===$e");
               }

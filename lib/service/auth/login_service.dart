@@ -2,37 +2,35 @@ import 'dart:convert';
 
 import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/models/auth/login_models.dart';
+import 'package:ev_charging/page/home/homemaps.dart';
+import 'package:ev_charging/widget/dialog/loading.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-Future<LoginModels?> loginservice(String email, String password) async {
+Future<void> loginservice(String email, String password, context) async {
   try {
-    var url = "http://172.16.2.196:3000/users/login";
-    // String body = jsonEncode(
-    //   {
-    //     "email": email,
-    //     "password": password,
-    //   },
-    // );
-    var respones = await http.post(Uri.parse(url),
-        body: jsonEncode(
-          {
-            "email": email,
-            "password": password,
-          },
-        ),
-        headers: {
-          "accept": "text/plain",
-          "Content-Type": "application/json",
-        });
+    EVDialog().showDialogLoading(context, "ກຳລັງເຂົ້າສູ່ລະບົບ...");
+    String url = "http://172.16.2.109:3000/users/login";
+    Object body = jsonEncode(
+      {
+        "email": email,
+        "password": password,
+      },
+    );
+    final respones = await http.post(Uri.parse(url), body: body, headers: {
+      "accept": "text/plain",
+      "Content-Type": "application/json",
+    });
     if (respones.statusCode == 200) {
+      Navigator.pop(context);
       var map = Map<String, dynamic>.from(jsonDecode(respones.body));
-    LoginModels loginData = LoginModels.fromJson(map);
-
-    print("respones====${loginData.accessToken}");
-
-     await PreFer().setToken(loginData.accessToken!);
-     await PreFer().setRole(loginData.expiresToken!.role!);
-      return loginModelsFromJson(respones.body);
+      LoginModels loginData = LoginModels.fromJson(map);
+      await PreFer().setToken(loginData.accessToken!);
+      await PreFer().setRole(loginData.expiresToken!.role!);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => const HomeMaps()),
+          (route) => false);
     }
   } catch (e) {
     rethrow;

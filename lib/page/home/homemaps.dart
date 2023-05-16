@@ -21,12 +21,17 @@ class _HomeMapsState extends State<HomeMaps> {
   bool? check;
   
 
-  
-  
+   String? token;
+  @override
+  void initState() {
+      Provider.of<AuthProvider>(context, listen: false).checklogin();
+      token = context.read<AuthProvider>().token;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final token = context.read<AuthProvider>().token;
+    
     return SafeArea(
       child: Scaffold(
         key: _globalKey,

@@ -17,12 +17,16 @@ class EVDialog {
     );
   }
 
-  Future<void> showDialogLoading(
-    BuildContext context,
-    String title,
-  ) {
+  Future<void> showDialogLoading(BuildContext context, String title) {
     return QuickAlert.show(
-        context: context, type: QuickAlertType.warning, title: title);
+     context: context,
+      title: title,
+      type: QuickAlertType.loading,
+     
+      confirmBtnColor: EV_Colors.yellowbtncolor,
+      titleColor: Colors.black,
+      textColor: Colors.black,
+    );
   }
 
   Future<void> showDiaError(

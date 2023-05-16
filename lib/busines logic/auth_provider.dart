@@ -2,9 +2,7 @@
 
 import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/models/auth/login_models.dart';
-import 'package:ev_charging/page/home/homemaps.dart';
 import 'package:ev_charging/service/auth/login_service.dart';
-import 'package:ev_charging/widget/dialog/loading.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -18,14 +16,13 @@ class AuthProvider extends ChangeNotifier {
   String? get token => _token;
   String? get role => _role;
 
-  Future<void> loginprovider(
-      String email, String password, BuildContext context) async {
-    _isloading = true;
-    _models = await loginservice(email, password);
-    _isloading = false;
-
-    notifyListeners();
-  }
+  // Future<void> loginprovider(
+  //     String email, String password, context) async {
+  //   _isloading = true;
+  //  loginservice(email, password, context);
+  //   _isloading = false;
+  //   notifyListeners();
+  // }
 
   Future<void> checklogin() async {
     _token = await PreFer().getToken();
