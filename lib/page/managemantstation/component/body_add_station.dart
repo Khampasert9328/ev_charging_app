@@ -153,7 +153,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
                   ],
                 ),
                 child: EasyStepper(
-                  unreachedLineColor: EV_Colors.greycolor,
+                  unreachedLineColor: Colors.grey[200],
                   finishedLineColor: EV_Colors.yellowbtncolor,
                   finishedStepTextColor: EV_Colors.yellowbtncolor,
                   finishedStepBorderColor: EV_Colors.yellowbtncolor,

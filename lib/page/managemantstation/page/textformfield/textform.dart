@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 class TextFormInfo extends StatelessWidget {
-  String? text;
+ final String? text;
 
-  TextFormInfo({super.key, required this.text});
+ const TextFormInfo({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

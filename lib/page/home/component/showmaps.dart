@@ -15,7 +15,6 @@ class _ShowMapsState extends State<ShowMaps> {
   @override
   Widget build(BuildContext context) {
     CameraPosition? cameraPosition;
-    ImageConfiguration configuration = createLocalImageConfiguration(context);
     if (lat != null) {
       LatLng latlng1 = LatLng(lat!, lng!);
 

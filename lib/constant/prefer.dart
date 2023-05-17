@@ -8,7 +8,7 @@ class PreFer {
 
   
 
-  Future<String?> setToken(String val) async {
+  Future<void> setToken(String val) async {
     preferences = await SharedPreferences.getInstance();
    await preferences!.setString(saveToken, val);
   }
@@ -18,7 +18,7 @@ class PreFer {
     return preferences!.getString(saveToken);
   }
 
-  Future<String?> setRole(String val) async {
+  Future<void> setRole(String val) async {
     preferences = await SharedPreferences.getInstance();
    await preferences!.setString(role, val);
   }
