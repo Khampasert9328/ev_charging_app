@@ -19,31 +19,41 @@ class HomeMaps extends StatefulWidget {
 class _HomeMapsState extends State<HomeMaps> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   bool? check;
-  
 
-   String? token;
+  String? token;
   @override
   void initState() {
-      Provider.of<AuthProvider>(context, listen: false).checklogin();
-      token = context.read<AuthProvider>().token;
+    Provider.of<AuthProvider>(context, listen: false).checklogin();
+    token = context.read<AuthProvider>().token;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return SafeArea(
       child: Scaffold(
         key: _globalKey,
         drawer: Drawer(
           child: Padding(
-            padding: const EdgeInsets.only(left: 21, right: 22),
+            padding: const EdgeInsets.only(
+              left: 21,
+              right: 22,
+              top: 20,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 token == null
                     ? EVDrawerHeader()
-                    : const CircleAvatar(radius: 30, child: Text("data")),
+                    :  CircleAvatar(
+                      backgroundColor: Colors.grey[200],
+                        radius: 50,
+                        child: const Icon(
+                          Icons.person_4_outlined,
+                          color: EV_Colors.whitecolor,
+                          size: 70,
+                        ),
+                      ),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -57,8 +67,7 @@ class _HomeMapsState extends State<HomeMaps> {
                       ),
                 const Divider(),
                 const EVDrawerBody(),
-                token == null
-                    ? SizedBox(): ButtonLogOut()
+                token == null ? SizedBox() : ButtonLogOut()
               ],
             ),
           ),
@@ -79,7 +88,7 @@ class _HomeMapsState extends State<HomeMaps> {
                   child: IconButton(
                     onPressed: () {
                       print("token====$token");
-                    
+
                       _globalKey.currentState!.openDrawer();
                     },
                     icon: const Icon(
