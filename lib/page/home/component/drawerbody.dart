@@ -1,5 +1,5 @@
 
-import 'package:ev_charging/constant/prefer.dart';
+
 import 'package:ev_charging/page/managemantstation/managementstation.dart';
 import 'package:ev_charging/page/settings/settings.dart';
 import 'package:ev_charging/page/stationall/stationall.dart';
@@ -16,16 +16,7 @@ class EVDrawerBody extends StatefulWidget {
 }
 
 class _EVDrawerBodyState extends State<EVDrawerBody> {
-  String? token;
-  @override
-  void initState() {
-    PreFer().getToken().then((value) {
-      if (value != null) {
-        token = value;
-      }
-    });
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +25,7 @@ class _EVDrawerBodyState extends State<EVDrawerBody> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         token==null?SizedBox():  ListTile(
+         ListTile(
             onTap: () {
               Navigator.push(
                 context,

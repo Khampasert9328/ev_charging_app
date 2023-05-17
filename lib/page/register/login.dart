@@ -129,12 +129,18 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Colors.grey,
                           ),
                           suffixIcon: GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               setState(() {
                                 pwdOpen = !pwdOpen;
                               });
                             },
-                            child:pwdOpen?Icon( Icons.visibility_off_outlined): Icon( Icons.visibility_outlined),
+                            child: pwdOpen
+                                ? const Icon(
+                                    Icons.visibility_off_outlined,
+                                  )
+                                : const Icon(
+                                    Icons.visibility_outlined,
+                                  ),
                           ),
                           filled: true,
                           fillColor: Colors.grey[200],
