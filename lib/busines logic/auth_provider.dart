@@ -2,7 +2,6 @@
 
 import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/models/auth/login_models.dart';
-import 'package:ev_charging/service/auth/login_service.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {

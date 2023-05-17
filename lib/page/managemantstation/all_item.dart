@@ -133,6 +133,6 @@ class _AllItemState extends State<AllItem> {
             }),
       ),
     );
-    ;
+ 
   }
 }

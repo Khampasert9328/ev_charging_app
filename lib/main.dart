@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:ev_charging/busines%20logic/auth_provider.dart';
+import 'package:ev_charging/busines%20logic/setlanguge_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/onboardingscreen/onboardingsreen.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
       builder: (context, _) {
         return MultiProvider(
           providers: [
-            ChangeNotifierProvider(create: (_)=>AuthProvider())
+            ChangeNotifierProvider(create: (_)=>AuthProvider()),
+            ChangeNotifierProvider(create: (_)=>SetLangugesProvider())
           ],
           child: MaterialApp(
             title: "Lao Charging Station",

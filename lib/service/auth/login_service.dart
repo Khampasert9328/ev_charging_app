@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 Future<void> loginservice(String email, String password, context) async {
   try {
     EVDialog().showDialogLoading(context, "ກຳລັງເຂົ້າສູ່ລະບົບ...");
-    String url = "http://172.20.10.3:3000/users/login";
+    String url = "http://172.16.2.174:3000/users/login";
     Object body = jsonEncode(
       {
         "email": email,
