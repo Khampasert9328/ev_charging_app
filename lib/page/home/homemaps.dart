@@ -23,8 +23,11 @@ class _HomeMapsState extends State<HomeMaps> {
   String? token;
   @override
   void initState() {
-    Provider.of<AuthProvider>(context, listen: false).checklogin();
-    token = context.read<AuthProvider>().token;
+    if (token == null) {
+      Provider.of<AuthProvider>(context, listen: false).checklogin();
+      token = context.read<AuthProvider>().token;
+    }
+
     super.initState();
   }
 
@@ -45,8 +48,8 @@ class _HomeMapsState extends State<HomeMaps> {
               children: [
                 token == null
                     ? EVDrawerHeader()
-                    :  CircleAvatar(
-                      backgroundColor: Colors.grey[200],
+                    : CircleAvatar(
+                        backgroundColor: Colors.grey[200],
                         radius: 50,
                         child: const Icon(
                           Icons.person_4_outlined,
