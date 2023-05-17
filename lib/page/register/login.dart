@@ -1,4 +1,3 @@
-
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/service/auth/login_service.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController? email = TextEditingController();
   TextEditingController? pwd = TextEditingController();
-  bool check = false;
+  bool pwdOpen = true;
   final _key = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -101,7 +100,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         controller: email,
                         decoration: InputDecoration(
-                         
                           prefixIcon: const Icon(
                             Icons.email_outlined,
                             color: Colors.grey,
@@ -117,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextFormField(
                         cursorColor: Colors.grey,
-                        obscureText: false,
+                        obscureText: pwdOpen,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "ກາລຸນາໃສ່ລະຫັດຜ່ານໃຫ້ຄົບ";
@@ -126,10 +124,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         controller: pwd,
                         decoration: InputDecoration(
-                        
                           prefixIcon: const Icon(
                             Icons.lock_outline_rounded,
                             color: Colors.grey,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                pwdOpen = !pwdOpen;
+                              });
+                            },
+                            child:pwdOpen?Icon( Icons.visibility_off_outlined): Icon( Icons.visibility_outlined),
                           ),
                           filled: true,
                           fillColor: Colors.grey[200],
