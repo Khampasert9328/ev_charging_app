@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ev_charging/constant/domain.dart';
 import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/models/auth/login_models.dart';
 import 'package:ev_charging/page/home/homemaps.dart';
@@ -10,7 +11,7 @@ import 'package:http/http.dart' as http;
 Future<void> loginservice(String email, String password, context) async {
   try {
     EVDialog().showDialogLoading(context, "ກຳລັງເຂົ້າສູ່ລະບົບ...");
-    String url = "http://172.16.2.174:3000/users/login";
+    String url = AppDomain.login;
     Object body = jsonEncode(
       {
         "email": email,

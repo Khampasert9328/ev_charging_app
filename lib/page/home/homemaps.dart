@@ -69,7 +69,7 @@ class _HomeMapsState extends State<HomeMaps> {
                         ),
                       ),
                 const Divider(),
-                const EVDrawerBody(),
+                 EVDrawerBody(token: token,),
                 token == null ? SizedBox() : ButtonLogOut()
               ],
             ),
