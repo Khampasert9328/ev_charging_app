@@ -1,4 +1,5 @@
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/page/register/forgot_password.dart';
 import 'package:ev_charging/service/auth/login_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -65,9 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Center(
@@ -149,7 +150,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=>const ForgotPassword()));
+                        },
                         child: Text(
                           "ລືມລະຫັດຜ່ານ?",
                           style:

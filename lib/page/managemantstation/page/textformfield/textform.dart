@@ -15,8 +15,9 @@ class TextFormInfo extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
+        cursorColor: Colors.grey[200],
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(10),
+          contentPadding: const EdgeInsets.all(10),
           hintText: text,
           border: InputBorder.none,
         ),

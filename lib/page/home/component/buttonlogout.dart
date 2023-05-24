@@ -15,13 +15,12 @@ class _ButtonLogOutState extends State<ButtonLogOut> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async{
+      onTap: () async {
         SharedPreferences preferences = await SharedPreferences.getInstance();
-        preferences.clear().then((value) {
-          Navigator.pop(context);
-
-          print("logoute success");
-
+        setState(() {
+          preferences.clear().then((value) {
+            Navigator.pop(context);
+          });
         });
       },
       child: Container(
@@ -41,6 +40,5 @@ class _ButtonLogOutState extends State<ButtonLogOut> {
         ),
       ),
     );
-    
   }
 }

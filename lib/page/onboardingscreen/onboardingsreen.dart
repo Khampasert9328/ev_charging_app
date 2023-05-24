@@ -26,24 +26,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Scaffold(
       backgroundColor: EV_Colors.yellowcolor,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              "images/MEM.png",
-            ),
-           
-            const SizedBox(height: 30),
-            if (defaultTargetPlatform == TargetPlatform.iOS)
-              const CupertinoActivityIndicator(
-                color: EV_Colors.bluecolor,
-                radius: 10,
-              )
-            else
-              const CupertinoActivityIndicator(
-                color:EV_Colors.bluecolor,
-              )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                "images/MEM.png",
+              ),
+             
+              const SizedBox(height: 30),
+              if (defaultTargetPlatform == TargetPlatform.iOS)
+                const CupertinoActivityIndicator(
+                  color: EV_Colors.bluecolor,
+                  radius: 10,
+                )
+              else
+                const CupertinoActivityIndicator(
+                  color:EV_Colors.bluecolor,
+                )
+            ],
+          ),
         ),
       ),
     );
