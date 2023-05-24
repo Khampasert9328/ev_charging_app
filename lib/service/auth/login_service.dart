@@ -36,6 +36,16 @@ Future<void> loginservice(String email, String password, context) async {
           context,
           MaterialPageRoute(builder: (_) => const HomeMaps()),
           (route) => false);
+    }else if(respones.statusCode==400){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: SnackBar(
+      content:  Text("ແຈ້ງເຕືອນ"),
+      action: SnackBarAction(
+        label: "ກາລຸນາໃສ່ອີເມລ ແລະ ລະຫັດຜ່ານໃຫ້ຖືກຕ້ອງ",
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    )));
     }
   } catch (e) {
     rethrow;

@@ -65,9 +65,9 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Center(
@@ -149,7 +149,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+
+                          
+                          
+                        },
                         child: Text(
                           "ລືມລະຫັດຜ່ານ?",
                           style:
