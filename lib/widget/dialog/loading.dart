@@ -4,12 +4,13 @@ import 'package:quickalert/quickalert.dart';
 
 class EVDialog {
   Future<void> showDialogSuccess(
-      BuildContext context, String title, String text) {
+      BuildContext context, String title, String text, VoidCallback onTap) {
     return QuickAlert.show(
       context: context,
       title: title,
       type: QuickAlertType.success,
       text: text,
+      onConfirmBtnTap: onTap,
       confirmBtnText: "ຕົກລົງ",
       confirmBtnColor: EV_Colors.yellowbtncolor,
       titleColor: Colors.black,

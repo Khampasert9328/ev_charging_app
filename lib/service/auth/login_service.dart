@@ -5,6 +5,7 @@ import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/models/auth/ForgotPassword.dart';
 import 'package:ev_charging/models/auth/login_models.dart';
 import 'package:ev_charging/page/home/homemaps.dart';
+import 'package:ev_charging/page/register/login.dart';
 import 'package:ev_charging/widget/dialog/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -45,8 +46,14 @@ Future<void> loginservice(String email, String password, context) async {
 
 Future<void> forgotpassword(String email, context) async {
   try {
-    EVDialog()
-        .showDialogSuccess(context, "ແຈ້ງເຕືອນ", "ກາລຸນາກວດສອບອີເມລຂອງທ່ານ");
+      EVDialog().showDialogSuccess(
+        context,
+        "ແຈ້ງເຕືອນ",
+        "ກາລຸນາກວດສອບອີເມຂອງທ່ານ",
+        () {
+          Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginScreen()));
+        },
+      );
     String url = AppDomain.forgotpassword;
     Object body = jsonEncode(
       {
@@ -65,10 +72,13 @@ Future<void> forgotpassword(String email, context) async {
         "Connection": "keep-alive",
       },
     );
+    
     if (response.statusCode == 200) {
-      Navigator.pop(context);
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);
+    } else if (response.statusCode == 400) {
+      Navigator.pop(context);
+      EVDialog().showDiaError(context, "ບໍ່ມີອີເມລນີ້ໃນລະບົບ ກາລຸນລອງໃໝ່");
     }
   } catch (e) {
     rethrow;
