@@ -78,6 +78,7 @@ Future<void> forgotpassword(String email, context) async {
     );
 
     if (response.statusCode == 200) {
+      Navigator.pop(context);
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);
     } else if (response.statusCode == 400) {
