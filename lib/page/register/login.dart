@@ -3,6 +3,7 @@ import 'package:ev_charging/page/register/forgot_password.dart';
 import 'package:ev_charging/service/auth/login_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -69,6 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
+          reverse: true,
           child: Column(
             children: [
               Center(
@@ -101,14 +103,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         controller: email,
                         decoration: InputDecoration(
-                          prefixIcon: const Icon(
-                            Icons.email_outlined,
-                            color: Colors.grey,
-                          ),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(10)),
+                          prefixIcon: const Icon(Icons.email_outlined),
                           filled: true,
                           fillColor: Colors.grey[200],
                           hintText: "ອີເມລ",
-                          border: InputBorder.none,
                         ),
                       ),
                       SizedBox(
@@ -125,10 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         controller: pwd,
                         decoration: InputDecoration(
-                          prefixIcon: const Icon(
-                            Icons.lock_outline_rounded,
-                            color: Colors.grey,
-                          ),
+                          prefixIcon: const Icon(Icons.lock_outlined),
                           suffixIcon: GestureDetector(
                             onTap: () {
                               setState(() {
@@ -136,22 +134,25 @@ class _LoginScreenState extends State<LoginScreen> {
                               });
                             },
                             child: pwdOpen
-                                ? const Icon(
-                                    Icons.visibility_off_outlined,
-                                  )
+                                ? const Icon(FontAwesomeIcons.eyeSlash)
                                 : const Icon(
-                                    Icons.visibility_outlined,
+                                    FontAwesomeIcons.eye,
                                   ),
                           ),
                           filled: true,
                           fillColor: Colors.grey[200],
                           hintText: "ລະຫັດຜ່ານ",
-                          border: InputBorder.none,
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(10)),
                         ),
                       ),
                       TextButton(
                         onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_)=>const ForgotPassword()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const ForgotPassword()));
                         },
                         child: Text(
                           "ລືມລະຫັດຜ່ານ?",
@@ -163,6 +164,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
+
+              Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom))
             ],
           ),
         ),

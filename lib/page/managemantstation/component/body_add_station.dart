@@ -91,7 +91,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
                         ? GestureDetector(
                             onTap: () {
                               EVDialog().showDialogSuccess(context, "ແຈ້ງເຕືອນ",
-                                  "ບັນທຶກຂໍ້ມູນສຳເລັດແລ້ວ");
+                                  "ບັນທຶກຂໍ້ມູນສຳເລັດແລ້ວ",(){});
                             },
                             child: Container(
                               margin: const EdgeInsets.only(

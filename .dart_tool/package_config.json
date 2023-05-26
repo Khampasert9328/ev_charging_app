@@ -134,6 +134,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/font_awesome_flutter-10.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "google_maps_flutter",
       "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/google_maps_flutter-2.2.6",
       "packageUri": "lib/",
@@ -446,7 +452,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-26T07:47:38.363382Z",
+  "generated": "2023-05-26T07:52:08.534046Z",
   "generator": "pub",
   "generatorVersion": "3.0.0"
 }

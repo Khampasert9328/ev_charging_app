@@ -7,6 +7,7 @@ import 'package:ev_charging/page/home/component/drawerheader.dart';
 import 'package:ev_charging/page/home/component/showmaps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class HomeMaps extends StatefulWidget {
@@ -69,7 +70,9 @@ class _HomeMapsState extends State<HomeMaps> {
                         ),
                       ),
                 const Divider(),
-                 EVDrawerBody(token: token,),
+                EVDrawerBody(
+                  token: token,
+                ),
                 token == null ? SizedBox() : ButtonLogOut()
               ],
             ),
@@ -89,16 +92,15 @@ class _HomeMapsState extends State<HomeMaps> {
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: IconButton(
-                    onPressed: () {
-                      print("token====$token");
+                      onPressed: () {
+                        print("token====$token");
 
-                      _globalKey.currentState!.openDrawer();
-                    },
-                    icon: const Icon(
-                      Icons.menu,
-                      color: EV_Colors.whitecolor,
-                    ),
-                  ),
+                        _globalKey.currentState!.openDrawer();
+                      },
+                      icon: const Icon(
+                        FontAwesomeIcons.barsStaggered,
+                        color: Colors.white,
+                      )),
                 ),
               ),
             ),

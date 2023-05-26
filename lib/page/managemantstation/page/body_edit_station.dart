@@ -44,7 +44,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
       bottomNavigationBar: GestureDetector(
         onTap: () async {
           EVDialog()
-              .showDialogSuccess(context, "ແຈ້ງເຕືອນ", "ແກ້ໄຂຂໍ້ມູນສຳເລັດແລ້ວ");
+              .showDialogSuccess(context, "ແຈ້ງເຕືອນ", "ແກ້ໄຂຂໍ້ມູນສຳເລັດແລ້ວ",(){});
         },
         child: Container(
           margin: const EdgeInsets.only(right: 10, left: 10, bottom: 20),

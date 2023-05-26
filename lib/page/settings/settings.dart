@@ -81,13 +81,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => ChangePassword(),
-                  ),
-                );
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>ChangePassword()));
               },
               leading: const Icon(
                 Icons.lock_outline,

@@ -1,5 +1,5 @@
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/page/managemantstation/page/textformfield/textform.dart';
+import 'package:ev_charging/service/auth/login_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,29 +11,12 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
+  TextEditingController password = TextEditingController();
+  bool pwdOpen = true;
+  final _key = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: GestureDetector(
-        onTap: () async {},
-        child: Container(
-          margin: const EdgeInsets.only(right: 10, left: 10, bottom: 20),
-          alignment: Alignment.center,
-          height: 46.h,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              color: EV_Colors.yellowbtncolor,
-              borderRadius: BorderRadius.circular(10)),
-          child: Text(
-            "ບັນທຶກລະຫັດຜ່ານໃໝ່",
-            style: TextStyle(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.bold,
-              color: EV_Colors.whitecolor,
-            ),
-          ),
-        ),
-      ),
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -53,57 +36,85 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(15),
-        child: SingleChildScrollView(
+        padding: EdgeInsets.all(20),
+        child: Form(
+          key: _key,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                margin: EdgeInsets.only(top: 30),
-                child: Center(
+              Center(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 30, bottom: 20),
                   child: Image.asset(
                     "images/MEM.png",
-                    height: 100.h,
-                    width: 100.w,
+                    height: 200.h,
+                    width: 300.w,
                   ),
                 ),
               ),
               SizedBox(
-                height: 15.h,
+                height: 22.h,
               ),
-              Text(
-                "ລະຫັດຜ່ານປັດຈຸບັນ:",
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.bold,
+              TextFormField(
+                controller: password,
+                cursorColor: Colors.grey,
+                obscureText: pwdOpen,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "ກາລຸນາໃສ່ລະຫັດຜ່ານໃໝ່";
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        pwdOpen = !pwdOpen;
+                      });
+                    },
+                    child: pwdOpen
+                        ? const Icon(
+                            Icons.visibility_off_outlined,
+                          )
+                        : const Icon(
+                            Icons.visibility_outlined,
+                          ),
+                  ),
+                  prefixIcon: const Icon(
+                    Icons.lock_outline,
+                    color: Colors.grey,
+                  ),
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  hintText: "ປ້ອນລະຫັດຜ່ານ:",
+                  border: InputBorder.none,
                 ),
               ),
               SizedBox(
-                height: 5.h,
+                height: 20.h,
               ),
-              TextFormInfo(text: "ປ້ອນລະຫັດຜ່ານປັດຈຸບັນ"),
-              Text(
-                "ລະຫັດຜ່ານໃໝ່:",
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.bold,
+              GestureDetector(
+                onTap: () {
+                  if (_key.currentState!.validate()) {
+                    changpassword(context, password.text);
+                  }
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: EV_Colors.yellowbtncolor,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Text(
+                    "ປ່ຽນລະຫັດຜ່ານໃໝ່",
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        color: EV_Colors.whitecolor,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
-              SizedBox(
-                height: 5.h,
-              ),
-              const TextFormInfo(text: "ປ້ອນລະຫັດຜ່ານໃໝ່"),
-              Text(
-                "ຢືນຢັນລະຫັດຜ່ານໃໝ່:",
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              const TextFormInfo(text: "ປ້ອນການຢືນຢັນລະຫັດຜ່ານໃໝ່"),
             ],
           ),
         ),
