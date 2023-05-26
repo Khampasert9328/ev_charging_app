@@ -93,6 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: [
                       TextFormField(
+                        keyboardType: TextInputType.emailAddress,
                         cursorColor: Colors.grey,
                         obscureText: false,
                         validator: (value) {
@@ -116,6 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 10.h,
                       ),
                       TextFormField(
+                        keyboardType: TextInputType.text,
                         cursorColor: Colors.grey,
                         obscureText: pwdOpen,
                         validator: (value) {
