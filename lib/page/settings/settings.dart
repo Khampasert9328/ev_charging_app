@@ -1,5 +1,6 @@
 import 'package:ev_charging/busines%20logic/setlanguge_provider.dart';
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/page/settings/changepassword.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -89,7 +90,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             ListTile(
-              onTap: (){},
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>ChangePassword()));
+              },
               leading: const Icon(
                 Icons.lock_outline,
                 color: EV_Colors.yellowbtncolor,

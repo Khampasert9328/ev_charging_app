@@ -134,6 +134,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/font_awesome_flutter-10.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "google_maps_flutter",
       "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/google_maps_flutter-2.2.6",
       "packageUri": "lib/",
@@ -180,6 +186,12 @@
       "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "jwt_decode",
+      "rootUri": "file:///Users/imac/.pub-cache/hosted/pub.dev/jwt_decode-0.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "lints",
@@ -440,7 +452,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-24T08:10:08.836093Z",
+  "generated": "2023-05-25T09:20:09.412846Z",
   "generator": "pub",
   "generatorVersion": "3.0.0"
 }
