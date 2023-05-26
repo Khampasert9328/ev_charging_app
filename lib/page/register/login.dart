@@ -43,11 +43,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: GestureDetector(
           onTap: () {
             if (_key.currentState!.validate()) {
-              try {
+           
                 loginservice(email!.text, pwd!.text, context);
-              } catch (e) {
-                rethrow;
-              }
+             
             }
           },
           child: Container(
@@ -166,8 +164,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-
-              Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom))
             ],
           ),
         ),

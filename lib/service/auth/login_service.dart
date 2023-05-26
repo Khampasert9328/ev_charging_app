@@ -41,7 +41,10 @@ Future<void> loginservice(String email, String password, context) async {
           context,
           MaterialPageRoute(builder: (_) => const HomeMaps()),
           (route) => false);
-    } else if (respones.statusCode == 400) {}
+    } else if (respones.statusCode == 400) {
+      Navigator.pop(context);
+      EVDialog().showDiaError(context, "ກາລຸນາກວດສອບ ອີເມລ ແລະ ລະຫັດຜ່ານ");
+    }
   } catch (e) {
     rethrow;
   }
