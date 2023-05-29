@@ -13,10 +13,15 @@ class AuthProvider extends ChangeNotifier {
   String? get token => _token;
   String? get role => _role;
 
-
   Future<void> checklogin() async {
     _token = await PreFer().getToken();
     _role = await PreFer().getRole();
+    notifyListeners();
+  }
+
+  Future<void> clearalltoken(String? val) async {
+    _token = val;
+    _role = val;
     notifyListeners();
   }
 }

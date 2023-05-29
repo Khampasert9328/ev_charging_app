@@ -19,16 +19,17 @@ class HomeMaps extends StatefulWidget {
 
 class _HomeMapsState extends State<HomeMaps> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
-  bool? check;
-
   String? token;
-  @override
-  void initState() {
+  void checktoken() async {
     if (token == null) {
       Provider.of<AuthProvider>(context, listen: false).checklogin();
       token = context.read<AuthProvider>().token;
     }
+  }
 
+  @override
+  void initState() {
+    checktoken();
     super.initState();
   }
 

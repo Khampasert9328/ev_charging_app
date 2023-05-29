@@ -38,37 +38,33 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: GestureDetector(
-          onTap: () {
-            if (_key.currentState!.validate()) {
-              try {
-                loginservice(email!.text, pwd!.text, context);
-              } catch (e) {
-                rethrow;
-              }
-            }
-          },
-          child: Container(
-            alignment: Alignment.center,
-            height: 60.h,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                color: EV_Colors.yellowbtncolor,
-                borderRadius: BorderRadius.circular(10)),
-            child: Text(
-              "ເຂົ້າສູ່ລະບົບ",
-              style: TextStyle(
-                  fontSize: 20.sp,
-                  color: EV_Colors.whitecolor,
-                  fontWeight: FontWeight.bold),
-            ),
+      bottomNavigationBar: GestureDetector(
+        onTap: () {
+          if (_key.currentState!.validate()) {
+            loginservice(email!.text, pwd!.text, context);
+          }
+        },
+        child: Container(
+         margin: EdgeInsets.only(right: 20, left: 20, bottom: 10),
+          alignment: Alignment.center,
+          height: 60.h,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              color: EV_Colors.yellowbtncolor,
+              borderRadius: BorderRadius.circular(10)),
+          child: Text(
+            "ເຂົ້າສູ່ລະບົບ",
+            style: TextStyle(
+                fontSize: 20.sp,
+                color: EV_Colors.whitecolor,
+                fontWeight: FontWeight.bold),
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
         child: SingleChildScrollView(
           reverse: true,
           child: Column(
@@ -166,8 +162,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-
-              Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom))
             ],
           ),
         ),
