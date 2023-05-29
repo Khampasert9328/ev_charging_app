@@ -123,8 +123,13 @@ Future<void> changpassword(context, String password) async {
       },
     );
     if (response.statusCode == 200) {
+      Navigator.pop(context);
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);
+    } else if (response.statusCode == 400) {
+      Navigator.pop(context);
+      EVDialog()
+          .showDiaError(context, "ບໍ່ສາມາດປ່ຽນລະຫັດຜ່ານໄດ້ ລອງໃໝ່ອີກຄັ້ງ");
     }
   } catch (e) {
     rethrow;
