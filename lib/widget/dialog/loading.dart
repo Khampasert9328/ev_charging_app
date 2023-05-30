@@ -20,25 +20,31 @@ class EVDialog {
 
   Future<void> showDialogLoading(BuildContext context, String title) {
     return QuickAlert.show(
-     context: context,
+      context: context,
       title: title,
       type: QuickAlertType.loading,
       titleColor: Colors.black,
       textColor: Colors.white,
       backgroundColor: Colors.white,
-   
-    
     );
   }
 
-  Future<void> showDiaError(
-    BuildContext context,
-    String title,
-  ) {
+  Future<void> showDiaError(BuildContext context, String title) {
     return QuickAlert.show(
         context: context,
         type: QuickAlertType.error,
         title: title,
         confirmBtnText: "ຕົກລົງ");
+  }
+
+  AlertDialog showloadinglogin(context) {
+    return AlertDialog(
+      content: Column(
+        children: [
+          Image.asset("images/loading.gif"),
+          const Text("ກຳລັງເຂົ້າສູ່ລະບົບ")
+        ],
+      ),
+    );
   }
 }
