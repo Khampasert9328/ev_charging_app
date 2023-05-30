@@ -67,6 +67,14 @@ INJECTED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/sr
 		INJECTED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/main/AndroidManifest.xml:3:5-67
+MERGED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/main/AndroidManifest.xml:3:5-67
+MERGED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/main/AndroidManifest.xml:3:5-67
+MERGED from [com.google.android.gms:play-services-maps:18.1.0] /Users/imac/.gradle/caches/transforms-3/a0e34175b89fa528462076cc4208822f/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-maps:18.1.0] /Users/imac/.gradle/caches/transforms-3/a0e34175b89fa528462076cc4208822f/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:24:5-67
+	android:name
+		ADDED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/main/AndroidManifest.xml:3:22-64
 uses-sdk
 INJECTED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/main/AndroidManifest.xml
@@ -129,12 +137,6 @@ INJECTED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/sr
 	android:minSdkVersion
 		INJECTED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/debug/AndroidManifest.xml
-uses-permission#android.permission.INTERNET
-ADDED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/debug/AndroidManifest.xml:7:5-66
-MERGED from [com.google.android.gms:play-services-maps:18.1.0] /Users/imac/.gradle/caches/transforms-3/a0e34175b89fa528462076cc4208822f/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:24:5-67
-MERGED from [com.google.android.gms:play-services-maps:18.1.0] /Users/imac/.gradle/caches/transforms-3/a0e34175b89fa528462076cc4208822f/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:24:5-67
-	android:name
-		ADDED from /Users/imac/Desktop/ev_charging_app/ev_charging_app/android/app/src/debug/AndroidManifest.xml:7:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [:connectivity_plus] /Users/imac/Desktop/ev_charging_app/ev_charging_app/build/connectivity_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] /Users/imac/.gradle/caches/transforms-3/a0e34175b89fa528462076cc4208822f/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:23:5-79
