@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:ev_charging/constant/domain.dart';
 import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/models/auth/ForgotPassword.dart';
@@ -137,6 +138,17 @@ Future<void> changpassword(context, String password) async {
           .showDiaError(context, "ບໍ່ສາມາດປ່ຽນລະຫັດຜ່ານໄດ້ ລອງໃໝ່ອີກຄັ້ງ");
     }
   } catch (e) {
-    rethrow;
+    Navigator.pop(context);
+    final snackbar = SnackBar(
+        content: AwesomeSnackbarContent(
+          title: "ແຈ້ງເຕືອນ",
+          message: "ກາລຸນາເຊື່ອມຕໍ່ອິນເຕີເນັດ",
+          contentType: ContentType.failure,
+        ),
+      );
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackbar);
   }
 }

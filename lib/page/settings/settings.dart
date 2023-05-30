@@ -1,3 +1,4 @@
+import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/busines%20logic/setlanguge_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/settings/changepassword.dart';
@@ -15,7 +16,22 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   String? valueitem;
   String? selectLanguge;
-  void onlangugeselect(String languges){
+  String? token;
+  @override
+  void initState() {
+    checktoken();
+
+    super.initState();
+  }
+
+  void checktoken() async {
+    if (token == null) {
+      Provider.of<AuthProvider>(context, listen: false).checklogin();
+      token = context.read<AuthProvider>().token;
+    }
+  }
+
+  void onlangugeselect(String languges) {
     setState(() {
       selectLanguge = languges;
     });
@@ -25,9 +41,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     "LA",
     "EN",
   ];
+
   @override
   Widget build(BuildContext context) {
-    final providerService = Provider.of<SetLangugesProvider>(context, listen: false);
+    final providerService =
+        Provider.of<SetLangugesProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -62,10 +80,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Text(
                     "ປ່ຽນພາສາ",
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold
-                    ),
+                    style:
+                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 10, right: 10),
@@ -80,31 +96,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         items: item.map((e) {
                           return DropdownMenuItem(value: e, child: Text(e));
                         }).toList(),
-                        onChanged: (value) async{
-                        
-                            valueitem = await providerService.setLangugePreference("$value");
-                       
+                        onChanged: (value) async {
+                          valueitem = await providerService
+                              .setLangugePreference("$value");
                         }),
                   ),
                 ],
               ),
             ),
-            ListTile(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=>ChangePassword()));
-              },
-              leading: const Icon(
-                Icons.lock_outline,
-                color: EV_Colors.yellowbtncolor,
-              ),
-              title: Text(
-                "ປ່ຽນລະຫັດຜ່ານ",
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-            )
+            token == null
+                ? const SizedBox()
+                : ListTile(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => ChangePassword()));
+                    },
+                    leading: const Icon(
+                      Icons.lock_outline,
+                      color: EV_Colors.yellowbtncolor,
+                    ),
+                    title: Text(
+                      "ປ່ຽນລະຫັດຜ່ານ",
+                      style: TextStyle(
+                          fontSize: 18.sp, fontWeight: FontWeight.bold),
+                    ),
+                  )
           ],
         ),
       ),
