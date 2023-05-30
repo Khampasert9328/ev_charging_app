@@ -9,13 +9,18 @@ import 'package:ev_charging/models/auth/login_models.dart';
 import 'package:ev_charging/page/home/homemaps.dart';
 import 'package:ev_charging/page/register/login.dart';
 import 'package:ev_charging/widget/dialog/loading.dart';
+import 'package:ev_charging/widget/dialog/loadingscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decode/jwt_decode.dart';
 
 Future<void> loginservice(String email, String password, context) async {
   try {
-    EVDialog().showDialogLoading(context, "ກຳລັງເຂົ້າສູ່ລະບົບ...");
+    showDialog(
+        context: context,
+        builder: (_) {
+          return LoadingDialog(title: "ກຳລັງເຂົ້າສູ່ລະບົບ...");
+        });
     String url = AppDomain.login;
     Object body = jsonEncode(
       {

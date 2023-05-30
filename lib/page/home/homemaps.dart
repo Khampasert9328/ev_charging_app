@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 
@@ -20,6 +24,9 @@ class HomeMaps extends StatefulWidget {
 class _HomeMapsState extends State<HomeMaps> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   String? token;
+  String connectionStatus = "---";
+
+  late StreamSubscription subscription;
   void checktoken() async {
     if (token == null) {
       Provider.of<AuthProvider>(context, listen: false).checklogin();
@@ -29,8 +36,46 @@ class _HomeMapsState extends State<HomeMaps> {
 
   @override
   void initState() {
+    subscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      checkStatus();
+    });
     checktoken();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    subscription.cancel();
+  }
+
+  void checkStatus() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      print("connected to a mobile network");
+      setState(() {
+        connectionStatus = "connected to a mobile network";
+      });
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      print("connected to a wifi network");
+      setState(() {
+        connectionStatus = "connected to a wifi network";
+      });
+    } else {
+      final snackbar = SnackBar(
+        content: AwesomeSnackbarContent(
+          title: "ແຈ້ງເຕືອນ",
+          message: "ກາລຸນາເຊື່ອມຕໍ່ອິນເຕີເນັດ",
+          contentType: ContentType.failure,
+        ),
+      );
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackbar);
+    }
   }
 
   @override
