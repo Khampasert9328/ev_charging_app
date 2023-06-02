@@ -1,14 +1,14 @@
 # This is a generated file; do not edit or check into version control.
 connectivity_plus=/Users/archineertwo/.pub-cache/hosted/pub.dev/connectivity_plus-4.0.1/
-flutter_plugin_android_lifecycle=/Users/archineertwo/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.13/
-google_maps_flutter=/Users/archineertwo/.pub-cache/hosted/pub.dev/google_maps_flutter-2.2.6/
-google_maps_flutter_android=/Users/archineertwo/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.4.13/
-google_maps_flutter_ios=/Users/archineertwo/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.2.1/
-path_provider_linux=/Users/archineertwo/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.10/
+flutter_plugin_android_lifecycle=/Users/archineertwo/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.15/
+google_maps_flutter=/Users/archineertwo/.pub-cache/hosted/pub.dev/google_maps_flutter-2.2.8/
+google_maps_flutter_android=/Users/archineertwo/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.4.15/
+google_maps_flutter_ios=/Users/archineertwo/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.2.3/
+path_provider_linux=/Users/archineertwo/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.11/
 path_provider_windows=/Users/archineertwo/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.6/
-shared_preferences=/Users/archineertwo/.pub-cache/hosted/pub.dev/shared_preferences-2.1.0/
+shared_preferences=/Users/archineertwo/.pub-cache/hosted/pub.dev/shared_preferences-2.1.1/
 shared_preferences_android=/Users/archineertwo/.pub-cache/hosted/pub.dev/shared_preferences_android-2.1.4/
-shared_preferences_foundation=/Users/archineertwo/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.2.1/
+shared_preferences_foundation=/Users/archineertwo/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.2.2/
 shared_preferences_linux=/Users/archineertwo/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.2.0/
 shared_preferences_web=/Users/archineertwo/.pub-cache/hosted/pub.dev/shared_preferences_web-2.1.0/
 shared_preferences_windows=/Users/archineertwo/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.2.0/
