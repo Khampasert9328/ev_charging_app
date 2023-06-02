@@ -54,7 +54,7 @@ class _AllItemState extends State<AllItem> {
                 },
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 10),
-                  height: 100.h,
+          
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: EV_Colors.whitecolor,
@@ -75,48 +75,55 @@ class _AllItemState extends State<AllItem> {
                       SizedBox(
                         width: 5.w,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "ສູນການຄ້າພາກຊັນ",
-                            style: TextStyle(
-                              fontSize: 18.sp,
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "ສູນການຄ້າພາກຊັນ",
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                              ),
                             ),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "ເຈົ້າຂອງ: ",
-                                style: TextStyle(
-                                  fontSize: 12.sp,
-                                ),
-                              ),
-                              Text(
-                                "ບໍລິສັດ ໂລກ້າ ຈຳກັດ",
-                                style: TextStyle(
+                            Row(
+                              children: [
+                                Text(
+                                  "ເຈົ້າຂອງ: ",
+                                  style: TextStyle(
                                     fontSize: 12.sp,
-                                    color: EV_Colors.yellowbtncolor),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "ສະຖານທີ່: ",
-                                style: TextStyle(
-                                  fontSize: 12.sp,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "ນະຄອນຫລວງວຽງຈັນ ເມືອງ ໄຊເສດຖາ ບ້ານ ໜອງຈັນ",
-                                style: TextStyle(
+                                Text(
+                                  "ບໍລິສັດ ໂລກ້າ ຈຳກັດ",
+                                  style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: EV_Colors.yellowbtncolor),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "ສະຖານທີ່: ",
+                                  style: TextStyle(
                                     fontSize: 12.sp,
-                                    color: EV_Colors.yellowbtncolor),
-                              ),
-                            ],
-                          )
-                        ],
+                                  ),
+                                ),
+                                Text(
+                                  "ນະຄອນຫລວງວຽງຈັນ ເມືອງ ໄຊເສດຖາ ບ້ານ ໜອງຈັນ",
+                                  style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: EV_Colors.yellowbtncolor,
+                                      overflow: TextOverflow.ellipsis,
+                                      
+                                      ),
+                                      maxLines: 1,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
