@@ -48,7 +48,16 @@ Future<void> loginservice(String email, String password, context) async {
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const HomeMaps()), (route) => false);
     } else if (respones.statusCode == 400) {
       Navigator.pop(context);
-      EVDialog().showDiaError(context, "ກາລຸນາກວດສອບ ອີເມລ ແລະ ລະຫັດຜ່ານ");
+      showDialog(
+          context: context,
+          builder: (_) {
+            return DialogError(
+              title: "ອີເມລ ແລະ ລະຫັດຜ່ານຂອງທ່ານບໍ່ຖືກຕ້ອງ\nກາລຸນາລອງໃໝ່ອີກຄັ້ງ",
+              onTap: () {
+                Navigator.pop(context);
+              },
+            );
+          });
     }
   } catch (e) {
     rethrow;
@@ -101,7 +110,12 @@ Future<void> forgotpassword(String email, context) async {
       showDialog(
           context: context,
           builder: (_) {
-            return DialogError(title: "ອີເມລຂອງທ່ານບໍ່ມີໃນລະບົບ");
+            return DialogError(
+              title: "ອີເມລຂອງທ່ານບໍ່ມີໃນລະບົບ",
+              onTap: () {
+                Navigator.pop(context);
+              },
+            );
           });
     }
   } catch (e) {
@@ -140,12 +154,7 @@ Future<void> changpassword(context, String password) async {
       showDialog(
           context: context,
           builder: (_) {
-            return DialogSucces(
-              title: "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ",
-              ontap: () {
-                
-              },
-            );
+            return DialogSucces(title: "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ");
           });
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);
