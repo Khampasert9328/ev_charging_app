@@ -5,6 +5,7 @@ import 'package:ev_charging/page/managemantstation/add_station.dart';
 import 'package:ev_charging/page/managemantstation/station_detail_can_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AllItem extends StatefulWidget {
   const AllItem({super.key});
@@ -17,19 +18,16 @@ class _AllItemState extends State<AllItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       bottomNavigationBar: GestureDetector(
         onTap: () async {
-          Navigator.push(context, MaterialPageRoute(builder: (_)=>AddStation()));
+          Navigator.push(context, MaterialPageRoute(builder: (_) => AddStation()));
         },
         child: Container(
           margin: EdgeInsets.only(right: 10, left: 10, bottom: 20),
           alignment: Alignment.center,
           height: 46.h,
           width: double.infinity,
-          decoration: BoxDecoration(
-              color: EV_Colors.yellowbtncolor,
-              borderRadius: BorderRadius.circular(10)),
+          decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
           child: Text(
             "ເພີ່ມຂໍ້ມູນສະຖານີໃໝ່",
             style: TextStyle(
@@ -40,106 +38,93 @@ class _AllItemState extends State<AllItem> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: ListView.builder(
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => StationDetailCanEdit()));
-                },
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-          
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: EV_Colors.whitecolor,
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 7,
-                        color: Colors.black.withOpacity(0.1),
-                      )
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        "images/loca.png",
-                        height: 50.h,
-                        width: 50.w,
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) => StationDetailCanEdit()));
+              },
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: EV_Colors.whitecolor,
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 7,
+                      color: Colors.black.withOpacity(0.1),
+                    )
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "images/loca.png",
+                      height: 50.h,
+                      width: 50.w,
+                    ),
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "ສູນການຄ້າພາກຊັນ",
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                          ),
+                        ),
+                        Row(
                           children: [
                             Text(
-                              "ສູນການຄ້າພາກຊັນ",
+                              "ເຈົ້າຂອງ: ",
                               style: TextStyle(
-                                fontSize: 18.sp,
+                                fontSize: 12.sp,
                               ),
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  "ເຈົ້າຂອງ: ",
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                  ),
-                                ),
-                                Text(
-                                  "ບໍລິສັດ ໂລກ້າ ຈຳກັດ",
-                                  style: TextStyle(
-                                      fontSize: 12.sp,
-                                      color: EV_Colors.yellowbtncolor),
-                                ),
-                              ],
+                            Text(
+                              "ບໍລິສັດ ໂລກ້າ ຈຳກັດ",
+                              style: TextStyle(fontSize: 12.sp, color: EV_Colors.yellowbtncolor),
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  "ສະຖານທີ່: ",
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                  ),
-                                ),
-                                Text(
-                                  "ນະຄອນຫລວງວຽງຈັນ ເມືອງ ໄຊເສດຖາ ບ້ານ ໜອງຈັນ",
-                                  style: TextStyle(
-                                      fontSize: 12.sp,
-                                      color: EV_Colors.yellowbtncolor,
-                                      overflow: TextOverflow.ellipsis,
-                                      
-                                      ),
-                                      maxLines: 1,
-                                ),
-                              ],
-                            )
                           ],
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            child: const Icon(Icons.keyboard_arrow_right),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        Row(
+                          children: [
+                            Text(
+                              "ສະຖານທີ່: ",
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                            Text(
+                              "ນະຄອນຫລວງວຽງຈັນ ເມືອງ ໄຊເສດຖາ ບ້ານ ໜອງຈັນ",
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: EV_Colors.yellowbtncolor,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              maxLines: 1,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.arrowRight,
+                          color: Colors.grey,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              );
-            }),
-      ),
+              ),
+            );
+          }),
     );
- 
   }
 }

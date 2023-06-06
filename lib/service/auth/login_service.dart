@@ -8,7 +8,8 @@ import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/models/auth/ForgotPassword.dart';
 import 'package:ev_charging/models/auth/login_models.dart';
 import 'package:ev_charging/page/home/homemaps.dart';
-import 'package:ev_charging/page/register/login.dart';
+import 'package:ev_charging/widget/dialog/dialogerror.dart';
+import 'package:ev_charging/widget/dialog/dialogsucces.dart';
 import 'package:ev_charging/widget/dialog/loading.dart';
 import 'package:ev_charging/widget/dialog/loadingscreen.dart';
 import 'package:flutter/material.dart';
@@ -43,10 +44,7 @@ Future<void> loginservice(String email, String password, context) async {
       LoginModels loginData = LoginModels.fromJson(map);
       await PreFer().setToken(loginData.accessToken!);
       await PreFer().setRole(loginData.expiresToken!.role!);
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (_) => const HomeMaps()),
-          (route) => false);
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const HomeMaps()), (route) => false);
     } else if (respones.statusCode == 400) {
       Navigator.pop(context);
       EVDialog().showDiaError(context, "ກາລຸນາກວດສອບ ອີເມລ ແລະ ລະຫັດຜ່ານ");
@@ -58,15 +56,11 @@ Future<void> loginservice(String email, String password, context) async {
 
 Future<void> forgotpassword(String email, context) async {
   try {
-    EVDialog().showDialogSuccess(
-      context,
-      "ແຈ້ງເຕືອນ",
-      "ກາລຸນາກວດສອບອີເມຂອງທ່ານ",
-      () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (_) => LoginScreen()));
-      },
-    );
+    showDialog(
+        context: context,
+        builder: (_) {
+          return LoadingDialog(title: "ກຳລັງສົ່ງອີເມລ...");
+        });
     String url = AppDomain.forgotpassword;
     Object body = jsonEncode(
       {
@@ -88,11 +82,20 @@ Future<void> forgotpassword(String email, context) async {
 
     if (response.statusCode == 200) {
       Navigator.pop(context);
+      showDialog(
+          context: context,
+          builder: (_) {
+            return DialogSucces(title: "ກາລຸນາກວດສອບອີເມລຂອງທ່ານ");
+          });
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);
     } else if (response.statusCode == 400) {
       Navigator.pop(context);
-      EVDialog().showDiaError(context, "ບໍ່ມີອີເມລນີ້ໃນລະບົບ ກາລຸນລອງໃໝ່");
+      showDialog(
+          context: context,
+          builder: (_) {
+            return DialogError(title: "ອີເມລຂອງທ່ານບໍ່ມີໃນລະບົບ");
+          });
     }
   } catch (e) {
     rethrow;
@@ -134,21 +137,20 @@ Future<void> changpassword(context, String password) async {
       ForgotPasswordModels.fromJson(map);
     } else if (response.statusCode == 400) {
       Navigator.pop(context);
-      EVDialog()
-          .showDiaError(context, "ບໍ່ສາມາດປ່ຽນລະຫັດຜ່ານໄດ້ ລອງໃໝ່ອີກຄັ້ງ");
+      EVDialog().showDiaError(context, "ບໍ່ສາມາດປ່ຽນລະຫັດຜ່ານໄດ້ ລອງໃໝ່ອີກຄັ້ງ");
     }
   } catch (e) {
     Navigator.pop(context);
     final snackbar = SnackBar(
-        content: AwesomeSnackbarContent(
-          title: "ແຈ້ງເຕືອນ",
-          message: "ກາລຸນາເຊື່ອມຕໍ່ອິນເຕີເນັດ",
-          contentType: ContentType.failure,
-        ),
-      );
+      content: AwesomeSnackbarContent(
+        title: "ແຈ້ງເຕືອນ",
+        message: "ກາລຸນາເຊື່ອມຕໍ່ອິນເຕີເນັດ",
+        contentType: ContentType.failure,
+      ),
+    );
 
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(snackbar);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackbar);
   }
 }
