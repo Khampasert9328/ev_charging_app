@@ -1,10 +1,13 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DialogError extends StatelessWidget {
   final String title;
+  VoidCallback onTap;
 
-  const DialogError({Key? key, required this.title}) : super(key: key);
+   DialogError({Key? key, required this.title, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
