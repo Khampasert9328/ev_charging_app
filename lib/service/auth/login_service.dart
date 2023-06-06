@@ -8,6 +8,7 @@ import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/models/auth/ForgotPassword.dart';
 import 'package:ev_charging/models/auth/login_models.dart';
 import 'package:ev_charging/page/home/homemaps.dart';
+import 'package:ev_charging/page/register/login.dart';
 import 'package:ev_charging/widget/dialog/dialogerror.dart';
 import 'package:ev_charging/widget/dialog/dialogsucces.dart';
 import 'package:ev_charging/widget/dialog/loading.dart';
@@ -85,7 +86,13 @@ Future<void> forgotpassword(String email, context) async {
       showDialog(
           context: context,
           builder: (_) {
-            return DialogSucces(title: "ກາລຸນາກວດສອບອີເມລຂອງທ່ານ");
+            return DialogSucces(
+              title: "ກາລຸນາກວດສອບອີເມລຂອງທ່ານ",
+              ontap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+              },
+            );
           });
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);
@@ -104,14 +111,11 @@ Future<void> forgotpassword(String email, context) async {
 
 Future<void> changpassword(context, String password) async {
   try {
-    EVDialog().showDialogSuccess(
-      context,
-      "ແຈ້ງເຕືອນ",
-      "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ",
-      () {
-        Navigator.pop(context);
-      },
-    );
+    showDialog(
+        context: context,
+        builder: (_) {
+          return LoadingDialog(title: "ກຳລັງປ່ຽນລະຫັດຜ່ານ...");
+        });
 
     String? token = await PreFer().getToken();
     Map<String, dynamic> playload = Jwt.parseJwt(token!);
@@ -133,6 +137,16 @@ Future<void> changpassword(context, String password) async {
     );
     if (response.statusCode == 200) {
       Navigator.pop(context);
+      showDialog(
+          context: context,
+          builder: (_) {
+            return DialogSucces(
+              title: "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ",
+              ontap: () {
+                
+              },
+            );
+          });
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);
     } else if (response.statusCode == 400) {

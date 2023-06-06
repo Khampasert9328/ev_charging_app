@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		+IYZ73S99XAE7kg5VgL6f3zcZBs=
+		OW4GULYJK10pbOaxkJLCe1v4sxc=
 		</data>
 		<key>flutter_assets/AssetManifest.smcbin</key>
 		<data>
-		L4TMY08UvVYMfzKwKa78gvAyeBM=
+		Gu+iclsOcL7m6asHhQhpRqr0nA4=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -64,6 +64,14 @@
 		<data>
 		LZd5vuJrw7EbePhHTpBzs/gSfJI=
 		</data>
+		<key>flutter_assets/images/dialogsucess.gif</key>
+		<data>
+		/v4P6WeBM5nL5FzkVGKw8/rJ5v0=
+		</data>
+		<key>flutter_assets/images/error.gif</key>
+		<data>
+		UP0pCewtvMO4NmoDScz8xrN870Y=
+		</data>
 		<key>flutter_assets/images/icon%20_setting.svg</key>
 		<data>
 		/cPjxsImbvpY2+ybJ7GwOJtn/kg=
@@ -104,13 +112,17 @@
 		<data>
 		5sNC0J8rgqFvfni4FRmqt5hs2Ck=
 		</data>
+		<key>flutter_assets/images/success.gif</key>
+		<data>
+		gNcID2H5CJnWDkRNOG/Wi262o78=
+		</data>
 		<key>flutter_assets/isolate_snapshot_data</key>
 		<data>
 		dRka9t86+Ik10kMCLsudB3ofChY=
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		ynuRd4Qu8CZeBUF5XgCefx75xy8=
+		ODvJRYP6DFlvDw+4g+jOqnIve7w=
 		</data>
 		<key>flutter_assets/packages/awesome_snackbar_content/assets/back.svg</key>
 		<data>
@@ -211,14 +223,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rT0EVBT0rFkiS9WMRZBeglbtjrrdhfYNW/wz9AixY2A=
+			Y0+n+UqBaqOmyXKlxi78yN+3dLROdmkeyJb91z1jZN0=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.smcbin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			AyZUPEG+Z5OdcsP0hxJ5CviSwHWMCQKS5pBJfKNlTw0=
+			GDKcLp+3fW36sBZ3u1ZvV0kt7Nq2uPa4bx0e7oSqVO8=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -305,6 +317,20 @@
 			17v/Wl3hVPQ6K8atskaAfy5LK0vc+An6gETejnjdFXc=
 			</data>
 		</dict>
+		<key>flutter_assets/images/dialogsucess.gif</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			N6NfG/Agl5WkGC0Dsgl/eKTcgKPGbBUV/bYD2kui+xQ=
+			</data>
+		</dict>
+		<key>flutter_assets/images/error.gif</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			nH3Brf7Z/lME4IeypUtoGiGaP1AvBqQ1OzeEILvBqIE=
+			</data>
+		</dict>
 		<key>flutter_assets/images/icon%20_setting.svg</key>
 		<dict>
 			<key>hash2</key>
@@ -375,6 +401,13 @@
 			d5XqA+4Q/aOCBXlZxfEoXloaEBzJJplSx+aSO0dwdhc=
 			</data>
 		</dict>
+		<key>flutter_assets/images/success.gif</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			SaGcvP/RRCYmrDxliMf105lhJN90dcCZrSTOXFax6NA=
+			</data>
+		</dict>
 		<key>flutter_assets/isolate_snapshot_data</key>
 		<dict>
 			<key>hash2</key>
@@ -386,7 +419,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			aAeJme7Uk6xIM3NeACg9ngzXWKHhGHkj4TgrHjOXwC4=
+			4SbWu3v686Q9ZQqbd651m4L9I7tz6x2QHCs2emP46Z0=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/awesome_snackbar_content/assets/back.svg</key>
