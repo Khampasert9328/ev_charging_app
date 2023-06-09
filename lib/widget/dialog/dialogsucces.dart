@@ -24,6 +24,9 @@ class DialogSucces extends StatelessWidget {
             height: 100.h,
           ),
           Text(title),
+          SizedBox(
+            height: 10.h,
+          ),
           GestureDetector(
             onTap: () {
               Navigator.pop(context);
@@ -36,10 +39,7 @@ class DialogSucces extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(10)),
               child: const Text(
                 "ຕົກລົງ",
-                style: TextStyle(
-                  color: EV_Colors.whitecolor,
-                  fontWeight: FontWeight.bold
-                ),
+                style: TextStyle(color: EV_Colors.whitecolor, fontWeight: FontWeight.bold),
               ),
             ),
           )

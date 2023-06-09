@@ -50,7 +50,7 @@ Future<void> loginservice(String email, String password, context) async {
           context: context,
           builder: (_) {
             return DialogError(
-              title: "ອີເມລ ແລະ ລະຫັດຜ່ານຂອງທ່ານບໍ່ຖືກຕ້ອງ\nກາລຸນາລອງໃໝ່ອີກຄັ້ງ",
+              title: "ອີເມລ ແລະ ລະຫັດຜ່ານ\nບໍ່ຖືກຕ້ອງກາລຸນາລອງໃໝ່ອີກຄັ້ງ",
               onTap: () {
                 Navigator.pop(context);
               },
