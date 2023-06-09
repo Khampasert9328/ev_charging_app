@@ -24,12 +24,9 @@ class DialogSucces extends StatelessWidget {
             width: 200.w,
             height: 100.h,
           ),
-          Text(
-            title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp),
-          ),
+          Text(title),
           SizedBox(
-            height: 15.h,
+            height: 10.h,
           ),
           GestureDetector(
             onTap: ontap,
@@ -40,7 +37,7 @@ class DialogSucces extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(10)),
               child: Text(
                 "ຕົກລົງ",
-                style: TextStyle(color: EV_Colors.whitecolor, fontWeight: FontWeight.bold, fontSize: 18.sp),
+                style: TextStyle(color: EV_Colors.whitecolor, fontWeight: FontWeight.bold),
               ),
             ),
           )

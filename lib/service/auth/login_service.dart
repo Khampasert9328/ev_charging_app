@@ -11,7 +11,6 @@ import 'package:ev_charging/page/home/homemaps.dart';
 import 'package:ev_charging/page/register/login.dart';
 import 'package:ev_charging/widget/dialog/dialogerror.dart';
 import 'package:ev_charging/widget/dialog/dialogsucces.dart';
-import 'package:ev_charging/widget/dialog/loading.dart';
 import 'package:ev_charging/widget/dialog/loadingscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -52,7 +51,7 @@ Future<void> loginservice(String email, String password, context) async {
           context: context,
           builder: (_) {
             return DialogError(
-              title: "ອີເມລ ແລະ ລະຫັດຜ່ານຂອງທ່ານບໍ່ຖືກຕ້ອງ\nກາລຸນາລອງໃໝ່ອີກຄັ້ງ",
+              title: "ອີເມລ ແລະ ລະຫັດຜ່ານ\nບໍ່ຖືກຕ້ອງກາລຸນາລອງໃໝ່ອີກຄັ້ງ",
               onTap: () {
                 Navigator.pop(context);
               },
@@ -160,7 +159,16 @@ Future<void> changpassword(context, String password) async {
       ForgotPasswordModels.fromJson(map);
     } else if (response.statusCode == 400) {
       Navigator.pop(context);
-      EVDialog().showDiaError(context, "ບໍ່ສາມາດປ່ຽນລະຫັດຜ່ານໄດ້ ລອງໃໝ່ອີກຄັ້ງ");
+      showDialog(
+          context: context,
+          builder: (_) {
+            return DialogError(
+              title: "ບໍ່ສາມາດປ່ຽນລະຫັດຜ່ານ...",
+              onTap: () {
+                Navigator.pop(context);
+              },
+            );
+          });
     }
   } catch (e) {
     Navigator.pop(context);
