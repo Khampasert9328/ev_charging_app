@@ -17,26 +17,27 @@ class BodyAddStation extends StatefulWidget {
 
 class _BodyAddStationState extends State<BodyAddStation> {
   int activeStep = 0;
-
+  final _key = GlobalKey<FormState>();
   TextEditingController namecompany = TextEditingController();
+  String selectedImagePath = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: activeStep == 0
           ? GestureDetector(
               onTap: () async {
-                setState(() {
-                  activeStep = 1;
-                });
+                if (_key.currentState!.validate()) {
+                  setState(() {
+                    activeStep = 1;
+                  });
+                }
               },
               child: Container(
                 margin: const EdgeInsets.only(right: 10, left: 10, bottom: 20),
                 alignment: Alignment.center,
                 height: 46.h,
                 width: double.infinity,
-                decoration: BoxDecoration(
-                    color: EV_Colors.yellowbtncolor,
-                    borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
                 child: Text(
                   "ຕໍ່ໄປ",
                   style: TextStyle(
@@ -59,14 +60,11 @@ class _BodyAddStationState extends State<BodyAddStation> {
                       });
                     },
                     child: Container(
-                      margin: const EdgeInsets.only(
-                          right: 10, left: 10, bottom: 20),
+                      margin: const EdgeInsets.only(right: 10, left: 10, bottom: 20),
                       alignment: Alignment.center,
                       height: 46.h,
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(10)),
                       child: Text(
                         "ກັບຄືນ",
                         style: TextStyle(
@@ -90,18 +88,15 @@ class _BodyAddStationState extends State<BodyAddStation> {
                     child: activeStep >= 3
                         ? GestureDetector(
                             onTap: () {
-                              EVDialog().showDialogSuccess(context, "ແຈ້ງເຕືອນ",
-                                  "ບັນທຶກຂໍ້ມູນສຳເລັດແລ້ວ",(){});
+                              EVDialog().showDialogSuccess(context, "ແຈ້ງເຕືອນ", "ບັນທຶກຂໍ້ມູນສຳເລັດແລ້ວ", () {});
                             },
                             child: Container(
-                              margin: const EdgeInsets.only(
-                                  right: 10, left: 10, bottom: 20),
+                              margin: const EdgeInsets.only(right: 10, left: 10, bottom: 20),
                               alignment: Alignment.center,
                               height: 46.h,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                  color: EV_Colors.yellowbtncolor,
-                                  borderRadius: BorderRadius.circular(10)),
+                                  color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
                               child: Text(
                                 "ເພີ່ມ",
                                 style: TextStyle(
@@ -113,14 +108,12 @@ class _BodyAddStationState extends State<BodyAddStation> {
                             ),
                           )
                         : Container(
-                            margin: const EdgeInsets.only(
-                                right: 10, left: 10, bottom: 20),
+                            margin: const EdgeInsets.only(right: 10, left: 10, bottom: 20),
                             alignment: Alignment.center,
                             height: 46.h,
                             width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: EV_Colors.yellowbtncolor,
-                                borderRadius: BorderRadius.circular(10)),
+                            decoration:
+                                BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
                             child: Text(
                               "ຕໍ່ໄປ",
                               style: TextStyle(
@@ -193,26 +186,27 @@ class _BodyAddStationState extends State<BodyAddStation> {
                   onStepReached: (index) => setState(() => activeStep = index),
                 ),
               ),
-             
-            
-            SizedBox(
-              height: 13.h,
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: body(),
+              SizedBox(
+                height: 13.h,
               ),
-            ),
-          ]
+              Form(
+                key: _key,
+                child: body(),
+              )
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 
   Widget body() {
     switch (activeStep) {
       case 0:
-        return const OwnerCompany();
+        return OwnerCompany(
+          namecompany: namecompany,
+          selectedImagePath: selectedImagePath,
+        );
 
       case 1:
         return const InfoContainnaer();

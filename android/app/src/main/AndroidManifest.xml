@@ -2,12 +2,14 @@
     package="com.example.ev_charging">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
+   
         android:label="ev_charging"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyCqK4IZAoxaHEGEvZ81Hcwia2MhRc0LvsE"/>
         <activity
+            android:requestLegacyExternalStorage="true"
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
