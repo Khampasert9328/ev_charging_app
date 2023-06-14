@@ -2,6 +2,7 @@ import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/register/forgot_password.dart';
 import 'package:ev_charging/service/auth/login_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -41,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
       bottomNavigationBar: GestureDetector(
         onTap: () {
           if (_key.currentState!.validate()) {
+            TextInput.finishAutofillContext();
             loginservice(email!.text, pwd!.text, context);
           }
         },
@@ -86,81 +88,84 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Form(
                   key: _key,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                       
-                        keyboardType: TextInputType.emailAddress,
-                        cursorColor: Colors.grey,
-                        obscureText: false,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "ກາລຸນາໃສ່ອີເມລໃຫ້ຄົບ";
-                          }
-                          return null;
-                        },
-                        controller: email,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(10)),
-                          prefixIcon: const Icon(Icons.email_outlined),
-                          filled: true,
-                          fillColor: Colors.grey[200],
-                          hintText: "ອີເມລ",
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      TextFormField(
-                        
-                        keyboardType: TextInputType.text,
-                        cursorColor: Colors.grey,
-                        obscureText: pwdOpen,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "ກາລຸນາໃສ່ລະຫັດຜ່ານໃຫ້ຄົບ";
-                          }
-                          return null;
-                        },
-                        controller: pwd,
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock_outlined),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                pwdOpen = !pwdOpen;
-                              });
-                            },
-                            child: pwdOpen
-                                ? const Icon(FontAwesomeIcons.eyeSlash)
-                                : const Icon(
-                                    FontAwesomeIcons.eye,
-                                  ),
+                  child: AutofillGroup(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          autofillHints: [AutofillHints.email],
+                          keyboardType: TextInputType.emailAddress,
+                          cursorColor: Colors.grey,
+                          obscureText: false,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "ກາລຸນາໃສ່ອີເມລໃຫ້ຄົບ";
+                            }
+                            return null;
+                          },
+                          controller: email,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(10)),
+                            prefixIcon: const Icon(Icons.email_outlined),
+                            filled: true,
+                            fillColor: Colors.grey[200],
+                            hintText: "ອີເມລ",
                           ),
-                          filled: true,
-                          fillColor: Colors.grey[200],
-                          hintText: "ລະຫັດຜ່ານ",
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(10)),
                         ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => const ForgotPassword()));
-                        },
-                        child: Text(
-                          "ລືມລະຫັດຜ່ານ?",
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 15.sp),
+                        SizedBox(
+                          height: 10.h,
                         ),
-                      ),
-                    ],
+                        TextFormField(
+                          autofillHints: [AutofillHints.password],
+                          keyboardType: TextInputType.text,
+                          cursorColor: Colors.grey,
+                          obscureText: pwdOpen,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "ກາລຸນາໃສ່ລະຫັດຜ່ານໃຫ້ຄົບ";
+                            }
+                            return null;
+                          },
+                          controller: pwd,
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.lock_outlined),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  pwdOpen = !pwdOpen;
+                                });
+                              },
+                              child: pwdOpen
+                                  ? const Icon(FontAwesomeIcons.eyeSlash)
+                                  : const Icon(
+                                      FontAwesomeIcons.eye,
+                                    ),
+                            ),
+                            filled: true,
+                            fillColor: Colors.grey[200],
+                            hintText: "ລະຫັດຜ່ານ",
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(10)),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const ForgotPassword()));
+                          },
+                          child: Text(
+                            "ລືມລະຫັດຜ່ານ?",
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 15.sp),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
