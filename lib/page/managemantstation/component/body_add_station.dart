@@ -19,6 +19,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
   int activeStep = 0;
   final _key = GlobalKey<FormState>();
   TextEditingController namecompany = TextEditingController();
+  String selectedImagePath = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -205,6 +206,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
       case 0:
         return OwnerCompany(
           namecompany: namecompany,
+          selectedImagePath: selectedImagePath,
         );
 
       case 1:

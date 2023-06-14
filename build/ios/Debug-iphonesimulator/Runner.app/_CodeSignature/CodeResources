@@ -18,7 +18,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		fU8Tyoh0z9uLOv0OIKa8oiszDDA=
+		+H4Kb77C/lm/jFynvFwvKomIjJ8=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		IvOWtp9ZNKplakLAfcKTkSjmcag=
+		HJwqiFHRK5a7C3+9feLn07lkh9Y=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		0epUSlPrqmYj6Hy3vQXHCpEnNe0=
+		sVVnFQcmGd3skzsY3H2SwSq2g0U=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		zOLv4n/2b4v/MoWewOU+K77xs5U=
+		zSYtsFns8qzt5OUunaEmMp0d1ok=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -170,7 +170,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		GJ2MIgwk0eYPHs/SOLBQHAqBuvw=
+		WixLxEHi0LMNVNaJG1tDEexQuQo=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/awesome_snackbar_content/assets/back.svg</key>
 		<data>
@@ -371,6 +371,18 @@
 		<key>Frameworks/connectivity_plus.framework/connectivity_plus</key>
 		<data>
 		QqZLRpAnfdk9z6dPu3YHvADWsWc=
+		</data>
+		<key>Frameworks/image_picker_ios.framework/Info.plist</key>
+		<data>
+		DGq18OLKqQuVntLaw52yVh+ytsY=
+		</data>
+		<key>Frameworks/image_picker_ios.framework/_CodeSignature/CodeResources</key>
+		<data>
+		us4p3kKuHgtdTfStlbHefqXooj4=
+		</data>
+		<key>Frameworks/image_picker_ios.framework/image_picker_ios</key>
+		<data>
+		G3QLbC+LMVk0F6D5fziAno1rhbU=
 		</data>
 		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
 		<data>
@@ -1175,7 +1187,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		T+q0+/KsfL6wphz8S+Ej5YLxI+4=
+		9Hohg5I2eiLLRy0wrNz8nzUj0ec=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -1209,7 +1221,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			u+33u+K2xHRx3G8kr71Vhz4wsDojWJMpnnEPxWoEh+E=
+			P8wmvG/E8l1xOHnZijBUyS/KCfQSsPU39bx49lbL5gA=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
@@ -1258,7 +1270,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			dO4lVreaZ+WA1LIYYceZbZWbzMQOhhz2NLQxn5twm8U=
+			RgsmLNsSpVMPWjfVc2U6dmnmPQmbbkQWLgxKcSuj4ro=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1272,7 +1284,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			g7jzgK1atwcKgQcr/1OaBILhcTYUxTirCosmdHqyjYY=
+			gnrhvEr2msQjBuCpEvCCjrbID4PAbxGysrSZLlYmh+E=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -1300,7 +1312,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GqNd6cften2ezGanAasEcZM5onywXYsaxP4zCCO7duU=
+			c2j2oNgGs0eUKUyXFxYCsFagMWoY22V4lY/iKpcKXVs=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -1475,7 +1487,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Y34BDNYYhmOfFHj5NWb/SqRb3fjHXx4K+8woAQCrlaY=
+			d6hnib+iAK0VPXFoWzl3vUNwvr9UH95diJvuxwUins4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/awesome_snackbar_content/assets/back.svg</key>
@@ -1826,6 +1838,27 @@
 			<key>hash2</key>
 			<data>
 			mK0yU/JCgOhK3D0qSzlUzB744+SB1TEFIT6vDG6LssM=
+			</data>
+		</dict>
+		<key>Frameworks/image_picker_ios.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ioOqguVaEQtrhFU8kvaCSSMipRm+7HthN+T33TkL1gc=
+			</data>
+		</dict>
+		<key>Frameworks/image_picker_ios.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			oEtmQMpuyv6pz9JYed8V9HEyJAwL+RQHdre2Hzqmr3U=
+			</data>
+		</dict>
+		<key>Frameworks/image_picker_ios.framework/image_picker_ios</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			l04DnpD2DB6j7prFPN87jau+uuy4P4Q99rx6OwW8IlM=
 			</data>
 		</dict>
 		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
