@@ -1,17 +1,18 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/page/managemantstation/page/textformfield/textform.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-TextEditingController namecompany = TextEditingController();
-
 class OwnerCompany extends StatefulWidget {
-  const OwnerCompany({super.key});
+  TextEditingController namecompany;
+ OwnerCompany({super.key, required this.namecompany});
 
   @override
   State<OwnerCompany> createState() => _OwnerCompanyState();
 }
+
 
 class _OwnerCompanyState extends State<OwnerCompany> {
   @override
@@ -44,7 +45,24 @@ class _OwnerCompanyState extends State<OwnerCompany> {
             SizedBox(
               height: 7.h,
             ),
-            TextFormInfo(text: "ປ້ອນຊື່ບໍລິສັດ"),
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              cursorColor: Colors.grey,
+              obscureText: false,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "ກາລຸນາປ້ອນຊື່ບໍລິສັດ";
+                }
+                return null;
+              },
+              controller: widget.namecompany,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
+                filled: true,
+                fillColor: Colors.grey[200],
+                hintText: "ປ້ອນຊື່ບໍລິສັດ",
+              ),
+            ),
             SizedBox(
               height: 7.h,
             ),
@@ -59,27 +77,29 @@ class _OwnerCompanyState extends State<OwnerCompany> {
               height: 7.h,
             ),
             Container(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey[200],
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey[200],
+              ),
+              child: Container(
+                height: 70.h,
+                decoration: BoxDecoration(color: Colors.grey[200]),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.image,
+                      color: Colors.grey,
                     ),
-                    child: Container(
-                    
-                      height: 70.h,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200]
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children:  [
-                          Icon(Icons.image, color: Colors.grey,),
-                          SizedBox(width: 10.w,),
-                          Text("ອັບໂຫຼດຮູບພາບ")
-                        ],
-                      ),
+                    SizedBox(
+                      width: 10.w,
                     ),
-                  ),
+                    const Text("ອັບໂຫຼດຮູບພາບ")
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
