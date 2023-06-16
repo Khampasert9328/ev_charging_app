@@ -1,12 +1,12 @@
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/page/register/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DialogSucces extends StatelessWidget {
   final String title;
+  VoidCallback onTap;
 
-  const DialogSucces({Key? key, required this.title}) : super(key: key);
+   DialogSucces({Key? key, required this.title, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +28,7 @@ class DialogSucces extends StatelessWidget {
             height: 10.h,
           ),
           GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
-            },
+            onTap:onTap,
             child: Container(
               alignment: Alignment.center,
               height: 30.h,

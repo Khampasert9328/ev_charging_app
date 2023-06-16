@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		HJwqiFHRK5a7C3+9feLn07lkh9Y=
+		P4sAghL6EEkYDbTeIcGokad5DOU=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		sVVnFQcmGd3skzsY3H2SwSq2g0U=
+		RV3tm3/sPr2+Q9QLVD/mV13Lk+s=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		zSYtsFns8qzt5OUunaEmMp0d1ok=
+		a29nEZ1aHOxG/FlTYXYDmgskrns=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -170,7 +170,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		WixLxEHi0LMNVNaJG1tDEexQuQo=
+		qmovP1r73rjj0ZK+0OEqi00XlYo=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/awesome_snackbar_content/assets/back.svg</key>
 		<data>
@@ -1270,7 +1270,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RgsmLNsSpVMPWjfVc2U6dmnmPQmbbkQWLgxKcSuj4ro=
+			3Ry7Iv13tKbxiiwZX07zjcO6BpPp2x8Sy8Xm88SnlaA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1284,7 +1284,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gnrhvEr2msQjBuCpEvCCjrbID4PAbxGysrSZLlYmh+E=
+			ohJggXW5i261F+7aw/cHvlTxO4vVb2ymROQTgJQ6IjM=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -1312,7 +1312,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			c2j2oNgGs0eUKUyXFxYCsFagMWoY22V4lY/iKpcKXVs=
+			kvrEB+Eqw7W9dVVBp5aoKwrzqhQBXi9JYq1WavqVnXU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -1487,7 +1487,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			d6hnib+iAK0VPXFoWzl3vUNwvr9UH95diJvuxwUins4=
+			7QpDvN+c95/09owTiAgGyRarkFDQfa149HlPOaMYd/Y=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/awesome_snackbar_content/assets/back.svg</key>

@@ -8,6 +8,7 @@ import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/models/auth/ForgotPassword.dart';
 import 'package:ev_charging/models/auth/login_models.dart';
 import 'package:ev_charging/page/home/homemaps.dart';
+import 'package:ev_charging/page/register/login.dart';
 import 'package:ev_charging/widget/dialog/dialogerror.dart';
 import 'package:ev_charging/widget/dialog/dialogsucces.dart';
 import 'package:ev_charging/widget/dialog/loadingscreen.dart';
@@ -93,7 +94,9 @@ Future<void> forgotpassword(String email, context) async {
       showDialog(
           context: context,
           builder: (_) {
-            return DialogSucces(title: "ກາລຸນາກວດສອບອີເມລຂອງທ່ານ");
+            return DialogSucces(title: "ກາລຸນາກວດສອບອີເມລຂອງທ່ານ", onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+            },);
           });
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);
@@ -146,7 +149,7 @@ Future<void> changpassword(context, String password) async {
       showDialog(
           context: context,
           builder: (_) {
-            return DialogSucces(title: "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ");
+            return DialogSucces(title: "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ",onTap: (){},);
           });
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);

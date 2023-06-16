@@ -1,11 +1,13 @@
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/edit_info-station.dart';
+import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class StationDetailCanEdit extends StatefulWidget {
-  const StationDetailCanEdit({super.key});
+  DataGetInfoCharg? models;
+   StationDetailCanEdit({super.key, required this.models});
 
   @override
   State<StationDetailCanEdit> createState() => _StationDetailCanEditState();
@@ -15,48 +17,43 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
           ),
-          centerTitle: true,
-          title: const Text(
-            "ລາຍລະອຽດສະຖານີ",
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
-
-          actions: [
-            GestureDetector(
-              onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (_)=>EditInfoStation()));
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SvgPicture.asset("images/Edit.svg"),
-              ),
-            )
-          ],
-         
         ),
-
-        body:  SingleChildScrollView(
+        centerTitle: true,
+        title: const Text(
+          "ລາຍລະອຽດສະຖານີ",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) => EditInfoStation()));
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SvgPicture.asset("images/Edit.svg"),
+            ),
+          )
+        ],
+      ),
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
               height: 300.h,
-              decoration: const BoxDecoration(
+              decoration:  BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(
-                    "images/image1.png",
-                  ),
+                  image: NetworkImage("${widget.models!.pictureplace}"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -65,10 +62,7 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                     gradient: LinearGradient(
                         begin: Alignment.center,
                         end: Alignment.bottomCenter,
-                        colors: [
-                      EV_Colors.whitecolor.withOpacity(0.2),
-                      EV_Colors.yellowbtncolor
-                    ])),
+                        colors: [EV_Colors.whitecolor.withOpacity(0.2), EV_Colors.yellowbtncolor])),
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
@@ -77,61 +71,69 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                       Row(
                         children: [
                           CircleAvatar(
+                            backgroundImage: NetworkImage("${widget.models!.imagecpn}"),
                             backgroundColor: EV_Colors.whitecolor,
                             radius: 30,
-                            child: Image.asset("images/loca.png"),
                           ),
                           SizedBox(
                             width: 15.w,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "ສູນການຄ້າພາກຊັນ",
-                                style: TextStyle(
-                                  fontSize: 18.sp,
-                                  color: EV_Colors.whitecolor,
-                                  fontWeight: FontWeight.bold,
+                          SizedBox(
+                           width: 0.5.sw,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${widget.models!.nameplace}",
+                                  style: TextStyle(
+                                    fontSize: 18.sp,
+                                    color: EV_Colors.whitecolor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "ເຈົ້າຂອງ: ",
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      color: EV_Colors.whitecolor,
+                                Row(
+                                  children: [
+                                    Text(
+                                      "ເຈົ້າຂອງ: ",
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                        color: EV_Colors.whitecolor,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    "ບໍລິສັດ ໂລກ້າ ຈຳກັດ",
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      color: EV_Colors.whitecolor,
+                                    Text(
+                                      "${widget.models!.name}",
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                        color: EV_Colors.whitecolor,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "ສະຖານທີ່: ",
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      color: EV_Colors.whitecolor,
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "ສະຖານທີ່: ",
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                        color: EV_Colors.whitecolor,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    "ນະຄອນຫລວງວຽງຈັນ ເມືອງ ໄຊເສດຖາ ບ້ານ ໜອງຈັນ",
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      color: EV_Colors.whitecolor,
+                                    Flexible(
+                                      child: Text(
+                                        "ແຂວງ:${widget.models!.province} ເມືອງ${widget.models!.district} ບ້ານ ${widget.models!.village}",
+                                        style: TextStyle(
+                                          fontSize: 12.sp,
+                                          color: EV_Colors.whitecolor,
+                                          overflow: TextOverflow.ellipsis,
+                                          
+                                        ),
+                                        maxLines: 1,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -158,7 +160,7 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                         width: 10.w,
                       ),
                       Text(
-                        "02",
+                        "${widget.models!.amount}",
                         style: TextStyle(
                           fontSize: 12.sp,
                           color: EV_Colors.yellowbtncolor,
@@ -188,59 +190,46 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                       Column(
                         children: [
                           SvgPicture.asset("images/EV Charger-02.svg"),
-                          Text("GB/T DC"),
-                          Text("120KW/T DC"),
+                          Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
+                          //Text("120KW/T DC"),
                         ],
                       ),
                       Column(
                         children: [
                           SvgPicture.asset("images/EV Charger-03.svg"),
-                          Text("CSS 2"),
-                          Text("120KW/T DC"),
+                          Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
+                          //Text("120KW/T DC"),
                         ],
                       )
                     ],
                   ),
                   Divider(),
-                  const Text(
+                  
+                   Text(
                     "ສິ່ງອຳນວຍຄວາມສະດວກ",
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
+                      fontSize: 16.sp
                     ),
                   ),
-                   Text(
-                    "ຮ້ານ ເຂົ້າປຸ້ນແຈ່ວຂີງເຈົ້າເກົ່າ",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12.sp
-                      
-                    ),
-                  ),
+                  for(var i in widget.models!.facilities)
                   Text(
-                    "ຮ້ານ ກາເຟສີນຸກ",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12.sp
-                      
-                    ),
+                    "- ${i.facilitie}",
+                    style: TextStyle(color: Colors.black, fontSize: 12.sp),
                   ),
-                  Text(
-                    "ຮ້ານ ປັ່ນໝາກໄມ້",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12.sp
-                      
-                    ),
-                  ),
-                  Text(
-                    "ຮ້ານ ຂາຍເຄື່ອງທົ່ວໄປ",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12.sp
-                      
-                    ),
-                  )
+                  // Text(
+                  //   "ຮ້ານ ກາເຟສີນຸກ",
+                  //   style: TextStyle(color: Colors.black, fontSize: 12.sp),
+                  // ),
+                  // Text(
+                  //   "ຮ້ານ ປັ່ນໝາກໄມ້",
+                  //   style: TextStyle(color: Colors.black, fontSize: 12.sp),
+                  // ),
+                  // Text(
+                  //   "ຮ້ານ ຂາຍເຄື່ອງທົ່ວໄປ",
+                  //   style: TextStyle(color: Colors.black, fontSize: 12.sp),
+                  // )
                 ],
               ),
             )

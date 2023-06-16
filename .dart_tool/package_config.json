@@ -92,6 +92,12 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "dio",
+      "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/dio-5.2.1+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "dotted_border",
       "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/dotted_border-2.0.0+3",
       "packageUri": "lib/",
@@ -315,9 +321,9 @@
     },
     {
       "name": "lottie",
-      "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/lottie-2.3.2",
+      "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/lottie-2.4.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "matcher",
@@ -572,7 +578,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-06-14T06:50:08.252160Z",
+  "generated": "2023-06-16T03:32:13.419055Z",
   "generator": "pub",
   "generatorVersion": "3.0.3"
 }

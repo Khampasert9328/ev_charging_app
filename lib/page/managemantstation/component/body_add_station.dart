@@ -206,7 +206,6 @@ class _BodyAddStationState extends State<BodyAddStation> {
       case 0:
         return OwnerCompany(
           namecompany: namecompany,
-          selectedImagePath: selectedImagePath,
         );
 
       case 1:
