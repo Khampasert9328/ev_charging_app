@@ -7,10 +7,12 @@ class InfoCompanyProvider extends ChangeNotifier {
   String? get imageUrl => _imageUrl;
   String? get imageName => _imaName;
 
+
   setImageUrl(String? imageUrl) {
     _imageUrl = imageUrl;
     notifyListeners();
   }
+
   setImageName(String? imageName) {
     _imaName = imageName;
     notifyListeners();

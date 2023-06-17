@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/edit_info-station.dart';
 import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';

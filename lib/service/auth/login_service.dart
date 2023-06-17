@@ -19,6 +19,7 @@ import 'package:jwt_decode/jwt_decode.dart';
 Future<void> loginservice(String email, String password, context) async {
   try {
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (_) {
           return LoadingDialog(title: "ກຳລັງເຂົ້າສູ່ລະບົບ...");
@@ -48,6 +49,7 @@ Future<void> loginservice(String email, String password, context) async {
     } else if (respones.statusCode == 400) {
       Navigator.pop(context);
       showDialog(
+          barrierDismissible: false,
           context: context,
           builder: (_) {
             return DialogError(
@@ -66,6 +68,7 @@ Future<void> loginservice(String email, String password, context) async {
 Future<void> forgotpassword(String email, context) async {
   try {
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (_) {
           return LoadingDialog(title: "ກຳລັງສົ່ງອີເມລ...");
@@ -92,17 +95,22 @@ Future<void> forgotpassword(String email, context) async {
     if (response.statusCode == 200) {
       Navigator.pop(context);
       showDialog(
+          barrierDismissible: false,
           context: context,
           builder: (_) {
-            return DialogSucces(title: "ກາລຸນາກວດສອບອີເມລຂອງທ່ານ", onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
-            },);
+            return DialogSucces(
+              title: "ກາລຸນາກວດສອບອີເມລຂອງທ່ານ",
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+              },
+            );
           });
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);
     } else if (response.statusCode == 400) {
       Navigator.pop(context);
       showDialog(
+      barrierDismissible: false,
           context: context,
           builder: (_) {
             return DialogError(
@@ -121,6 +129,7 @@ Future<void> forgotpassword(String email, context) async {
 Future<void> changpassword(context, String password) async {
   try {
     showDialog(
+      barrierDismissible: false,
         context: context,
         builder: (_) {
           return LoadingDialog(title: "ກຳລັງປ່ຽນລະຫັດຜ່ານ...");
@@ -147,15 +156,20 @@ Future<void> changpassword(context, String password) async {
     if (response.statusCode == 200) {
       Navigator.pop(context);
       showDialog(
+      barrierDismissible: false,
           context: context,
           builder: (_) {
-            return DialogSucces(title: "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ",onTap: (){},);
+            return DialogSucces(
+              title: "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ",
+              onTap: () {},
+            );
           });
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);
     } else if (response.statusCode == 400) {
       Navigator.pop(context);
       showDialog(
+      barrierDismissible: false,
           context: context,
           builder: (_) {
             return DialogError(

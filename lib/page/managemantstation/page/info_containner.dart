@@ -14,8 +14,6 @@ class InfoContainnaer extends StatefulWidget {
 }
 
 class _InfoContainnaerState extends State<InfoContainnaer> {
-
-
   List item = [
     "1",
     "2",
@@ -38,7 +36,6 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
   List<TextEditingController>? generation;
   List<TextEditingController?>? model;
 
-  
   @override
   Widget build(BuildContext context) {
     return Consumer<InfoContainerProvider>(builder: (_, models, child) {
@@ -93,8 +90,6 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                               valueitem = value.toString();
                               length = int.parse(value.toString());
                               models.number = length;
-
-                              
                             });
                           }),
                     ),
@@ -152,7 +147,9 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 text: "ປ້ອນຊື່ຍີ່ຫໍ້",
                                 controller: brand?[index],
                                 onchange: () {
-                                  //models.brand.add(value!);
+                                  for (var i in brand!) {
+                                    models.listContainner = i as List<String>;
+                                  }
                                 },
                               ),
                               SizedBox(
@@ -193,9 +190,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 },
                                 text: "ປ້ອນຊື່ໂມເດລ",
                                 controller: model?[index],
-                                onchange: () {
-                                 
-                                },
+                                onchange: () {},
                               ),
                               SizedBox(
                                 height: 7.h,
