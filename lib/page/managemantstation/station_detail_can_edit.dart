@@ -50,7 +50,7 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
         child: Column(
           children: [
             Container(
-              height: 300.h,
+              height: 200.h,
               decoration:  BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage("${widget.models!.pictureplace}"),
