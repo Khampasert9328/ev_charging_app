@@ -145,23 +145,29 @@ class _SummaryState extends State<Summary> {
                 ],
               ),
               Divider(),
-           
-             
-              // ListView.builder(
-              //   shrinkWrap: true,
-              //     itemCount: model.listcontainner.length,
-              //     itemBuilder: (context, index) {
-              //       return Column(
-              //         children: [
-              //            Text(
-              //             model.brand[index].toString(),
-              //             style: const TextStyle(
-              //               fontWeight: FontWeight.bold,
-              //             ),
-              //           ),
-              //         ],
-              //       );
-              //     }),
+
+              Text("ຂໍ້ມູນຕູ້ສາກ", style:  TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14.sp,
+              ),),
+             SizedBox(height: 10),
+              ListView.builder(
+                shrinkWrap: true,
+                  itemCount: model.count,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                         Text(
+                           // "",
+                          model.brand?[index]?.text??"",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
               const Text(
                 "ສິ່ງອຳນວຍຄວາມສະດວກ",
                 style: TextStyle(

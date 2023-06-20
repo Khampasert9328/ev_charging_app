@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/page/managemantstation/models/ev_charging_form_model.dart';
 import 'package:ev_charging/page/managemantstation/page/textformfield/textform.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +23,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
     "3",
     "4",
   ];
-  int length = 1;
+  // int length = 1;
   int lengthdropdown = 1;
   List itemtype = [
     "ຫົວສາກ A",
@@ -34,13 +35,33 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
   String? valueitemtype;
 
   String? valueitem;
-  List<TextEditingController>? brand;
-  List<TextEditingController>? generation;
-  List<TextEditingController?>? model;
+  // List<TextEditingController>? brand;
 
-  
+  // final _model = TextEditingController();
+  // Map<String, String>? map = {
+  //   "brand" : "",
+  //   "model" : "",
+  // };
+
+  // List<EvChargingFormModel>? evModels;
+  List evModels = [];
+
+  @override
+  void initState() {
+    context.read<InfoContainerProvider>().getBrandTextCtr();
+    context.read<InfoContainerProvider>().getGenTextCtr();
+    context.read<InfoContainerProvider>().getModelTextCtr();
+    // for(int i = 0; i < context.read<InfoContainerProvider>().count ; i++){
+    //   brand?.add(TextEditingController());
+    //   generation?.add(TextEditingController());
+    //   model?.add(TextEditingController());
+    // }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Consumer<InfoContainerProvider>(builder: (_, models, child) {
       return SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
@@ -80,23 +101,45 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey[200],
                       ),
-                      child: DropdownButton(
-                          isExpanded: true,
-                          underline: const SizedBox(),
-                          hint: const Text('ເພີ່ມຈຳນວນຕູ້ສາກ'),
-                          value: valueitem,
-                          items: item.map((e) {
-                            return DropdownMenuItem<String>(value: e, child: Text(e.toString()));
-                          }).toList(),
-                          onChanged: (String? value) {
-                            setState(() {
-                              valueitem = value.toString();
-                              length = int.parse(value.toString());
-                              models.number = length;
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(models.count.toString()),
+                          Spacer(),
+                          Row(
+                            children: [
+                              ElevatedButton(
+                              onPressed: (){
+                                models.increment();
+                                // models.getBrandTextCtr();
+                              },
+                              child: Text("+")),
+                              const SizedBox(width: 10),
+                              ElevatedButton(onPressed: (){
+                              models.brand.removeAt(models.count-1);
+                              models.model.removeAt(models.count-1);
+                              models.generation.removeAt(models.count-1);
+                              models.lopTu();
 
-                              
-                            });
-                          }),
+                              }, child: Text("-")),
+                            ],
+                          )
+                        ],
+                      )
+
+                      // DropdownButton(
+                      //     isExpanded: true,
+                      //     underline: const SizedBox(),
+                      //     hint: const Text('ເພີ່ມຈຳນວນຕູ້ສາກ'),
+                      //     value: valueitem,
+                      //     items: item.map((e) {
+                      //       return DropdownMenuItem<String>(value: e, child: Text(e.toString()));
+                      //     }).toList(),
+                      //     onChanged: (String? value) {
+                      //         valueitem = value.toString();
+                      //         length = int.parse(value.toString());
+                      //         models.number = length;
+                      //     }),
                     ),
                   ],
                 ),
@@ -108,7 +151,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
             ListView.builder(
                 shrinkWrap: true,
                 physics: ScrollPhysics(),
-                itemCount: length,
+                itemCount: models.count,
                 itemBuilder: (context, index) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,10 +191,13 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 height: 5.h,
                               ),
                               TextFormInfo(
-                                ontap: (value) {},
+                                ontap: (value) {
+                                  // brand?[index].text = value;
+                                },
                                 text: "ປ້ອນຊື່ຍີ່ຫໍ້",
-                                controller: brand?[index],
+                                controller: models.brand[index],
                                 onchange: () {
+                                  // models.bra = brand?[index].text;
                                   //models.brand.add(value!);
                                 },
                               ),
@@ -169,10 +215,14 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 height: 5.h,
                               ),
                               TextFormInfo(
-                                ontap: (value) {},
+                                ontap: (value) {
+                                  // generation?[index].text = value;
+                                },
                                 text: "ປ້ອນຊື່ລຸ້ນ",
-                                controller: generation?[index],
-                                onchange: () {},
+                                controller: models.generation[index],
+                                onchange: () {
+                                  // models.addGen = generation?[index].text;
+                                },
                               ),
                               SizedBox(
                                 height: 7.h,
@@ -189,12 +239,12 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                               ),
                               TextFormInfo(
                                 ontap: (value) {
-                                  model?[index]?.text = value;
+                                  // model?[index]?.text = value;
                                 },
                                 text: "ປ້ອນຊື່ໂມເດລ",
-                                controller: model?[index],
+                                controller: models.model[index],
                                 onchange: () {
-                                 
+                                  // models.addModel = model?[index]?.text;
                                 },
                               ),
                               SizedBox(
@@ -212,7 +262,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                               ),
                               ListView.builder(
                                   shrinkWrap: true,
-                                  itemCount: lengthdropdown,
+                                  itemCount: models.lengthDropdown,
                                   itemBuilder: (context, index) {
                                     return Row(
                                       children: [
@@ -231,24 +281,34 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                                 isExpanded: true,
                                                 underline: const SizedBox(),
                                                 hint: const Text('ເລືອກປະເພດຫົວສາກ'),
-                                                value: valueitemtype,
+                                                value:
+                                                models.chargeType.isEmpty ?
+                                                valueitemtype :
+                                                models.chargeType[index],
                                                 items: itemtype.map((e) {
                                                   return DropdownMenuItem(value: e, child: Text(e));
                                                 }).toList(),
                                                 onChanged: (value) {
+                                                  if(models.chargeType.isEmpty){
+                                                    models.addChargeType(value.toString());
+                                                  } else{
+                                                    models.chargeType[index] = value.toString();
+                                                  }
                                                   setState(() {
-                                                    valueitemtype = value as String?;
+                                                    valueitemtype = value.toString();
+                                                    models.chargeType[index] = value.toString();
                                                   });
+                                                  print(models.chargeType);
+                                                  print(models.chargeType[index]);
                                                 }),
                                           ),
                                         ),
-                                        lengthdropdown == 1
+                                        models.lengthDropdown == 1
                                             ? const SizedBox()
                                             : GestureDetector(
                                                 onTap: () {
-                                                  setState(() {
-                                                    lengthdropdown -= 1;
-                                                  });
+                                                  models.delLength();
+                                                  models.chargeType.removeAt(models.lengthDropdown-1);
                                                 },
                                                 child: const Icon(
                                                   Icons.remove_circle_outline,
@@ -261,11 +321,10 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                               SizedBox(
                                 height: 16.h,
                               ),
-                              GestureDetector(
+                              models.lengthDropdown == 2 ? SizedBox() : GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    lengthdropdown += 1;
-                                  });
+                                  models.addLength();
+                                  models.addChargeType(itemtype.first);
                                 },
                                 child: DottedBorder(
                                   color: EV_Colors.yellowbtncolor,

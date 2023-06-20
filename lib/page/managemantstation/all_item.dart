@@ -93,7 +93,7 @@ class _AllItemState extends State<AllItem> {
                                     AspectRatio(
                                       aspectRatio: 0.7,
                                       child: Image.network(
-                                        "${data.imagecpn}",
+                                        data.imagecpn,
                                       ),
                                     ),
                                     SizedBox(

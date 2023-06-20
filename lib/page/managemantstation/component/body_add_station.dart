@@ -4,9 +4,13 @@ import 'package:ev_charging/page/managemantstation/page/form_owner_company.dart'
 import 'package:ev_charging/page/managemantstation/page/info_containner.dart';
 import 'package:ev_charging/page/managemantstation/page/info_location_station.dart';
 import 'package:ev_charging/page/managemantstation/page/summary.dart';
+import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
+import 'package:ev_charging/page/managemantstation/service/add_stations_service.dart';
 import 'package:ev_charging/widget/dialog/loading.dart';
 import 'package:flutter/cupertino.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class BodyAddStation extends StatefulWidget {
   const BodyAddStation({super.key});
@@ -18,6 +22,7 @@ class BodyAddStation extends StatefulWidget {
 class _BodyAddStationState extends State<BodyAddStation> {
   int activeStep = 0;
   final _key = GlobalKey<FormState>();
+
   TextEditingController namecompany = TextEditingController();
   String selectedImagePath = '';
   @override
@@ -80,16 +85,19 @@ class _BodyAddStationState extends State<BodyAddStation> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
+                        // print(context.read<InfoContainerProvider>().evModel);
+
                       setState(() {
                         if (activeStep < 3) {
                           activeStep++;
                         }
-                      });
+                        });
                     },
                     child: activeStep >= 3
                         ? GestureDetector(
                             onTap: () {
-                              EVDialog().showDialogSuccess(context, "ແຈ້ງເຕືອນ", "ບັນທຶກຂໍ້ມູນສຳເລັດແລ້ວ", () {});
+                              AddStationService.addStationService(context);
+                              // EVDialog().showDialogSuccess(context, "ແຈ້ງເຕືອນ", "ບັນທຶກຂໍ້ມູນສຳເລັດແລ້ວ", () {});
                             },
                             child: Container(
                               margin: const EdgeInsets.only(right: 10, left: 10, bottom: 20),
