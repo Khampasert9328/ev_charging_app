@@ -180,8 +180,49 @@ class _SummaryState extends State<Summary> {
                   ),
                 ],
               ),
-            ),
-          )
+              Divider(),
+
+              Text("ຂໍ້ມູນຕູ້ສາກ", style:  TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14.sp,
+              ),),
+             SizedBox(height: 10),
+              ListView.builder(
+                shrinkWrap: true,
+                  itemCount: model.count,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                         Text(
+                           // "",
+                          model.brand?[index]?.text??"",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
+              const Text(
+                "ສິ່ງອຳນວຍຄວາມສະດວກ",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Text(
+                "ຮ້ານ ກາເຟ",
+              ),
+              const Text(
+                "ຮ້ານ ປິ້ງເປັດ",
+              ),
+              const Text(
+                "ມິນິບິກຊີ",
+              ),
+            ],
+          ),
+        ),
+      )
         ],
       );
     });

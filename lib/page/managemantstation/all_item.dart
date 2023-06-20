@@ -100,17 +100,30 @@ class _AllItemState extends State<AllItem> {
                                   )
                                 ],
                               ),
-                              child: Row(
-                                children: [
-                                  Row(
-                                    children: [
-                                      AspectRatio(
-                                        aspectRatio: 0.7,
-                                        child: CachedNetworkImage(
-                                          imageUrl: "${data.imagecpn}",
-                                          placeholder: (context, url) => CircularProgressIndicator(),
-                                          errorWidget: (context, url, error) => Icon(Icons.error),
-                                        ),
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(8.0),
+                            height: 80.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: EV_Colors.whitecolor,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 7,
+                                  color: Colors.black.withOpacity(0.1),
+                                )
+                              ],
+                            ),
+                            child: Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    AspectRatio(
+                                      aspectRatio: 0.7,
+                                      child: Image.network(
+                                        data.imagecpn,
                                       ),
                                       SizedBox(
                                         width: 15.w,

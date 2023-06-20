@@ -94,7 +94,7 @@ class _HomeMapsState extends State<HomeMaps> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 token == null
-                    ? EVDrawerHeader()
+                    ? const EVDrawerHeader()
                     : CircleAvatar(
                         backgroundColor: Colors.grey[200],
                         radius: 50,
