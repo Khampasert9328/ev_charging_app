@@ -19,6 +19,9 @@ class _BodyAddStationState extends State<BodyAddStation> {
   int activeStep = 0;
   final _key = GlobalKey<FormState>();
   TextEditingController namecompany = TextEditingController();
+  TextEditingController brand = TextEditingController();
+  List<TextEditingController>? generation;
+  TextEditingController model = TextEditingController();
   String selectedImagePath = '';
   @override
   Widget build(BuildContext context) {
@@ -28,10 +31,9 @@ class _BodyAddStationState extends State<BodyAddStation> {
               onTap: () async {
                 if (_key.currentState!.validate()) {
                   setState(() {
-                  activeStep = 1;
-                });
+                    activeStep = 1;
+                  });
                 }
-                
               },
               child: Container(
                 margin: const EdgeInsets.only(right: 10, left: 10, bottom: 20),
@@ -209,7 +211,11 @@ class _BodyAddStationState extends State<BodyAddStation> {
         );
 
       case 1:
-        return const InfoContainnaer();
+        return InfoContainnaer(
+          brand: brand,
+          generation: generation,
+          model: model,
+        );
 
       case 2:
         return const InfoLocationStation();

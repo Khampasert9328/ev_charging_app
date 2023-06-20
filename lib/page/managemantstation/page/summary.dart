@@ -95,66 +95,14 @@ class _SummaryState extends State<Summary> {
                       )
                     ],
                   ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        "images/loca.png",
-                        height: 50.h,
-                        width: 50.w,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "ສູນການຄ້າ ພາກຊັນ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Text("ເຈົ້າຂອງ:"),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              const Text(
-                                "ບໍລິສັດ ໂລກ້າ ຈຳກັດ",
-                                style: TextStyle(
-                                  color: EV_Colors.yellowbtncolor,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text("ສະຖານທີ່:"),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              const Text(
-                                "ນະຄອນຫລວງວຽງຈັນ ເມືອງ ຈັນທະບູລີ ບ້ານ ໝອງຈັນ",
-                                style: TextStyle(
-                                  color: EV_Colors.yellowbtncolor,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  Divider(),
-
-
                   // ListView.builder(
                   //   shrinkWrap: true,
-                  //     itemCount: model.listItem.length,
+                  //     itemCount: model.listData.length,
                   //     itemBuilder: (context, index) {
                   //       return Column(
                   //         children: [
                   //            Text(
-                  //             model.listItem[index],
+                  //             model.listData[index],
                   //             style: const TextStyle(
                   //               fontWeight: FontWeight.bold,
                   //             ),
@@ -162,6 +110,59 @@ class _SummaryState extends State<Summary> {
                   //         ],
                   //       );
                   //     }),
+                  // Row(
+                  //   children: [
+                  //     Image.asset(
+                  //       "images/loca.png",
+                  //       height: 50.h,
+                  //       width: 50.w,
+                  //     ),
+                  //     Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       children: [
+                  //         const Text(
+                  //           "ສູນການຄ້າ ພາກຊັນ",
+                  //           style: TextStyle(
+                  //             fontWeight: FontWeight.bold,
+                  //           ),
+                  //         ),
+                  //         Row(
+                  //           children: [
+                  //             Text("ເຈົ້າຂອງ:"),
+                  //             SizedBox(
+                  //               width: 5.w,
+                  //             ),
+                  //             const Text(
+                  //               "ບໍລິສັດ ໂລກ້າ ຈຳກັດ",
+                  //               style: TextStyle(
+                  //                 color: EV_Colors.yellowbtncolor,
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         Row(
+                  //           children: [
+                  //             Text("ສະຖານທີ່:"),
+                  //             SizedBox(
+                  //               width: 5.w,
+                  //             ),
+                  //             const Text(
+                  //               "ນະຄອນຫລວງວຽງຈັນ ເມືອງ ຈັນທະບູລີ ບ້ານ ໝອງຈັນ",
+                  //               style: TextStyle(
+                  //                 color: EV_Colors.yellowbtncolor,
+                  //               ),
+                  //               overflow: TextOverflow.ellipsis,
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ],
+                  //     )
+                  //   ],
+                  // ),
+                  Divider(),
+
+
+                  
                   const Text(
                     "ສິ່ງອຳນວຍຄວາມສະດວກ",
                     style: TextStyle(

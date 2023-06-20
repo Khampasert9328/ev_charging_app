@@ -18,12 +18,12 @@ class PreFer {
 
   Future<void> cleartoken() async {
     preferences = await SharedPreferences.getInstance();
-    preferences!.clear();
+    await preferences!.clear();
   }
 
   Future<void> clearrole() async {
     preferences = await SharedPreferences.getInstance();
-    preferences!.clear();
+   await preferences!.clear();
   }
 
   Future<void> setRole(String val) async {

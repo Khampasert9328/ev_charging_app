@@ -1,5 +1,4 @@
 // ignore_for_file: must_be_immutable
-
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/edit_info-station.dart';
 import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';
@@ -9,7 +8,7 @@ import 'package:flutter_svg/svg.dart';
 
 class StationDetailCanEdit extends StatefulWidget {
   DataGetInfoCharg? models;
-   StationDetailCanEdit({super.key, required this.models});
+  StationDetailCanEdit({super.key, required this.models});
 
   @override
   State<StationDetailCanEdit> createState() => _StationDetailCanEditState();
@@ -49,11 +48,13 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
         ],
       ),
       body: SingleChildScrollView(
+
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 200.h,
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage("${widget.models!.pictureplace}"),
                   fit: BoxFit.cover,
@@ -81,7 +82,7 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                             width: 15.w,
                           ),
                           SizedBox(
-                           width: 0.5.sw,
+                            width: 0.5.sw,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -127,7 +128,6 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                                           fontSize: 12.sp,
                                           color: EV_Colors.whitecolor,
                                           overflow: TextOverflow.ellipsis,
-                                          
                                         ),
                                         maxLines: 1,
                                       ),
@@ -145,7 +145,7 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.only(right: 10, left: 10, top: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -154,7 +154,7 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                       Text(
                         "ຈຳນວນຕູ້ສາກ:",
                         style: TextStyle(
-                          fontSize: 12.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -164,7 +164,7 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                       Text(
                         "${widget.models!.amount}",
                         style: TextStyle(
-                          fontSize: 12.sp,
+                          fontSize: 14.sp,
                           color: EV_Colors.yellowbtncolor,
                         ),
                       ),
@@ -174,52 +174,13 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                       Text(
                         "ຕູ້",
                         style: TextStyle(
-                          fontSize: 12.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
-                  Text(
-                    "ປະເພດຫົວສາກ:",
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          SvgPicture.asset("images/EV Charger-02.svg"),
-                          Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
-                          //Text("120KW/T DC"),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          SvgPicture.asset("images/EV Charger-03.svg"),
-                          Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
-                          //Text("120KW/T DC"),
-                        ],
-                      )
-                    ],
-                  ),
-                  Divider(),
-                  
-                   Text(
-                    "ສິ່ງອຳນວຍຄວາມສະດວກ",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.sp
-                    ),
-                  ),
-                  for(var i in widget.models!.facilities)
-                  Text(
-                    "- ${i.facilitie}",
-                    style: TextStyle(color: Colors.black, fontSize: 12.sp),
-                  ),
+
                   // Text(
                   //   "ຮ້ານ ກາເຟສີນຸກ",
                   //   style: TextStyle(color: Colors.black, fontSize: 12.sp),
@@ -232,6 +193,85 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                   //   "ຮ້ານ ຂາຍເຄື່ອງທົ່ວໄປ",
                   //   style: TextStyle(color: Colors.black, fontSize: 12.sp),
                   // )
+                ],
+              ),
+            ),
+            ListView.builder(
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                itemCount: widget.models!.constainner.length,
+                itemBuilder: (context, index) {
+                  final data = widget.models!.constainner[index];
+                  return Container(
+                    padding: EdgeInsets.only(right: 10, left: 10),
+                    child: Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "ຕູ້ທີ:${index += 1}",
+                              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "ຍີ່ຫໍ້: ${data.brand}",
+                              style: TextStyle(fontSize: 16.sp),
+                            ),
+                            Text(
+                              "ລຸ້ນ: ${data.generation}",
+                              style: TextStyle(fontSize: 16.sp),
+                            ),
+                            Text(
+                              "ໂມເດລ: ${data.model}",
+                              style: TextStyle(fontSize: 16.sp),
+                            ),
+                            Text(
+                              "ປະເພດຫົວສາກ:",
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    SvgPicture.asset("images/EV Charger-02.svg"),
+                                    Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
+                                    //Text("120KW/T DC"),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    SvgPicture.asset("images/EV Charger-03.svg"),
+                                    Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
+                                    //Text("120KW/T DC"),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+            Divider(),
+            Container(
+              padding: EdgeInsets.only(right: 10, left: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "ສິ່ງອຳນວຍຄວາມສະດວກ",
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16.sp),
+                  ),
+                  for (var i in widget.models!.facilities)
+                    Text(
+                      "- ${i.facilitie}",
+                      style: TextStyle(color: Colors.black, fontSize: 12.sp),
+                    ),
                 ],
               ),
             )

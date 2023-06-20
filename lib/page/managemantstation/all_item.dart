@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ev_charging/busines%20logic/infocharg/info_charg_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/add_station.dart';
@@ -22,7 +23,7 @@ class _AllItemState extends State<AllItem> {
     super.initState();
   }
 
-  Future<void> _refresh(){
+  Future<void> _refresh() {
     return Future.delayed(Duration(seconds: 2)).then((value) {
       setState(() {
         context.read<InfoChargProvider>().getchargprovider();
@@ -79,14 +80,16 @@ class _AllItemState extends State<AllItem> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => StationDetailCanEdit(models: data,),
+                                  builder: (_) => StationDetailCanEdit(
+                                    models: data,
+                                  ),
                                 ),
                               );
                             },
                             child: Container(
                               margin: EdgeInsets.all(8.0),
                               padding: EdgeInsets.all(8.0),
-                              height: 80.h,
+                              height: 90.h,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: EV_Colors.whitecolor,
@@ -103,8 +106,10 @@ class _AllItemState extends State<AllItem> {
                                     children: [
                                       AspectRatio(
                                         aspectRatio: 0.7,
-                                        child: Image.network(
-                                          "${data.imagecpn}",
+                                        child: CachedNetworkImage(
+                                          imageUrl: "${data.imagecpn}",
+                                          placeholder: (context, url) => CircularProgressIndicator(),
+                                          errorWidget: (context, url, error) => Icon(Icons.error),
                                         ),
                                       ),
                                       SizedBox(

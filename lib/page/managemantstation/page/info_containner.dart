@@ -1,13 +1,17 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/page/managemantstation/page/textformfield/textform.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class InfoContainnaer extends StatefulWidget {
-  const InfoContainnaer({super.key});
+  TextEditingController brand = TextEditingController();
+  List<TextEditingController>? generation;
+  TextEditingController model;
+  InfoContainnaer({super.key, required this.brand, required this.generation, required this.model});
 
   @override
   State<InfoContainnaer> createState() => _InfoContainnaerState();
@@ -32,9 +36,6 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
   String? valueitemtype;
 
   String? valueitem;
-  List<TextEditingController>? brand;
-  List<TextEditingController>? generation;
-  List<TextEditingController?>? model;
 
   @override
   Widget build(BuildContext context) {
@@ -142,15 +143,29 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                               SizedBox(
                                 height: 5.h,
                               ),
-                              TextFormInfo(
-                                ontap: (value) {},
-                                text: "ປ້ອນຊື່ຍີ່ຫໍ້",
-                                controller: brand?[index],
-                                onchange: () {
-                                  for (var i in brand!) {
-                                    models.listContainner = i as List<String>;
-                                  }
+                              TextFormField(
+                                onSaved: (val) {
+                                 // models.setInfoCharg(widget.brand as String);
                                 },
+                                keyboardType: TextInputType.text,
+                                cursorColor: Colors.grey,
+                                obscureText: false,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "ກາລຸນາປ້ອນຍີ່ຫໍ້";
+                                  }
+                                  return null;
+                                },
+                                controller: widget.brand,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.grey[200],
+                                  hintText: "ປ້ອນຍີ່ຫໍ້",
+                                ),
                               ),
                               SizedBox(
                                 height: 7.h,
@@ -165,11 +180,29 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                               SizedBox(
                                 height: 5.h,
                               ),
-                              TextFormInfo(
-                                ontap: (value) {},
-                                text: "ປ້ອນຊື່ລຸ້ນ",
-                                controller: generation?[index],
-                                onchange: () {},
+                              TextFormField(
+                                onSaved: (value) {
+                                  // models.setInfoCharg(widget.generation![index] as String);
+                                },
+                                keyboardType: TextInputType.emailAddress,
+                                cursorColor: Colors.grey,
+                                obscureText: false,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "ກາລຸນາປ້ອນລຸ້ນ";
+                                  }
+                                  return null;
+                                },
+                                controller: widget.generation?[index],
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.grey[200],
+                                  hintText: "ປ້ອນລຸ້ນ",
+                                ),
                               ),
                               SizedBox(
                                 height: 7.h,
@@ -184,13 +217,24 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                               SizedBox(
                                 height: 5.h,
                               ),
-                              TextFormInfo(
-                                ontap: (value) {
-                                  model?[index]?.text = value;
+                              TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                cursorColor: Colors.grey,
+                                obscureText: false,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "ກາລຸນາໂມເດລ";
+                                  }
+                                  return null;
                                 },
-                                text: "ປ້ອນຊື່ໂມເດລ",
-                                controller: model?[index],
-                                onchange: () {},
+                                controller: widget.model,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
+                                  filled: true,
+                                  fillColor: Colors.grey[200],
+                                  hintText: "ປ້ອນໂມເດລ",
+                                ),
                               ),
                               SizedBox(
                                 height: 7.h,
