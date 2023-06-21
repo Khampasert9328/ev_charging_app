@@ -4,7 +4,7 @@ import 'package:ev_charging/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// ignore: must_be_immutable
+
 class DialogSucces extends StatelessWidget {
   final String title;
   VoidCallback onTap;

@@ -4,13 +4,10 @@ import 'package:ev_charging/page/managemantstation/page/form_owner_company.dart'
 import 'package:ev_charging/page/managemantstation/page/info_containner.dart';
 import 'package:ev_charging/page/managemantstation/page/info_location_station.dart';
 import 'package:ev_charging/page/managemantstation/page/summary.dart';
-import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:ev_charging/page/managemantstation/service/add_stations_service.dart';
-import 'package:ev_charging/widget/dialog/loading.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 class BodyAddStation extends StatefulWidget {
   const BodyAddStation({super.key});

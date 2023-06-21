@@ -3,8 +3,6 @@ import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/busines%20logic/infocharg/info_charg_provider.dart';
 import 'package:ev_charging/busines%20logic/setlanguge_provider.dart';
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/page/managemantstation/add_station.dart';
-import 'package:ev_charging/page/managemantstation/component/body_add_station.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:ev_charging/page/onboardingscreen/onboardingsreen.dart';

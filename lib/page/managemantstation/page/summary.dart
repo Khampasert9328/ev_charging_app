@@ -160,7 +160,7 @@ class _SummaryState extends State<Summary> {
                       children: [
                          Text(
                            // "",
-                          model.brand?[index]?.text??"",
+                          model.brand[index].text,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
