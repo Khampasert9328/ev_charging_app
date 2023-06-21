@@ -386,12 +386,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "octo_image",
-      "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/octo_image-1.0.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "path",
       "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/path-1.8.3",
       "packageUri": "lib/",
@@ -554,18 +548,6 @@
       "languageVersion": "2.14"
     },
     {
-      "name": "sqflite",
-      "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/sqflite-2.2.8+4",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "sqflite_common",
-      "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/sqflite_common-2.4.5+1",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
       "name": "stack_trace",
       "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/stack_trace-1.11.0",
       "packageUri": "lib/",
@@ -586,12 +568,6 @@
     {
       "name": "string_scanner",
       "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/string_scanner-1.2.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "synchronized",
-      "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/synchronized-3.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -668,7 +644,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-06-21T02:35:08.404512Z",
+  "generated": "2023-06-21T02:31:25.927388Z",
   "generator": "pub",
   "generatorVersion": "3.0.3"
 }

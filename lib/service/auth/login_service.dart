@@ -100,7 +100,8 @@ Future<void> forgotpassword(String email, context) async {
           builder: (_) {
             return DialogSucces(
               title: "ກາລຸນາກວດສອບອີເມລຂອງທ່ານ",
-              onTap: () {
+              ontap: () {
+                Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
               },
             );
@@ -159,10 +160,9 @@ Future<void> changpassword(context, String password) async {
       barrierDismissible: false,
           context: context,
           builder: (_) {
-            return DialogSucces(
-              title: "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ",
-              onTap: () {},
-            );
+            return DialogSucces(title: "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ",onTap: () {
+              
+            },);
           });
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);
