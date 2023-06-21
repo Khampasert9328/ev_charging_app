@@ -13,6 +13,8 @@ class InfoLocationStation extends StatefulWidget {
 }
 
 class _InfoLocationStationState extends State<InfoLocationStation> {
+   TextEditingController nameplace =TextEditingController();
+   TextEditingController nameplacilitie = TextEditingController();
   String? valueitem;
   int lengthtext = 1;
   List province = [
@@ -151,7 +153,9 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                 SizedBox(
                   height: 7.h,
                 ),
-                TextFormInfo(text: "ປ້ອນຊື່ສະຖານທີ່"),
+                TextFormInfo(text: "ປ້ອນຊື່ສະຖານທີ່",controller: nameplace,onchange: () {},ontap: (value) {
+                                  
+                                },),
               ],
             ),
           ),
@@ -193,7 +197,11 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                       return Row(children: [
                         Expanded(
                           child:
-                              TextFormInfo(text: "ຕົວຢ່າງ: ຮ້ານ Amazon cafe"),
+                              TextFormInfo(text: "ຕົວຢ່າງ: ຮ້ານ Amazon cafe",controller: nameplacilitie,onchange: () {
+                                
+                              },ontap: (value) {
+                                  
+                                },),
                         ),
                         lengthtext == 1
                             ? SizedBox()

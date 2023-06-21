@@ -153,7 +153,7 @@ Future<void> changpassword(context, String password) async {
       showDialog(
           context: context,
           builder: (_) {
-            return DialogSucces(title: "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ");
+            return DialogSucces(title: "ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ",);
           });
       var map = Map<String, dynamic>.from(jsonDecode(response.body));
       ForgotPasswordModels.fromJson(map);

@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // ignore: must_be_immutable
 class DialogSucces extends StatelessWidget {
   final String title;
-  VoidCallback ontap;
+  VoidCallback onTap;
 
- DialogSucces({Key? key, required this.title, required this.ontap}) : super(key: key);
+   DialogSucces({Key? key, required this.title, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class DialogSucces extends StatelessWidget {
             height: 10.h,
           ),
           GestureDetector(
-            onTap: ontap,
+            onTap:onTap,
             child: Container(
               alignment: Alignment.center,
               height: 40.h,

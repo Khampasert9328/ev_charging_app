@@ -1,7 +1,12 @@
 import 'dart:io';
 import 'package:ev_charging/busines%20logic/auth_provider.dart';
+import 'package:ev_charging/busines%20logic/infocharg/info_charg_provider.dart';
 import 'package:ev_charging/busines%20logic/setlanguge_provider.dart';
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/page/managemantstation/add_station.dart';
+import 'package:ev_charging/page/managemantstation/component/body_add_station.dart';
+import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
+import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:ev_charging/page/onboardingscreen/onboardingsreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +31,10 @@ class MyApp extends StatelessWidget {
         return MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (_)=>AuthProvider()),
-            ChangeNotifierProvider(create: (_)=>SetLangugesProvider())
+            ChangeNotifierProvider(create: (_)=>SetLangugesProvider()),
+            ChangeNotifierProvider(create: (_)=>InfoCompanyProvider()),
+            ChangeNotifierProvider(create: (_)=>InfoContainerProvider()),
+            ChangeNotifierProvider(create: (_)=>InfoChargProvider())
           ],
           child: MaterialApp(
             title: "Lao Charging Station",
@@ -39,6 +47,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             home: const OnboardingScreen(),
+            // home: const AddStation(),
           ),
         );
       },

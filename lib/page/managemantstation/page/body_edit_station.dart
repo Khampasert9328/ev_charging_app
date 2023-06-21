@@ -38,6 +38,12 @@ class _BodyEditStationState extends State<BodyEditStation> {
   int length = 1;
   int lengthdropdown = 1;
   int lengthtext = 1;
+  TextEditingController brand=TextEditingController();
+  TextEditingController generation=TextEditingController();
+  TextEditingController model =TextEditingController();
+  TextEditingController namcompany  = TextEditingController();
+  TextEditingController namplace  = TextEditingController();
+  TextEditingController namplacilities  = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +110,11 @@ class _BodyEditStationState extends State<BodyEditStation> {
                       SizedBox(
                         height: 7.h,
                       ),
-                      TextFormInfo(text: "ບໍລິສັດ ໂລກ້າ ຈຳກັດ"),
+                      TextFormInfo(text: "ບໍລິສັດ ໂລກ້າ ຈຳກັດ", controller: namcompany,onchange: () {
+                        
+                      },ontap: (value) {
+                                  
+                                },),
                       SizedBox(
                         height: 15.h,
                       ),
@@ -272,7 +282,11 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                 SizedBox(
                                   height: 5.h,
                                 ),
-                                TextFormInfo(text: "ປ້ອນຊື່ຍີ່ຫໍ້"),
+                                TextFormInfo(text: "ປ້ອນຊື່ຍີ່ຫໍ້", controller: brand,onchange: () {
+                                  
+                                },ontap: (value) {
+                                  
+                                },),
                                 SizedBox(
                                   height: 7.h,
                                 ),
@@ -286,7 +300,11 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                 SizedBox(
                                   height: 5.h,
                                 ),
-                                TextFormInfo(text: "ປ້ອນຊື່ລຸ້ນ"),
+                                TextFormInfo(text: "ປ້ອນຊື່ລຸ້ນ",controller: generation,onchange: () {
+                                  
+                                },ontap: (value) {
+                                  
+                                },),
                                 SizedBox(
                                   height: 7.h,
                                 ),
@@ -300,7 +318,12 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                 SizedBox(
                                   height: 5.h,
                                 ),
-                                TextFormInfo(text: "ປ້ອນຊື່ໂມເດລ"),
+                                TextFormInfo(text: "ປ້ອນຊື່ໂມເດລ",controller: model,onchange: () {
+                                  
+                                },
+                                ontap: (value) {
+                                  
+                                },),
                                 SizedBox(
                                   height: 7.h,
                                 ),
@@ -617,7 +640,11 @@ class _BodyEditStationState extends State<BodyEditStation> {
                       SizedBox(
                         height: 7.h,
                       ),
-                      TextFormInfo(text: "ປ້ອນຊື່ສະຖານທີ່"),
+                      TextFormInfo(text: "ປ້ອນຊື່ສະຖານທີ່", controller: namplace,onchange: () {
+                        
+                      },ontap: (value) {
+                                  
+                                },),
                     ],
                   ),
                 ),
@@ -659,7 +686,11 @@ class _BodyEditStationState extends State<BodyEditStation> {
                             return Row(children: [
                               Expanded(
                                 child: TextFormInfo(
-                                    text: "ຕົວຢ່າງ: ຮ້ານ Amazon cafe"),
+                                    text: "ຕົວຢ່າງ: ຮ້ານ Amazon cafe", controller: namplacilities,onchange: () {
+                                      
+                                    },ontap: (value) {
+                                  
+                                },),
                               ),
                               lengthtext == 1
                                   ? SizedBox()
