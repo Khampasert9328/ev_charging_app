@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ev_charging/busines%20logic/infocharg/info_charg_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/add_station.dart';
@@ -55,140 +56,128 @@ class _AllItemState extends State<AllItem> {
       ),
       //
       body: RefreshIndicator(
-        color: Colors.yellow,
-        onRefresh: _refresh,
-        child: Consumer<InfoChargProvider>(
-          builder: (context, model, child) {
-            return model.isload == true
-                ? Center(
-                    child: Image.asset(
-                    "images/loading.gif",
-                    height: 50.h,
-                    width: 50.w,
-                  ))
-                : model.getchargmodels == null
-                    ? const Center(
-                        child: Text("ບໍ່ມີຂໍ້ມູນ"),
-                      )
-                    : ListView.builder(
-                        itemCount: model.getchargmodels!.data.length,
-                        itemBuilder: (context, index) {
-                          final data = model.getchargmodels!.data[index];
-                          return GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => StationDetailCanEdit(
-                                      models: data,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                margin: EdgeInsets.all(8.0),
-                                padding: EdgeInsets.all(8.0),
-                                height: 90.h,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: EV_Colors.whitecolor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 7,
-                                      color: Colors.black.withOpacity(0.1),
-                                    )
-                                  ],
+      color: Colors.yellow,
+      onRefresh: _refresh,
+      child: Consumer<InfoChargProvider>(
+        builder: (context, model, child) {
+          return model.isload == true
+              ? Center(
+                  child: Image.asset(
+                  "images/loading.gif",
+                  height: 50.h,
+                  width: 50.w,
+                ))
+              : model.getchargmodels == null
+                  ? const Center(
+                      child: Text("ບໍ່ມີຂໍ້ມູນ"),
+                    )
+                  : ListView.builder(
+                      itemCount: model.getchargmodels!.data.length,
+                      itemBuilder: (context, index) {
+                        final data = model.getchargmodels!.data[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => StationDetailCanEdit(
+                                  models: data,
                                 ),
-                                child: Container(
-                                  margin: EdgeInsets.all(8.0),
-                                  padding: EdgeInsets.all(8.0),
-                                  height: 80.h,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: EV_Colors.whitecolor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 7,
-                                        color: Colors.black.withOpacity(0.1),
-                                      )
-                                    ],
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Row(
+                              ),
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(8.0),
+                            height: 90.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: EV_Colors.whitecolor,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 7,
+                                  color: Colors.black.withOpacity(0.1),
+                                )
+                              ],
+                            ),
+                            child: Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    AspectRatio(
+                                      aspectRatio: 0.7,
+                                      child: CachedNetworkImage(
+                                        imageUrl: "${data.imagecpn}",
+                                        placeholder: (context, url) => CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) => Icon(Icons.error),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 15.w,
+                                    ),
+                                    SizedBox(
+                                      width: 0.5.sw,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          AspectRatio(
-                                              aspectRatio: 0.7,
-                                              child: Image.network(
-                                                data.imagecpn,
-                                              )),
-                                          SizedBox(
-                                            width: 15.w,
-                                          ),
-                                          SizedBox(
-                                            width: 0.5.sw,
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  child: Text(
-                                                    "${data.nameplace}",
-                                                    style: TextStyle(
-                                                      fontSize: 18.sp,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      "ເຈົ້າຂອງ: ",
-                                                      style: TextStyle(
-                                                        fontSize: 12.sp,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      "${data.name}",
-                                                      style:
-                                                          TextStyle(fontSize: 12.sp, color: EV_Colors.yellowbtncolor),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      "ສະຖານທີ່: ",
-                                                      style: TextStyle(
-                                                        fontSize: 12.sp,
-                                                      ),
-                                                    ),
-                                                    Flexible(
-                                                      child: Text(
-                                                        "ແຂວງ ${data.province} ເມືອງ ${data.district} ບ້ານ ${data.village}",
-                                                        style: TextStyle(
-                                                          fontSize: 12.sp,
-                                                          color: EV_Colors.yellowbtncolor,
-                                                        ),
-                                                        overflow: TextOverflow.ellipsis,
-                                                        maxLines: 1,
-                                                      ),
-                                                    )
-                                                  ],
-                                                )
-                                              ],
+                                          Container(
+                                            child: Text(
+                                              "${data.nameplace}",
+                                              style: TextStyle(
+                                                fontSize: 18.sp,
+                                              ),
                                             ),
                                           ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "ເຈົ້າຂອງ: ",
+                                                style: TextStyle(
+                                                  fontSize: 12.sp,
+                                                ),
+                                              ),
+                                              Text(
+                                                "${data.name}",
+                                                style: TextStyle(fontSize: 12.sp, color: EV_Colors.yellowbtncolor),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "ສະຖານທີ່: ",
+                                                style: TextStyle(
+                                                  fontSize: 12.sp,
+                                                ),
+                                              ),
+                                              Flexible(
+                                                child: Text(
+                                                  "ແຂວງ ${data.province} ເມືອງ ${data.district} ບ້ານ ${data.village}",
+                                                  style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    color: EV_Colors.yellowbtncolor,
+                                                  ),
+                                                  overflow: TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                ),
+                                              )
+                                            ],
+                                          )
                                         ],
                                       ),
-                                      Spacer(),
-                                      Icon(Icons.keyboard_arrow_right),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ));
-                        });
-          },
-        ),
+                                Spacer(),
+                                Icon(Icons.keyboard_arrow_right),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+        },
       ),
+    )
     );
   }
 }

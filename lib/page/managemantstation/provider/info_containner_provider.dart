@@ -1,5 +1,4 @@
 import 'package:easy_stepper/easy_stepper.dart';
-import 'package:ev_charging/page/managemantstation/models/ev_charging_form_model.dart';
 
 class InfoContainerProvider extends ChangeNotifier {
   int _count = 1;
@@ -7,18 +6,6 @@ class InfoContainerProvider extends ChangeNotifier {
 
   int _lengthDropdown = 1;
   int get lengthDropdown => _lengthDropdown;
-
-  List<EvChargingFormModel> _evForm = [];
-  List<EvChargingFormModel> get getEvForm => _evForm;
-
-  // List<String?>? _brand;
-  // List<String?>? get brand => _brand;
-  //
-  // List<String?>? _gen;
-  // List<String?>? get gen => _gen;
-  //
-  // List<String?>? _model;
-  // List<String?>? get model => _model;
   List<TextEditingController> _brand = [];
   List<TextEditingController> get brand => _brand;
 
@@ -33,11 +20,7 @@ class InfoContainerProvider extends ChangeNotifier {
   List<String> get chargeType => _chargeType;
 
 
-  void setFormEv(String? brand, String gen, String model){
-    if(_evForm.isEmpty){
-    _evForm.add(EvChargingFormModel(brand: brand, gen: gen, model: model));
-    }
-  }
+  
 
 
   void getBrandTextCtr(){
