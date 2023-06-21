@@ -100,7 +100,7 @@ Future<void> forgotpassword(String email, context) async {
           builder: (_) {
             return DialogSucces(
               title: "ກາລຸນາກວດສອບອີເມລຂອງທ່ານ",
-              ontap: () {
+              onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
               },

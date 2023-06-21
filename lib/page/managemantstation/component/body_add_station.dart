@@ -220,9 +220,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
 
       case 1:
         return InfoContainnaer(
-          brand: brand,
-          generation: generation,
-          model: model,
+         
         );
 
       case 2:

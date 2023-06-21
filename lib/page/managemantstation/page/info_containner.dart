@@ -1,23 +1,21 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/page/managemantstation/page/textformfield/textform.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class InfoContainnaer extends StatefulWidget {
-  TextEditingController brand = TextEditingController();
-  List<TextEditingController>? generation;
-  TextEditingController model;
-  InfoContainnaer({super.key, required this.brand, required this.generation, required this.model});
+  const InfoContainnaer({super.key});
 
   @override
   State<InfoContainnaer> createState() => _InfoContainnaerState();
 }
 
 class _InfoContainnaerState extends State<InfoContainnaer> {
+
+
   List item = [
     "1",
     "2",
@@ -201,25 +199,6 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                   // models.bra = brand?[index].text;
                                   //models.brand.add(value!);
                                 },
-                                keyboardType: TextInputType.text,
-                                cursorColor: Colors.grey,
-                                obscureText: false,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return "ກາລຸນາປ້ອນຍີ່ຫໍ້";
-                                  }
-                                  return null;
-                                },
-                                controller: widget.brand,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.grey[200],
-                                  hintText: "ປ້ອນຍີ່ຫໍ້",
-                                ),
                               ),
                               SizedBox(
                                 height: 7.h,
@@ -266,14 +245,6 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 onchange: () {
                                   // models.addModel = model?[index]?.text;
                                 },
-                                controller: widget.model,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                  filled: true,
-                                  fillColor: Colors.grey[200],
-                                  hintText: "ປ້ອນໂມເດລ",
-                                ),
                               ),
                               SizedBox(
                                 height: 7.h,

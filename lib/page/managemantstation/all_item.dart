@@ -76,117 +76,116 @@ class _AllItemState extends State<AllItem> {
                         itemBuilder: (context, index) {
                           final data = model.getchargmodels!.data[index];
                           return GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => StationDetailCanEdit(
-                                    models: data,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => StationDetailCanEdit(
+                                      models: data,
+                                    ),
                                   ),
+                                );
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(8.0),
+                                height: 90.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: EV_Colors.whitecolor,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 7,
+                                      color: Colors.black.withOpacity(0.1),
+                                    )
+                                  ],
                                 ),
-                              );
-                            },
-                            child: Container(
-                              margin: EdgeInsets.all(8.0),
-                              padding: EdgeInsets.all(8.0),
-                              height: 90.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: EV_Colors.whitecolor,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 7,
-                                    color: Colors.black.withOpacity(0.1),
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                          child: Container(
-                            margin: EdgeInsets.all(8.0),
-                            padding: EdgeInsets.all(8.0),
-                            height: 80.h,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: EV_Colors.whitecolor,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 7,
-                                  color: Colors.black.withOpacity(0.1),
-                                )
-                              ],
-                            ),
-                            child: Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    AspectRatio(
-                                      aspectRatio: 0.7,
-                                      child: Image.network(
-                                        data.imagecpn,
-                                      ),
-                                      SizedBox(
-                                        width: 15.w,
-                                      ),
-                                      SizedBox(
-                                        width: 0.5.sw,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              child: Text(
-                                                "${data.nameplace}",
-                                                style: TextStyle(
-                                                  fontSize: 18.sp,
-                                                ),
-                                              ),
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "ເຈົ້າຂອງ: ",
-                                                  style: TextStyle(
-                                                    fontSize: 12.sp,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "${data.name}",
-                                                  style: TextStyle(fontSize: 12.sp, color: EV_Colors.yellowbtncolor),
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "ສະຖານທີ່: ",
-                                                  style: TextStyle(
-                                                    fontSize: 12.sp,
-                                                  ),
-                                                ),
-                                                Flexible(
-                                                  child: Text(
-                                                    "ແຂວງ ${data.province} ເມືອງ ${data.district} ບ້ານ ${data.village}",
-                                                    style: TextStyle(
-                                                      fontSize: 12.sp,
-                                                      color: EV_Colors.yellowbtncolor,
-                                                    ),
-                                                    overflow: TextOverflow.ellipsis,
-                                                    maxLines: 1,
-                                                  ),
-                                                )
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                child: Container(
+                                  margin: EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
+                                  height: 80.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: EV_Colors.whitecolor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 7,
+                                        color: Colors.black.withOpacity(0.1),
+                                      )
                                     ],
                                   ),
-                                  Spacer(),
-                                  Icon(Icons.keyboard_arrow_right),
-                                ],
-                              ),
-                            ),
-                          );
+                                  child: Row(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          AspectRatio(
+                                              aspectRatio: 0.7,
+                                              child: Image.network(
+                                                data.imagecpn,
+                                              )),
+                                          SizedBox(
+                                            width: 15.w,
+                                          ),
+                                          SizedBox(
+                                            width: 0.5.sw,
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  child: Text(
+                                                    "${data.nameplace}",
+                                                    style: TextStyle(
+                                                      fontSize: 18.sp,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "ເຈົ້າຂອງ: ",
+                                                      style: TextStyle(
+                                                        fontSize: 12.sp,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "${data.name}",
+                                                      style:
+                                                          TextStyle(fontSize: 12.sp, color: EV_Colors.yellowbtncolor),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "ສະຖານທີ່: ",
+                                                      style: TextStyle(
+                                                        fontSize: 12.sp,
+                                                      ),
+                                                    ),
+                                                    Flexible(
+                                                      child: Text(
+                                                        "ແຂວງ ${data.province} ເມືອງ ${data.district} ບ້ານ ${data.village}",
+                                                        style: TextStyle(
+                                                          fontSize: 12.sp,
+                                                          color: EV_Colors.yellowbtncolor,
+                                                        ),
+                                                        overflow: TextOverflow.ellipsis,
+                                                        maxLines: 1,
+                                                      ),
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      Icon(Icons.keyboard_arrow_right),
+                                    ],
+                                  ),
+                                ),
+                              ));
                         });
           },
         ),

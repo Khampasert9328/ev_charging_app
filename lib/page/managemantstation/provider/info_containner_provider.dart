@@ -83,19 +83,4 @@ class InfoContainerProvider extends ChangeNotifier {
     _count--;
     notifyListeners();
   }
-
-  void setInfoCharg(Constainner charg) {
-   List<GetInfoChargModels> datainfo = _models!.where((element) => element.data.first.id == charg.id).toList();
-    if (datainfo.isEmpty) {
-      // datainfo.add(GetInfoChargModel(data: charg));
-    } else {
-      for (var i in _models!) {
-        i.data.first.id == charg.id;
-        i.data.first.constainner.first.brand = charg.brand;
-        i.data.first.constainner.first.generation = charg.generation;
-        i.data.first.constainner.first.model = charg.model;
-      }
-    }
-    notifyListeners();
-  }
 }
