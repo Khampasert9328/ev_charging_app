@@ -3,9 +3,11 @@ import 'package:easy_stepper/easy_stepper.dart';
 class InfoCompanyProvider extends ChangeNotifier {
   String? _imageUrl;
   String? _imaName;
-  
+  String? _namCompany;
+
   String? get imageUrl => _imageUrl;
   String? get imageName => _imaName;
+  String? get namcompany => _namCompany;
 
   setImageUrl(String? imageUrl) {
     _imageUrl = imageUrl;
@@ -17,5 +19,15 @@ class InfoCompanyProvider extends ChangeNotifier {
     notifyListeners();
   }
 
- 
+  setNamcompany(String? namcompany) {
+    _namCompany = namcompany;
+    notifyListeners();
+  }
+
+  void clearInfoCompany() {
+    _namCompany = null;
+    _imageUrl = null;
+    _imaName = null;
+    notifyListeners();
+  }
 }

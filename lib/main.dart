@@ -5,6 +5,7 @@ import 'package:ev_charging/busines%20logic/setlanguge_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
+import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
 import 'package:ev_charging/page/onboardingscreen/onboardingsreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (_)=>SetLangugesProvider()),
             ChangeNotifierProvider(create: (_)=>InfoCompanyProvider()),
             ChangeNotifierProvider(create: (_)=>InfoContainerProvider()),
-            ChangeNotifierProvider(create: (_)=>InfoChargProvider())
+            ChangeNotifierProvider(create: (_)=>InfoChargProvider()),
+            ChangeNotifierProvider(create: (_)=>InfoLocationProvider())
           ],
           child: MaterialApp(
             title: "Lao Charging Station",

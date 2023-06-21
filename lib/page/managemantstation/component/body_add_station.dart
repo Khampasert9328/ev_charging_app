@@ -96,6 +96,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
                         ? GestureDetector(
                             onTap: () {
                               AddStationService.addStationService(context);
+
                               // EVDialog().showDialogSuccess(context, "ແຈ້ງເຕືອນ", "ບັນທຶກຂໍ້ມູນສຳເລັດແລ້ວ", () {});
                             },
                             child: Container(
@@ -138,6 +139,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
+          physics: ScrollPhysics(),
           child: Column(
             children: [
               Container(

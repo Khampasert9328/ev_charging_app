@@ -38,7 +38,10 @@ class _OwnerCompanyState extends State<OwnerCompany> {
                     });
                   });
                 },
-                child: Text("ເປີດກ້ອງ",style: TextStyle(color: Colors.black),),
+                child: const Text(
+                  "ເປີດກ້ອງ",
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               CupertinoActionSheetAction(
                 onPressed: () async {
@@ -50,7 +53,10 @@ class _OwnerCompanyState extends State<OwnerCompany> {
                     });
                   });
                 },
-                child: Text("ບ່ອນເກັບຮູບພາບ",style: TextStyle(color: Colors.black),),
+                child: const Text(
+                  "ບ່ອນເກັບຮູບພາບ",
+                  style: TextStyle(color: Colors.black),
+                ),
               )
             ],
             cancelButton: CupertinoActionSheetAction(
@@ -81,7 +87,10 @@ class _OwnerCompanyState extends State<OwnerCompany> {
               children: [
                 ListTile(
                   leading: const Icon(Icons.camera),
-                  title: const Text('ເປີດກ້ອງຖ່າຍຮູບ',style: TextStyle(color: Colors.black),),
+                  title: const Text(
+                    'ເປີດກ້ອງຖ່າຍຮູບ',
+                    style: TextStyle(color: Colors.black),
+                  ),
                   onTap: () async {
                     Navigator.pop(context);
                     await PickImage.onOpenFile(ImageSource.camera, context).then((value) {
@@ -94,7 +103,10 @@ class _OwnerCompanyState extends State<OwnerCompany> {
                 ),
                 ListTile(
                   leading: const Icon(Icons.image),
-                  title: const Text('ບ່ອນເກັບຮູບ',style: TextStyle(color: Colors.black),),
+                  title: const Text(
+                    'ບ່ອນເກັບຮູບ',
+                    style: TextStyle(color: Colors.black),
+                  ),
                   onTap: () async {
                     Navigator.pop(context);
                     await PickImage.onOpenFile(ImageSource.gallery, context).then((value) {
@@ -116,7 +128,7 @@ class _OwnerCompanyState extends State<OwnerCompany> {
   @override
   Widget build(BuildContext context) {
     return Consumer<InfoCompanyProvider>(
-      builder: (context, value, child) {
+      builder: (context, models, child) {
         return Container(
           width: double.infinity,
           decoration: BoxDecoration(
@@ -145,6 +157,9 @@ class _OwnerCompanyState extends State<OwnerCompany> {
                   height: 7.h,
                 ),
                 TextFormField(
+                  onChanged: (value) {
+                    models.setNamcompany(value);
+                  },
                   keyboardType: TextInputType.emailAddress,
                   cursorColor: Colors.grey,
                   obscureText: false,
@@ -175,7 +190,7 @@ class _OwnerCompanyState extends State<OwnerCompany> {
                 SizedBox(
                   height: 7.h,
                 ),
-                value.imageUrl == null
+                models.imageUrl == null
                     ? Container(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         decoration: BoxDecoration(
@@ -185,9 +200,9 @@ class _OwnerCompanyState extends State<OwnerCompany> {
                         child: GestureDetector(
                           onTap: () {
                             if (Platform.isIOS) {
-                              ios(value);
-                            }else if (Platform.isAndroid){
-                              android(value);
+                              ios(models);
+                            } else if (Platform.isAndroid) {
+                              android(models);
                             }
                           },
                           child: Container(
@@ -208,7 +223,7 @@ class _OwnerCompanyState extends State<OwnerCompany> {
                               )),
                         ),
                       )
-                    : Image.network(value.imageUrl!, fit: BoxFit.fill)
+                    : Image.network(models.imageUrl!, fit: BoxFit.fill)
               ],
             ),
           ),
