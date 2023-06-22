@@ -38,7 +38,7 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
         actions: [
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) => EditInfoStation()));
+              Navigator.push(context, MaterialPageRoute(builder: (_) => EditInfoStation(models: widget.models,controllers: widget.models!.constainner,)));
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),

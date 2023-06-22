@@ -47,6 +47,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
 
   // List<EvChargingFormModel>? evModels;
   List evModels = [];
+  int conindex = 0;
 
   @override
   void initState() {
@@ -60,6 +61,9 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
     // }
     super.initState();
   }
+
+  List<Map<String, dynamic>> listmap = [];
+  List<String> list = [];
 
   void ios(InfoContainerProvider model) {
     showCupertinoModalPopup(
@@ -257,12 +261,12 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                 shrinkWrap: true,
                 physics: ScrollPhysics(),
                 itemCount: models.count,
-                itemBuilder: (context, inde) {
+                itemBuilder: (context, indexcount) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "ຕູ້ທີ ${item[inde]}",
+                        "ຕູ້ທີ ${item[indexcount]}",
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
@@ -300,7 +304,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                   // brand?[index].text = value;
                                 },
                                 text: "ປ້ອນຊື່ຍີ່ຫໍ້",
-                                controller: models.brand[inde],
+                                controller: models.brand[indexcount],
                                 onchange: () {
                                   // models.bra = brand?[index].text;
                                   //models.brand.add(value!);
@@ -324,7 +328,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                   // generation?[index].text = value;
                                 },
                                 text: "ປ້ອນຊື່ລຸ້ນ",
-                                controller: models.generation[inde],
+                                controller: models.generation[indexcount],
                                 onchange: () {
                                   // models.addGen = generation?[index].text;
                                 },
@@ -347,7 +351,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                   // model?[index]?.text = value;
                                 },
                                 text: "ປ້ອນຊື່ໂມເດລ",
-                                controller: models.model[inde],
+                                controller: models.model[indexcount],
                                 onchange: () {
                                   // models.addModel = model?[index]?.text;
                                 },
@@ -369,6 +373,10 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                   shrinkWrap: true,
                                   itemCount: models.lengthDropdown,
                                   itemBuilder: (context, index) {
+                                    // for (var i = 0; i < models.count; i++) {
+                                    //   conindex = i;
+                                    //   list.add("typcharg");
+                                    // }
                                     return Row(
                                       children: [
                                         Expanded(
@@ -393,15 +401,16 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                                   return DropdownMenuItem(value: e, child: Text(e));
                                                 }).toList(),
                                                 onChanged: (value) {
+
                                                   if (models.chargeType.isEmpty) {
                                                     models.addChargeType(value.toString());
                                                   } else {
                                                     models.chargeType[index] = value.toString();
                                                   }
                                                   setState(() {
-                                                    valueitemtype = value.toString();
-                                                    models.chargeType[inde] = value.toString();
+                                                    models.chargeType[index] = value.toString();
                                                   });
+
                                                 }),
                                           ),
                                         ),
