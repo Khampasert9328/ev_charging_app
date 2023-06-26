@@ -5,6 +5,28 @@ class PreFer {
   String checklogin = '';
   String saveToken = 'token';
   String role = "role";
+  String lat = 'lat';
+  String long = 'long';
+
+  Future<void> setLat(num val) async {
+    preferences = await SharedPreferences.getInstance();
+    await preferences!.setString(lat, val.toString());
+  }
+
+  Future getLat() async {
+    preferences = await SharedPreferences.getInstance();
+    preferences!.getDouble(lat);
+  }
+
+  Future<void> setLong(num val) async {
+    preferences = await SharedPreferences.getInstance();
+    await preferences!.setString(long, val.toString());
+  }
+
+  Future getLong() async {
+    preferences = await SharedPreferences.getInstance();
+    preferences!.getDouble(long);
+  }
 
   Future<void> setToken(String val) async {
     preferences = await SharedPreferences.getInstance();
@@ -23,7 +45,7 @@ class PreFer {
 
   Future<void> clearrole() async {
     preferences = await SharedPreferences.getInstance();
-   await preferences!.clear();
+    await preferences!.clear();
   }
 
   Future<void> setRole(String val) async {

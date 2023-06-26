@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import 'page/home/provider/getchargebyid_provider.dart';
+
 void main() {
   HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
@@ -34,7 +36,8 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (_)=>InfoCompanyProvider()),
             ChangeNotifierProvider(create: (_)=>InfoContainerProvider()),
             ChangeNotifierProvider(create: (_)=>InfoChargProvider()),
-            ChangeNotifierProvider(create: (_)=>InfoLocationProvider())
+            ChangeNotifierProvider(create: (_)=>InfoLocationProvider()),
+            ChangeNotifierProvider(create: (_)=>GetChargeByIdProvider())
           ],
           child: MaterialApp(
             title: "Lao Charging Station",

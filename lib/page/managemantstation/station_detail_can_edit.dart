@@ -1,10 +1,12 @@
 // ignore_for_file: must_be_immutable
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/page/managemantstation/Maps/detail_map.dart';
 import 'package:ev_charging/page/managemantstation/edit_info-station.dart';
 import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:page_transition/page_transition.dart';
 
 class StationDetailCanEdit extends StatefulWidget {
   DataGetInfoCharg? models;
@@ -47,6 +49,26 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
           )
         ],
       ),
+       bottomNavigationBar: GestureDetector(
+          onTap: () async {
+            Navigator.push(context, PageTransition(child:  DetailMaps(lat: widget.models!.latLocation,long: widget.models!.lngLacation,), type: PageTransitionType.fade));
+          },
+          child: Container(
+            margin: EdgeInsets.only(right: 10, left: 10, bottom: 20),
+            alignment: Alignment.center,
+            height: 46.h,
+            width: double.infinity,
+            decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
+            child: Text(
+              "ເບິ່ງຕຳແໜ່ງ",
+              style: TextStyle(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
+                color: EV_Colors.whitecolor,
+              ),
+            ),
+          ),
+        ),
       body: SingleChildScrollView(
 
         child: Column(

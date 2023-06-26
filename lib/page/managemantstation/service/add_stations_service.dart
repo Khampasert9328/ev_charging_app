@@ -59,8 +59,8 @@ class AddStationService {
       "district": city,
       "village": village,
       "nameplace": modellocation.nameplace,
-      "lat_location": 17000000,
-      "lng_lacation": 1600000000,
+      "lat_location": modellocation.latitude,
+      "lng_lacation": modellocation.longtitude,
       "constainner": container,
       "facilities": facilities,
     });

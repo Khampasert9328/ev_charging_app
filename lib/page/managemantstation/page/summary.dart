@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
@@ -5,6 +7,7 @@ import 'package:ev_charging/page/managemantstation/provider/info_containner_prov
 import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 class Summary extends StatefulWidget {
@@ -15,6 +18,11 @@ class Summary extends StatefulWidget {
 }
 
 class _SummaryState extends State<Summary> {
+  bool? loading;
+
+  BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+
+  final Completer<GoogleMapController> _controller = Completer();
   @override
   Widget build(BuildContext context) {
     return Consumer3<InfoCompanyProvider, InfoContainerProvider, InfoLocationProvider>(
@@ -178,6 +186,56 @@ class _SummaryState extends State<Summary> {
                       Text(model3.village!.replaceAll("(", "").replaceAll(")", "")),
                     ],
                   ),
+                  Divider(),
+                  Text(
+                    "ຕ່ຳແໜ່ງທີ່ຕັ້ງ:",
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("latitude:"),
+                      Text(model3.latitude!),
+                    ],
+                  ),
+                  SizedBox(height: 5.h,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("longtitude:"),
+                      Text(model3.longtitude!),
+                    ],
+                  ),
+
+                  SizedBox(height: 5.h,),
+                   loading == true
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : SizedBox(
+                          height: 200,
+                          width: double.infinity,
+                          child: GoogleMap(
+                            mapType: MapType.satellite,
+                            initialCameraPosition: CameraPosition(
+                                target: LatLng(double.parse(model3.latitude!), double.parse(model3.longtitude!)),
+                                zoom: 50.0,
+                                tilt: 0,
+                                bearing: 0),
+                            markers: {
+                              Marker(
+                                markerId: const MarkerId("1"),
+                                position: LatLng(double.parse(model3.latitude!), double.parse(model3.longtitude!)),
+                                icon: markerIcon,
+                              )
+                            },
+                            onMapCreated: (GoogleMapController controller) {
+                              _controller.complete(controller);
+                            },
+                          )),
                    Divider(),
                   Text(
                     "ສິ່ງອຳນວຍຄວາມສະດວກ:",

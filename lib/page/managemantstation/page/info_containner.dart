@@ -47,7 +47,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
 
   // List<EvChargingFormModel>? evModels;
   List evModels = [];
-  int conindex = 0;
+  int selectindex = 0;
 
   @override
   void initState() {
@@ -373,10 +373,6 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                   shrinkWrap: true,
                                   itemCount: models.lengthDropdown,
                                   itemBuilder: (context, index) {
-                                    // for (var i = 0; i < models.count; i++) {
-                                    //   conindex = i;
-                                    //   list.add("typcharg");
-                                    // }
                                     return Row(
                                       children: [
                                         Expanded(
@@ -401,16 +397,17 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                                   return DropdownMenuItem(value: e, child: Text(e));
                                                 }).toList(),
                                                 onChanged: (value) {
-
+                                                  // setState(() {
+                                                  //   models.chargeType[index] = value.toString();
+                                                  // });
                                                   if (models.chargeType.isEmpty) {
                                                     models.addChargeType(value.toString());
                                                   } else {
-                                                    models.chargeType[index] = value.toString();
+                                                    setState(() {
+                                                      models.chargeType[index] = value.toString();
+                                                    });
+                                                   
                                                   }
-                                                  setState(() {
-                                                    models.chargeType[index] = value.toString();
-                                                  });
-
                                                 }),
                                           ),
                                         ),

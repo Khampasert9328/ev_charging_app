@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 
 class InfoLocationProvider extends ChangeNotifier {
+  String? _longtitude, _latitude;
   String? _province, _city, _village;
   String? _nameplace;
   String? get province => _province;
@@ -12,6 +12,9 @@ class InfoLocationProvider extends ChangeNotifier {
   int get lengthplace => _lengthplace;
   List<String> _listplace = [];
   List<String> get listplace => _listplace;
+
+  String? get latitude => _latitude;
+  String? get longtitude => _longtitude;
 
   void addlengthplace() {
     _lengthplace++;
@@ -64,6 +67,16 @@ class InfoLocationProvider extends ChangeNotifier {
   //nameplace
   setNamPlace(String? nameplace) {
     _nameplace = nameplace;
+    notifyListeners();
+  }
+
+   setLatitude(String? val) {
+    _latitude = val;
+    notifyListeners();
+  }
+
+  setLongitude(String? val){
+    _longtitude = val;
     notifyListeners();
   }
 
