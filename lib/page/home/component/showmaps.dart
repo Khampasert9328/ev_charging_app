@@ -76,7 +76,7 @@ class _ShowMapsState extends State<ShowMaps> {
               double.parse(value.getchargmodels!.data[0].lngLacation.toString()),
             ),
           ),
-          mapType: MapType.hybrid,
+          mapType: MapType.normal,
         ),
       );
     }));

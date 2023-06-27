@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 Future<GetChargeByIdModels?> getchargbyid(String? id) async {
   try {
-    String url = "${AppDomain.getinfocharg}/$id";
+    String url = "${AppDomain.getchargebyid}/$id";
     var response = await http.get(Uri.parse(url), headers: {});
     if (response.statusCode == 200) {
       return getChargeByIdModelsFromJson(response.body);
