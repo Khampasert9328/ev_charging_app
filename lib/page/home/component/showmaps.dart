@@ -29,16 +29,12 @@ class _ShowMapsState extends State<ShowMaps> {
     final data = context.read<InfoChargProvider>().getchargmodels!.data;
     Future<Uint8List> getBytesFromAsset(String path, int width) async {
       ByteData data = await rootBundle.load(path);
-      ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
-          targetWidth: width);
+      ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
       ui.FrameInfo fi = await codec.getNextFrame();
-      return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
-          .buffer
-          .asUint8List();
+      return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
     }
 
-    final Uint8List markerIcon =
-        await getBytesFromAsset('images/logocharge.png', 150);
+    final Uint8List markerIcon = await getBytesFromAsset('images/logocharge.png', 150);
 
     _marker.clear();
     setState(() {
@@ -46,8 +42,7 @@ class _ShowMapsState extends State<ShowMaps> {
         _marker.add(
           Marker(
             onTap: () {
-              Provider.of<GetChargeByIdProvider>(context, listen: false)
-                  .getchargebyid(data[i].id);
+              Provider.of<GetChargeByIdProvider>(context, listen: false).getchargebyid(data[i].id);
               showSlidingBottomSheet(
                 context,
                 builder: (_) => SlidingSheetDialog(
@@ -67,15 +62,12 @@ class _ShowMapsState extends State<ShowMaps> {
                         alignment: Alignment.center,
                         height: 10.h,
                         width: 30.w,
-                        decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(10)),
+                        decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.circular(10)),
                       ),
                     );
                   },
                   builder: (context, state) {
-                    return Consumer<GetChargeByIdProvider>(
-                        builder: (context, model, child) {
+                    return Consumer<GetChargeByIdProvider>(builder: (context, model, child) {
                       if (model.isloading) {
                         return Center(
                           child: Image.asset(
@@ -96,8 +88,7 @@ class _ShowMapsState extends State<ShowMaps> {
                                   fit: BoxFit.cover,
                                   height: 150.h,
                                   width: double.infinity,
-                                  imageUrl:
-                                      "${model.models!.data.pictureplace}",
+                                  imageUrl: "${model.models!.data.pictureplace}",
                                   placeholder: (context, url) => Center(
                                     child: Image.asset(
                                       "images/loading.gif",
@@ -105,8 +96,7 @@ class _ShowMapsState extends State<ShowMaps> {
                                       width: 50.w,
                                     ),
                                   ),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                  errorWidget: (context, url, error) => Icon(Icons.error),
                                 ),
                               ),
                               Divider(),
@@ -116,23 +106,19 @@ class _ShowMapsState extends State<ShowMaps> {
                                     CachedNetworkImage(
                                       height: 50.h,
                                       width: 50.w,
-                                      imageUrl:
-                                          "${model.models!.data.imagecpn}",
-                                      placeholder: (context, url) =>
-                                          Image.asset(
+                                      imageUrl: "${model.models!.data.imagecpn}",
+                                      placeholder: (context, url) => Image.asset(
                                         "images/loading.gif",
                                         height: 50.h,
                                         width: 50.w,
                                       ),
-                                      errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
+                                      errorWidget: (context, url, error) => Icon(Icons.error),
                                     ),
                                     SizedBox(
                                       width: 15.w,
                                     ),
                                     Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "${model.models!.data.nameplace}",
@@ -141,8 +127,7 @@ class _ShowMapsState extends State<ShowMaps> {
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        Text(
-                                            "ເຈົ້າຂອງ: ${model.models!.data.name}"),
+                                        Text("ເຈົ້າຂອງ: ${model.models!.data.name}"),
                                         Text(
                                             "ສະຖານທີ່: ${model.models!.data.village} ${model.models!.data.district} ${model.models!.data.province}"),
                                       ],
@@ -153,28 +138,21 @@ class _ShowMapsState extends State<ShowMaps> {
                               Divider(),
                               Text(
                                 "ຂໍ້ມູນຕູ້ສາກ",
-                                style: TextStyle(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                               ),
                               Text("ຈຳນວນຕູ້ສາກ: ${model.models!.data.amount}"),
                               ListView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  itemCount:
-                                      model.models!.data.constainner.length,
+                                  itemCount: model.models!.data.constainner.length,
                                   itemBuilder: (context, index) {
-                                    final data =
-                                        model.models!.data.constainner[index];
+                                    final data = model.models!.data.constainner[index];
                                     return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "ຕູ້ທີ ${index += 1}",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16.sp),
+                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
                                         ),
                                         Text(
                                           "ຍີ່ຫໍ້: ${data.brand}",
@@ -194,21 +172,16 @@ class _ShowMapsState extends State<ShowMaps> {
                               Divider(),
                               Text(
                                 "ສຶ່ງອຳນວຍຄວາມສະດວກ",
-                                style: TextStyle(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                               ),
                               ListView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  itemCount:
-                                      model.models!.data.facilities.length,
+                                  itemCount: model.models!.data.facilities.length,
                                   itemBuilder: (context, index) {
-                                    final data =
-                                        model.models!.data.facilities[index];
+                                    final data = model.models!.data.facilities[index];
                                     return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "- ${data.facilitie}",
@@ -234,10 +207,10 @@ class _ShowMapsState extends State<ShowMaps> {
                 data[i].lngLacation.toString(),
               ),
             ),
-            infoWindow:
-                InfoWindow(title: data[i].name, anchor: Offset(0.2, 0.0)),
+            infoWindow: InfoWindow(title: data[i].name, anchor: Offset(0.2, 0.0)),
           ),
         );
+
       }
     });
   }
@@ -269,10 +242,8 @@ class _ShowMapsState extends State<ShowMaps> {
             initialCameraPosition: CameraPosition(
               zoom: 16.0,
               target: LatLng(
-                double.parse(
-                    value.getchargmodels!.data[0].latLocation.toString()),
-                double.parse(
-                    value.getchargmodels!.data[0].lngLacation.toString()),
+                double.parse(value.getchargmodels!.data[0].latLocation.toString()),
+                double.parse(value.getchargmodels!.data[0].lngLacation.toString()),
               ),
             ),
             mapType: MapType.normal,
