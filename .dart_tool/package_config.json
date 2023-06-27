@@ -272,6 +272,12 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "google_map_marker_animation",
+      "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/google_map_marker_animation-0.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "google_maps_flutter",
       "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/google_maps_flutter-2.2.8",
       "packageUri": "lib/",
@@ -596,6 +602,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "sliding_sheet",
+      "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/sliding_sheet-0.5.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "source_span",
       "rootUri": "file:///Users/archineerthree/.pub-cache/hosted/pub.dev/source_span-1.9.1",
       "packageUri": "lib/",
@@ -764,7 +776,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-06-26T10:05:34.813667Z",
+  "generated": "2023-06-27T08:11:04.346466Z",
   "generator": "pub",
   "generatorVersion": "3.0.3"
 }

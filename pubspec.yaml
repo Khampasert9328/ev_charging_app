@@ -57,6 +57,8 @@ dependencies:
   map_launcher: ^2.5.0+1
   geolocator: ^9.0.2
   page_transition: "^2.0.9"
+  google_map_marker_animation: ^0.0.1
+  sliding_sheet: ^0.5.2
 
 dev_dependencies:
   flutter_test:
