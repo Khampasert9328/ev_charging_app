@@ -60,7 +60,7 @@ class _SummaryState extends State<Summary> {
                           SizedBox(
                             width: 5.w,
                           ),
-                          Text(model.count.toString()),
+                          Text(model.containersList.length.toString()),
                           SizedBox(
                             width: 5.w,
                           ),
@@ -153,7 +153,7 @@ class _SummaryState extends State<Summary> {
              SizedBox(height: 10),
               ListView.builder(
                 shrinkWrap: true,
-                  itemCount: model.count,
+                  itemCount: model.containersList.length,
                   itemBuilder: (context, index) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

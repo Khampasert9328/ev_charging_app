@@ -15,7 +15,7 @@
     },
     {
       "name": "async",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/async-2.11.0",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/async-2.10.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -33,7 +33,7 @@
     },
     {
       "name": "characters",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/characters-1.3.0",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/characters-1.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -45,9 +45,9 @@
     },
     {
       "name": "collection",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/collection-1.17.2",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/collection-1.17.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.12"
     },
     {
       "name": "connectivity_plus",
@@ -155,7 +155,7 @@
       "name": "flutter",
       "rootUri": "file:///Users/mac/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.17"
     },
     {
       "name": "flutter_lints",
@@ -167,7 +167,7 @@
       "name": "flutter_localizations",
       "rootUri": "file:///Users/mac/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.17"
     },
     {
       "name": "flutter_plugin_android_lifecycle",
@@ -177,13 +177,13 @@
     },
     {
       "name": "flutter_screenutil",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/flutter_screenutil-5.8.4",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/flutter_screenutil-5.7.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_svg",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/flutter_svg-2.0.6",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/flutter_svg-2.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -191,13 +191,13 @@
       "name": "flutter_test",
       "rootUri": "file:///Users/mac/flutter/packages/flutter_test",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.17"
     },
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///Users/mac/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.17"
     },
     {
       "name": "font_awesome_flutter",
@@ -297,15 +297,15 @@
     },
     {
       "name": "intl",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/intl-0.18.1",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/intl-0.17.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "js",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/js-0.6.7",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/js-0.6.5",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.16"
     },
     {
       "name": "jwt_decode",
@@ -315,31 +315,31 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/lints-2.1.0",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/lints-2.0.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.17"
     },
     {
       "name": "lottie",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/lottie-2.4.0",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/lottie-2.3.2",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.18"
     },
     {
       "name": "matcher",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/matcher-0.12.16",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/matcher-0.12.13",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "material_color_utilities",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/material_color_utilities-0.5.0",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/material_color_utilities-0.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.13"
     },
     {
       "name": "meta",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/meta-1.9.1",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/meta-1.8.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -357,7 +357,7 @@
     },
     {
       "name": "path",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/path-1.8.3",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/path-1.8.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -393,9 +393,9 @@
     },
     {
       "name": "petitparser",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/petitparser-5.4.0",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/petitparser-5.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.18"
     },
     {
       "name": "platform",
@@ -479,13 +479,13 @@
       "name": "sky_engine",
       "rootUri": "file:///Users/mac/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.12"
     },
     {
       "name": "source_span",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/source_span-1.10.0",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/source_span-1.9.1",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.14"
     },
     {
       "name": "stack_trace",
@@ -519,7 +519,7 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/test_api-0.6.0",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/test_api-0.4.16",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -531,19 +531,19 @@
     },
     {
       "name": "vector_graphics",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/vector_graphics-1.1.6",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/vector_graphics-1.1.5",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "vector_graphics_codec",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.6",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.5",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "vector_graphics_compiler",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.6",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.5",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -567,9 +567,9 @@
     },
     {
       "name": "xml",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/xml-6.3.0",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/xml-6.2.2",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.18"
     },
     {
       "name": "ev_charging",
@@ -578,7 +578,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-06-18T16:20:03.852533Z",
+  "generated": "2023-06-22T08:12:50.292165Z",
   "generator": "pub",
-  "generatorVersion": "3.1.0-163.1.beta"
+  "generatorVersion": "2.19.6"
 }

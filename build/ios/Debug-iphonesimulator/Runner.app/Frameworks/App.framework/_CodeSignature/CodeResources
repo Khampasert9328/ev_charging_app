@@ -12,17 +12,13 @@
 		<data>
 		OW4GULYJK10pbOaxkJLCe1v4sxc=
 		</data>
-		<key>flutter_assets/AssetManifest.smcbin</key>
-		<data>
-		Gu+iclsOcL7m6asHhQhpRqr0nA4=
-		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
 		JnwV3mCr3eELsVMy+FeSrT64WH0=
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		Pf4yaeaQRd+/KMog3cKK4ohb0Zc=
+		MKaLtRXORp1Dk8aAsbbtRAY+cLk=
 		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -118,11 +114,11 @@
 		</data>
 		<key>flutter_assets/isolate_snapshot_data</key>
 		<data>
-		gaD/zQl2MBoW3bAMkEzpeGhHT6E=
+		Q89/RAA6FqfUQGbeWuBVjaBXHyg=
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		fAY28TpTvQtZXMcpCYxfnyZTJAc=
+		c76l9c8sDLbW+nQ5EwQLRRlJQwM=
 		</data>
 		<key>flutter_assets/packages/awesome_snackbar_content/assets/back.svg</key>
 		<data>
@@ -210,11 +206,11 @@
 		</data>
 		<key>flutter_assets/shaders/ink_sparkle.frag</key>
 		<data>
-		KL+7f3IYR/Y9WDlxxUeDmgGoluc=
+		Z/DhfUUahgFGsthszkW1YubfdU8=
 		</data>
 		<key>flutter_assets/vm_snapshot_data</key>
 		<data>
-		0qQ3/o2qqojSdQoVnWl7JRMm8F0=
+		bjcE383nCc8U85vWBdZ80X32NVA=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -224,13 +220,6 @@
 			<key>hash2</key>
 			<data>
 			Y0+n+UqBaqOmyXKlxi78yN+3dLROdmkeyJb91z1jZN0=
-			</data>
-		</dict>
-		<key>flutter_assets/AssetManifest.smcbin</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			GDKcLp+3fW36sBZ3u1ZvV0kt7Nq2uPa4bx0e7oSqVO8=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -244,7 +233,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			DuBNL9ERlWriQVbn83SxqdHW3LUz9RnxNzALxXGBIG8=
+			xzX96kKjVnSYA2bWLYe6AssRbU0OYQ9dCfmb7fG9L0w=
 			</data>
 		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -412,14 +401,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			koChkRGJwB2JkIGHha54ofxMhGcS1LGA38GkX+0UuCI=
+			inoYvHaJtETSspX245cfRbrJBIn7bG4GEmDqmZwBBQQ=
 			</data>
 		</dict>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FrCpyfXTd8W7VbpZLvW7NuWWUyhrpBAIEvvCfYWI8go=
+			JngIOCrV0eyWyyLSvUlMPHdE6pOftNTTwRcufMKfG2w=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/awesome_snackbar_content/assets/back.svg</key>
@@ -573,14 +562,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			v6u8YtYjslOLIIb1rrgcOW817fxVEiBaprKuV+f6FpY=
+			hgGex10sKxTSC95tzLdljzYd3qnntuSb96YXXaU9Nlc=
 			</data>
 		</dict>
 		<key>flutter_assets/vm_snapshot_data</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gh3qbDNNLkeHp2p5SUd7I96kzZOqe8BS0aV1dZQZb2E=
+			L69dzlyAJyxdLVGPUFBuUaiyjDwAOUWCUp3TXXm9RjY=
 			</data>
 		</dict>
 	</dict>

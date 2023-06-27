@@ -85,7 +85,12 @@ class _BodyAddStationState extends State<BodyAddStation> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                        // print(context.read<InfoContainerProvider>().evModel);
+                      for(var i in context.read<InfoContainerProvider>().containersList){
+                        for(var j in i.typeChargingList){
+                          print(j.typeCharging);
+                        }
+                      }
+                        // print(context.read<InfoContainerProvider>().containersList);
 
                       setState(() {
                         if (activeStep < 3) {

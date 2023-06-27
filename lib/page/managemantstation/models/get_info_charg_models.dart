@@ -34,8 +34,8 @@ class DataGetInfoCharg {
     String district;
     String village;
     String nameplace;
-    int latLocation;
-    int lngLacation;
+    double latLocation;
+    double lngLacation;
     List<Constainner> constainner;
     List<Facility> facilities;
     DateTime createdAt;
