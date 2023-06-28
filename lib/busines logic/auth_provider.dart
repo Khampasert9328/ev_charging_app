@@ -15,8 +15,8 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<void> clearalltoken() async {
-    _token = "";
-    _role = "";
+    _token = null;
+    _role = null;
     notifyListeners();
   }
 }
