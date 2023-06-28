@@ -139,8 +139,6 @@ class _HomeMapsState extends State<HomeMaps> {
                 child: Center(
                   child: IconButton(
                       onPressed: () {
-                        print("token====$token");
-
                         _globalKey.currentState!.openDrawer();
                       },
                       icon: const Icon(

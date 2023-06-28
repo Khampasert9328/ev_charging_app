@@ -1,20 +1,14 @@
 import 'dart:convert';
 
-import 'package:ev_charging/constant/domain.dart';
-import 'package:ev_charging/constant/prefer.dart';
-import 'package:ev_charging/page/managemantstation/all_item.dart';
-import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
-import 'package:ev_charging/widget/dialog/dialogerror.dart';
-import 'package:ev_charging/widget/dialog/dialogsucces.dart';
-import 'package:ev_charging/widget/dialog/loadingscreen.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
-
 class AddStationService{
   static Future addStationService(context) async {
     final model = Provider.of<InfoContainerProvider>(context, listen: false);
+    final modellocation = Provider.of<InfoLocationProvider>(context, listen: false);
+    final modelcompany = Provider.of<InfoCompanyProvider>(context, listen: false);
     String? token = await PreFer().getToken();
+    String? province = modellocation.province!.replaceAll("(", "").replaceAll(")", "");
+    String? city = modellocation.city!.replaceAll("(", "").replaceAll(")", "");
+    String? village = modellocation.village!.replaceAll("(", "").replaceAll(")", "");
 
     List<Map<String, dynamic>> container = [];
 

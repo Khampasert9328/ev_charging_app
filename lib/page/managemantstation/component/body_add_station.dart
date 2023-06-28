@@ -4,13 +4,10 @@ import 'package:ev_charging/page/managemantstation/page/form_owner_company.dart'
 import 'package:ev_charging/page/managemantstation/page/info_containner.dart';
 import 'package:ev_charging/page/managemantstation/page/info_location_station.dart';
 import 'package:ev_charging/page/managemantstation/page/summary.dart';
-import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:ev_charging/page/managemantstation/service/add_stations_service.dart';
-import 'package:ev_charging/widget/dialog/loading.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 class BodyAddStation extends StatefulWidget {
   const BodyAddStation({super.key});
@@ -24,6 +21,9 @@ class _BodyAddStationState extends State<BodyAddStation> {
   final _key = GlobalKey<FormState>();
 
   TextEditingController namecompany = TextEditingController();
+  TextEditingController brand = TextEditingController();
+  List<TextEditingController>? generation;
+  TextEditingController model = TextEditingController();
   String selectedImagePath = '';
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,9 @@ class _BodyAddStationState extends State<BodyAddStation> {
               onTap: () async {
                 if (_key.currentState!.validate()) {
                   setState(() {
-                  activeStep = 1;
-                });
+                    activeStep = 1;
+                  });
                 }
-                
               },
               child: Container(
                 margin: const EdgeInsets.only(right: 10, left: 10, bottom: 20),
@@ -102,6 +101,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
                         ? GestureDetector(
                             onTap: () {
                               AddStationService.addStationService(context);
+
                               // EVDialog().showDialogSuccess(context, "ແຈ້ງເຕືອນ", "ບັນທຶກຂໍ້ມູນສຳເລັດແລ້ວ", () {});
                             },
                             child: Container(
@@ -144,6 +144,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
+          physics: ScrollPhysics(),
           child: Column(
             children: [
               Container(
@@ -222,7 +223,9 @@ class _BodyAddStationState extends State<BodyAddStation> {
         );
 
       case 1:
-        return const InfoContainnaer();
+        return InfoContainnaer(
+         
+        );
 
       case 2:
         return const InfoLocationStation();
