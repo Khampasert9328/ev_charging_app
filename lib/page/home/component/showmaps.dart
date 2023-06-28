@@ -43,161 +43,7 @@ class _ShowMapsState extends State<ShowMaps> {
           Marker(
             onTap: () {
               Provider.of<GetChargeByIdProvider>(context, listen: false).getchargebyid(data[i].id);
-              showSlidingBottomSheet(
-                context,
-                builder: (_) => SlidingSheetDialog(
-                  cornerRadius: 16,
-                  avoidStatusBar: true,
-                  snapSpec: const SnapSpec(
-                    initialSnap: 0.7,
-                    snappings: [0.4, 0.7, 1],
-                  ),
-                  headerBuilder: (context, state) {
-                    return Container(
-                      height: 30.h,
-                      width: double.infinity,
-                      color: EV_Colors.yellowbtncolor,
-                      alignment: Alignment.center,
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 10.h,
-                        width: 30.w,
-                        decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.circular(10)),
-                      ),
-                    );
-                  },
-                  builder: (context, state) {
-                    return Consumer<GetChargeByIdProvider>(builder: (context, model, child) {
-                      if (model.isloading) {
-                        return Center(
-                          child: Image.asset(
-                            "images/loading.gif",
-                            height: 50.h,
-                            width: 50.w,
-                          ),
-                        );
-                      }
-                      return Material(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                child: CachedNetworkImage(
-                                  fit: BoxFit.cover,
-                                  height: 150.h,
-                                  width: double.infinity,
-                                  imageUrl: "${model.models!.data.pictureplace}",
-                                  placeholder: (context, url) => Center(
-                                    child: Image.asset(
-                                      "images/loading.gif",
-                                      height: 50.h,
-                                      width: 50.w,
-                                    ),
-                                  ),
-                                  errorWidget: (context, url, error) => Icon(Icons.error),
-                                ),
-                              ),
-                              Divider(),
-                              Container(
-                                child: Row(
-                                  children: [
-                                    CachedNetworkImage(
-                                      height: 50.h,
-                                      width: 50.w,
-                                      imageUrl: "${model.models!.data.imagecpn}",
-                                      placeholder: (context, url) => Image.asset(
-                                        "images/loading.gif",
-                                        height: 50.h,
-                                        width: 50.w,
-                                      ),
-                                      errorWidget: (context, url, error) => Icon(Icons.error),
-                                    ),
-                                    SizedBox(
-                                      width: 15.w,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "${model.models!.data.nameplace}",
-                                          style: TextStyle(
-                                            fontSize: 18.sp,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text("ເຈົ້າຂອງ: ${model.models!.data.name}"),
-                                        Text(
-                                            "ສະຖານທີ່: ${model.models!.data.village} ${model.models!.data.district} ${model.models!.data.province}"),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Divider(),
-                              Text(
-                                "ຂໍ້ມູນຕູ້ສາກ",
-                                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
-                              ),
-                              Text("ຈຳນວນຕູ້ສາກ: ${model.models!.data.amount}"),
-                              ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: model.models!.data.constainner.length,
-                                  itemBuilder: (context, index) {
-                                    final data = model.models!.data.constainner[index];
-                                    return Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "ຕູ້ທີ ${index += 1}",
-                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
-                                        ),
-                                        Text(
-                                          "ຍີ່ຫໍ້: ${data.brand}",
-                                          style: TextStyle(fontSize: 14.sp),
-                                        ),
-                                        Text(
-                                          "ລຸ້ນ: ${data.generation}",
-                                          style: TextStyle(fontSize: 14.sp),
-                                        ),
-                                        Text(
-                                          "ໂມເດລ: ${data.model}",
-                                          style: TextStyle(fontSize: 14.sp),
-                                        )
-                                      ],
-                                    );
-                                  }),
-                              Divider(),
-                              Text(
-                                "ສຶ່ງອຳນວຍຄວາມສະດວກ",
-                                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
-                              ),
-                              ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: model.models!.data.facilities.length,
-                                  itemBuilder: (context, index) {
-                                    final data = model.models!.data.facilities[index];
-                                    return Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "- ${data.facilitie}",
-                                          style: TextStyle(fontSize: 14.sp),
-                                        )
-                                      ],
-                                    );
-                                  }),
-                            ],
-                          ),
-                        ),
-                      );
-                    });
-                  },
-                ),
-              );
+              bottmShettWidget();
             },
             icon: BitmapDescriptor.fromBytes(markerIcon),
             markerId: MarkerId(data[i].id),
@@ -210,7 +56,6 @@ class _ShowMapsState extends State<ShowMaps> {
             infoWindow: InfoWindow(title: data[i].name, anchor: Offset(0.2, 0.0)),
           ),
         );
-
       }
     });
   }
@@ -251,5 +96,163 @@ class _ShowMapsState extends State<ShowMaps> {
         ),
       );
     }));
+  }
+
+  bottmShettWidget() {
+    showSlidingBottomSheet(
+      context,
+      builder: (_) => SlidingSheetDialog(
+        cornerRadius: 16,
+        avoidStatusBar: true,
+        snapSpec: const SnapSpec(
+          initialSnap: 0.7,
+          snappings: [0.4, 0.7, 1],
+        ),
+        headerBuilder: (context, state) {
+          return Container(
+            height: 30.h,
+            width: double.infinity,
+            color: EV_Colors.yellowbtncolor,
+            alignment: Alignment.center,
+            child: Container(
+              alignment: Alignment.center,
+              height: 10.h,
+              width: 30.w,
+              decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.circular(10)),
+            ),
+          );
+        },
+        builder: (context, state) {
+          return Consumer<GetChargeByIdProvider>(builder: (context, model, child) {
+            if (model.isloading) {
+              return Center(
+                child: Image.asset(
+                  "images/loading.gif",
+                  height: 50.h,
+                  width: 50.w,
+                ),
+              );
+            }
+            return Material(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        height: 150.h,
+                        width: double.infinity,
+                        imageUrl: "${model.models!.data.pictureplace}",
+                        placeholder: (context, url) => Center(
+                          child: Image.asset(
+                            "images/loading.gif",
+                            height: 50.h,
+                            width: 50.w,
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
+                    ),
+                    Divider(),
+                    Container(
+                      child: Row(
+                        children: [
+                          CachedNetworkImage(
+                            height: 50.h,
+                            width: 50.w,
+                            imageUrl: "${model.models!.data.imagecpn}",
+                            placeholder: (context, url) => Image.asset(
+                              "images/loading.gif",
+                              height: 50.h,
+                              width: 50.w,
+                            ),
+                            errorWidget: (context, url, error) => Icon(Icons.error),
+                          ),
+                          SizedBox(
+                            width: 15.w,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${model.models!.data.nameplace}",
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text("ເຈົ້າຂອງ: ${model.models!.data.name}"),
+                              Text(
+                                  "ສະຖານທີ່: ${model.models!.data.village} ${model.models!.data.district} ${model.models!.data.province}"),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Divider(),
+                    Text(
+                      "ຂໍ້ມູນຕູ້ສາກ",
+                      style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                    ),
+                    Text("ຈຳນວນຕູ້ສາກ: ${model.models!.data.amount}"),
+                    ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: model.models!.data.constainner.length,
+                        itemBuilder: (context, index) {
+                          final data = model.models!.data.constainner[index];
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "ຕູ້ທີ ${index += 1}",
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
+                              ),
+                              Text(
+                                "ຍີ່ຫໍ້: ${data.brand}",
+                                style: TextStyle(fontSize: 14.sp),
+                              ),
+                              Text(
+                                "ລຸ້ນ: ${data.generation}",
+                                style: TextStyle(fontSize: 14.sp),
+                              ),
+                              Text(
+                                "ໂມເດລ: ${data.model}",
+                                style: TextStyle(fontSize: 14.sp),
+                              )
+                            ],
+                          );
+                        }),
+                    Divider(),
+                    Text(
+                      "ສຶ່ງອຳນວຍຄວາມສະດວກ",
+                      style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                    ),
+                    ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: model.models!.data.facilities.length,
+                        itemBuilder: (context, index) {
+                          final data = model.models!.data.facilities[index];
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "- ${data.facilitie}",
+                                style: TextStyle(fontSize: 14.sp),
+                              )
+                            ],
+                          );
+                        }),
+                  ],
+                ),
+              ),
+            );
+          });
+        },
+      ),
+    );
   }
 }
