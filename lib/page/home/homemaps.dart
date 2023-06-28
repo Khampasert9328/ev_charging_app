@@ -27,6 +27,7 @@ class _HomeMapsState extends State<HomeMaps> {
   String connectionStatus = "---";
 
   late StreamSubscription subscription;
+
   void checktoken() async {
     if (token == null) {
       Provider.of<AuthProvider>(context, listen: false).checklogin();
