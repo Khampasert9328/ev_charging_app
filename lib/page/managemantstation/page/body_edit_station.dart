@@ -7,12 +7,16 @@ import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.
 import 'package:ev_charging/page/managemantstation/models/province/province_models.dart';
 import 'package:ev_charging/page/managemantstation/models/village/village_models.dart';
 import 'package:ev_charging/page/managemantstation/page/textformfield/textform.dart';
+import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
+import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
 import 'package:ev_charging/widget/dialog/loading.dart';
 import 'package:ev_charging/widget/dropdown/dropwonwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
+import '../../../constant/data.dart';
 
 class BodyEditStation extends StatefulWidget {
   DataGetInfoCharg? models;
@@ -47,7 +51,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
   final namcompany = TextEditingController();
   TextEditingController namplace = TextEditingController();
   TextEditingController namplacilities = TextEditingController();
-  List<TypeCharge> typecharg = [];
+  // List<TypeCharge> typecharg = [];
   String? count;
   String? provinces;
   String? district;
@@ -60,6 +64,10 @@ class _BodyEditStationState extends State<BodyEditStation> {
 
   @override
   void initState() {
+    final location = context.read<InfoLocationProvider>();
+    final container = context.read<InfoContainerProvider>();
+    final company = context.read<InfoCompanyProvider>();
+
     namcompany.text = widget.models!.name;
     count = widget.models!.amount.toString();
     length = widget.models!.amount;
@@ -68,12 +76,28 @@ class _BodyEditStationState extends State<BodyEditStation> {
     imageplace = widget.models!.pictureplace;
     //provinces = widget.models!.province;
 
+    location.setNamPlace(nameplace);
+    location.setProvince(widget.models?.province);
+    location.setCity(widget.models?.district);
+    location.setVillage(widget.models?.village);
+
+    // container.containersList = widget.containersList;
+
+    for (var i in widget.containner!) {
+      if (container.brand.length < i.brand.length) {
+        container.getBrandTextCtr();
+        container.getGenTextCtr();
+        container.getModelTextCtr();
+      }
+    }
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<InfoLocationProvider>(builder: (ctn, models, child) {
+    return Consumer3<InfoContainerProvider, InfoLocationProvider, InfoCompanyProvider>(
+        builder: (ctn, container, location, company, child) {
       return Scaffold(
         bottomNavigationBar: GestureDetector(
           onTap: () async {
@@ -149,6 +173,9 @@ class _BodyEditStationState extends State<BodyEditStation> {
                             filled: true,
                             fillColor: Colors.grey[200],
                           ),
+                          onChanged: (value) {
+                            company.setNamcompany(value);
+                          },
                         ),
                         SizedBox(
                           height: 15.h,
@@ -231,61 +258,62 @@ class _BodyEditStationState extends State<BodyEditStation> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                       Text(
-                      "ຈຳນວນຕູ້ສາກ",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 7.h,
-                    ),
-                    Container(
-                        padding: const EdgeInsets.only(left: 10, right: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey[200],
+                        Text(
+                          "ຈຳນວນຕູ້ສາກ",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            //Text(models.containersList.length.toString()),
-                            Spacer(),
-                            Row(
+                        SizedBox(
+                          height: 7.h,
+                        ),
+                        Container(
+                            padding: const EdgeInsets.only(left: 10, right: 10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey[200],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll<Color>(EV_Colors.yellowbtncolor)),
-                                  onPressed: () {
-                                    //models.increment();
-                                  },
-                                  child: Text(
-                                    "ເພີ່ມ",
-                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll<Color>(EV_Colors.yellowbtncolor)),
-                                    onPressed: () {
-                                      // if (models.containersList.length > 1) {
-                                      //   models.brand.removeAt(models.containersList.length - 1);
-                                      //   models.model.removeAt(models.containersList.length - 1);
-                                      //   models.generation.removeAt(models.containersList.length - 1);
-                                      //   // data.removeAt(models.count-1);
-                                      //   models.lopTu();
-                                      // }
-                                    },
-                                    child: Text(
-                                      "ລົບ",
-                                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
-                                    )),
+                                Text(container.containersList.length.toString()),
+                                Spacer(),
+                                Row(
+                                  children: [
+                                    ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor: MaterialStatePropertyAll<Color>(EV_Colors.yellowbtncolor)),
+                                      onPressed: () {
+                                        container.increment();
+                                        //models.increment();
+                                      },
+                                      child: Text(
+                                        "ເພີ່ມ",
+                                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor: MaterialStatePropertyAll<Color>(EV_Colors.yellowbtncolor)),
+                                        onPressed: () {
+                                          // if (models.containersList.length > 1) {
+                                          //   models.brand.removeAt(models.containersList.length - 1);
+                                          //   models.model.removeAt(models.containersList.length - 1);
+                                          //   models.generation.removeAt(models.containersList.length - 1);
+                                          //   // data.removeAt(models.count-1);
+                                          //   models.lopTu();
+                                          // }
+                                        },
+                                        child: Text(
+                                          "ລົບ",
+                                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                        )),
+                                  ],
+                                )
                               ],
-                            )
-                          ],
-                        )),
+                            )),
                       ],
                     ),
                   ),
@@ -296,17 +324,17 @@ class _BodyEditStationState extends State<BodyEditStation> {
                 ListView.builder(
                     shrinkWrap: true,
                     physics: ScrollPhysics(),
-                    itemCount: widget.models!.constainner.length,
+                    itemCount: container.containersList.length,
                     itemBuilder: (context, index) {
-                      for (var i in widget.models!.constainner) {
-                        typecharg = i.typeCharge;
-                      }
-                      final data = widget.models!.constainner[index];
+                      // for (var i in widget.models!.constainner) {
+                      //   typecharg = i.typeCharge;
+                      // }
+                      final data = container.containersList[index];
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "ຕູ້ທີ ${item[index]}",
+                            "ຕູ້ທີ ${index + 1}",
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
@@ -342,7 +370,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                   TextFormField(
                                     keyboardType: TextInputType.emailAddress,
                                     cursorColor: Colors.grey,
-                                    initialValue: data.brand,
+                                    initialValue: container.brand[index].text,
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderSide: BorderSide.none,
@@ -368,7 +396,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                   TextFormField(
                                     keyboardType: TextInputType.emailAddress,
                                     cursorColor: Colors.grey,
-                                    initialValue: data.generation,
+                                    initialValue: container.generation[index].text,
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderSide: BorderSide.none,
@@ -413,52 +441,51 @@ class _BodyEditStationState extends State<BodyEditStation> {
 
                                   //dropdown ປະເພດຫົວສາກ
 
-
-                              //     Column(
-                              //   children:
-                              //       List.generate(models.containersList[index1].typeChargingList.length, (index2) {
-                              //     return Row(
-                              //       children: [
-                              //         Expanded(
-                              //           child: Container(
-                              //             margin: EdgeInsets.only(bottom: 10),
-                              //             padding: const EdgeInsets.only(
-                              //               left: 10,
-                              //               right: 10,
-                              //             ),
-                              //             decoration: BoxDecoration(
-                              //               borderRadius: BorderRadius.circular(10),
-                              //               color: Colors.grey[200],
-                              //             ),
-                              //             child: DropdownButton(
-                              //                 isExpanded: true,
-                              //                 underline: const SizedBox(),
-                              //                 hint: const Text('ເລືອກປະເພດຫົວສາກ'),
-                              //                 value:
-                              //                     models.containersList[index1].typeChargingList[index2].typeCharging,
-                              //                 items: AppData.itemtype.map((e) {
-                              //                   return DropdownMenuItem(value: e, child: Text(e));
-                              //                 }).toList(),
-                              //                 onChanged: (value) {
-                              //                   models.dropDown(index1, index2, value.toString());
-                              //                 }),
-                              //           ),
-                              //         ),
-                              //         models.containersList[index1].typeChargingList.length == 1
-                              //             ? const SizedBox()
-                              //             : GestureDetector(
-                              //                 onTap: () {
-                              //                   models.delLength(index1);
-                              //                 },
-                              //                 child: const Icon(
-                              //                   Icons.remove_circle_outline,
-                              //                   color: Colors.red,
-                              //                 ),
-                              //               )
-                              //       ],
-                              //     );
-                              //   }),
-                              // ),
+                                  Column(
+                                    children: List.generate(container.containersList[index].typeChargingList.length,
+                                        (index2) {
+                                      return Row(
+                                        children: [
+                                          Expanded(
+                                            child: Container(
+                                              margin: EdgeInsets.only(bottom: 10),
+                                              padding: const EdgeInsets.only(
+                                                left: 10,
+                                                right: 10,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(10),
+                                                color: Colors.grey[200],
+                                              ),
+                                              child: DropdownButton(
+                                                  isExpanded: true,
+                                                  underline: const SizedBox(),
+                                                  hint: const Text('ເລືອກປະເພດຫົວສາກ'),
+                                                  value: container
+                                                      .containersList[index].typeChargingList[index2].typeCharging,
+                                                  items: AppData.itemtype.map((e) {
+                                                    return DropdownMenuItem(value: e, child: Text(e));
+                                                  }).toList(),
+                                                  onChanged: (value) {
+                                                    container.dropDown(index, index2, value.toString());
+                                                  }),
+                                            ),
+                                          ),
+                                          container.containersList[index].typeChargingList.length == 1
+                                              ? const SizedBox()
+                                              : GestureDetector(
+                                                  onTap: () {
+                                                    container.delLength(index);
+                                                  },
+                                                  child: const Icon(
+                                                    Icons.remove_circle_outline,
+                                                    color: Colors.red,
+                                                  ),
+                                                )
+                                        ],
+                                      );
+                                    }),
+                                  ),
                                   SizedBox(
                                     height: 16.h,
                                   ),
@@ -624,19 +651,19 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                   .map((e) => e["_id"])
                                   .first;
 
-                              models.proName = ProVinceModel.province
+                              location.proName = ProVinceModel.province
                                   .where((element) => element["_id"] == widget.models!.province)
                                   .map((e) => e["pro_name"])
                                   .toString();
 
                               ///set district Id
-                              models.disName = CityModel.city
+                              location.disName = CityModel.city
                                   .where((element) => element["_id"] == district)
                                   .map((e) => e["dist_name"])
                                   .toString();
 
                               /// set village id
-                              models.villName = Village.village
+                              location.villName = Village.village
                                   .where((element) => element["_id"] == village)
                                   .map((e) => e["vill_name"])
                                   .toString();
@@ -679,7 +706,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                 district = value!;
 
                                 ///set district name
-                                models.disName = CityModel.city
+                                location.disName = CityModel.city
                                     .where((element) => element["_id"] == district)
                                     .map((e) => e["dist_name"])
                                     .toString();
@@ -691,16 +718,16 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                     .first;
 
                                 ///set village name
-                                models.villName = Village.village
+                                location.villName = Village.village
                                     .where((element) => element["_id"] == village)
                                     .map((e) => e["vill_name"])
                                     .toString();
 
                                 ///set district Id
-                                models.setCity(value);
+                                location.setCity(value);
 
                                 /// set village id
-                                models.setVillage(village ?? "");
+                                location.setVillage(village ?? "");
                               });
                             },
                             hint: widget.models!.district,
@@ -735,8 +762,8 @@ class _BodyEditStationState extends State<BodyEditStation> {
                           onChange: (String? value) {
                             setState(() {
                               village = value!;
-                              models.setVillage(value);
-                              models.villName = Village.village
+                              location.setVillage(value);
+                              location.villName = Village.village
                                   .where((element) => element["_id"] == village)
                                   .firstWhere((e) => e["vill_name"])
                                   .toString();
