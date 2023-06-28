@@ -3,14 +3,14 @@ import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/busines%20logic/infocharg/info_charg_provider.dart';
 import 'package:ev_charging/busines%20logic/setlanguge_provider.dart';
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/page/managemantstation/add_station.dart';
-import 'package:ev_charging/page/managemantstation/component/body_add_station.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
+import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
 import 'package:ev_charging/page/onboardingscreen/onboardingsreen.dart';
+import 'package:provider/provider.dart';
+import 'page/home/provider/getchargebyid_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
@@ -34,7 +34,9 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (_)=>SetLangugesProvider()),
             ChangeNotifierProvider(create: (_)=>InfoCompanyProvider()),
             ChangeNotifierProvider(create: (_)=>InfoContainerProvider()),
-            ChangeNotifierProvider(create: (_)=>InfoChargProvider())
+            ChangeNotifierProvider(create: (_)=>InfoChargProvider()),
+            ChangeNotifierProvider(create: (_)=>InfoLocationProvider()),
+            ChangeNotifierProvider(create: (_)=>GetChargeByIdProvider())
           ],
           child: MaterialApp(
             title: "Lao Charging Station",

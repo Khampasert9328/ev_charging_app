@@ -4,12 +4,12 @@ import 'package:ev_charging/page/managemantstation/page/form_owner_company.dart'
 import 'package:ev_charging/page/managemantstation/page/info_containner.dart';
 import 'package:ev_charging/page/managemantstation/page/info_location_station.dart';
 import 'package:ev_charging/page/managemantstation/page/summary.dart';
-import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:ev_charging/page/managemantstation/service/add_stations_service.dart';
-import 'package:ev_charging/widget/dialog/loading.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../provider/info_containner_provider.dart';
 import 'package:provider/provider.dart';
 
 class BodyAddStation extends StatefulWidget {
@@ -24,6 +24,9 @@ class _BodyAddStationState extends State<BodyAddStation> {
   final _key = GlobalKey<FormState>();
 
   TextEditingController namecompany = TextEditingController();
+  TextEditingController brand = TextEditingController();
+  List<TextEditingController>? generation;
+  TextEditingController model = TextEditingController();
   String selectedImagePath = '';
   @override
   Widget build(BuildContext context) {
@@ -84,7 +87,12 @@ class _BodyAddStationState extends State<BodyAddStation> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                        // print(context.read<InfoContainerProvider>().evModel);
+                      for(var i in context.read<InfoContainerProvider>().containersList){
+                        for(var j in i.typeChargingList){
+                          print(j.typeCharging);
+                        }
+                      }
+                        // print(context.read<InfoContainerProvider>().containersList);
 
                       setState(() {
                         if (activeStep < 3) {
@@ -96,6 +104,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
                         ? GestureDetector(
                             onTap: () {
                               AddStationService.addStationService(context);
+
                               // EVDialog().showDialogSuccess(context, "ແຈ້ງເຕືອນ", "ບັນທຶກຂໍ້ມູນສຳເລັດແລ້ວ", () {});
                             },
                             child: Container(
@@ -138,6 +147,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
+          physics: ScrollPhysics(),
           child: Column(
             children: [
               Container(
@@ -216,7 +226,9 @@ class _BodyAddStationState extends State<BodyAddStation> {
         );
 
       case 1:
-        return const InfoContainnaer();
+        return InfoContainnaer(
+         
+        );
 
       case 2:
         return const InfoLocationStation();

@@ -1,4 +1,4 @@
-import 'package:ev_charging/busines%20logic/auth_provider.dart';
+
 import 'package:ev_charging/busines%20logic/setlanguge_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/settings/changepassword.dart';
@@ -17,19 +17,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String? valueitem;
   String? selectLanguge;
   String? token;
-  @override
-  void initState() {
-    checktoken();
 
-    super.initState();
-  }
-
-  void checktoken() async {
-    if (token == null) {
-      Provider.of<AuthProvider>(context, listen: false).checklogin();
-      token = context.read<AuthProvider>().token;
-    }
-  }
+  
 
   void onlangugeselect(String languges) {
     setState(() {

@@ -1,86 +1,123 @@
 import 'package:easy_stepper/easy_stepper.dart';
-import 'package:ev_charging/page/managemantstation/models/ev_charging_form_model.dart';
+import 'package:ev_charging/constant/data.dart';
 
 class InfoContainerProvider extends ChangeNotifier {
-  int _count = 1;
-  int get count => _count;
+  static int _indexCon = 0;
+  static int get indexCon => _indexCon;
 
-  int _lengthDropdown = 1;
-  int get lengthDropdown => _lengthDropdown;
+  String? _imageUrl;
+  String? get imageUrl => _imageUrl;
 
-  List<EvChargingFormModel> _evForm = [];
-  List<EvChargingFormModel> get getEvForm => _evForm;
+  String? _imageName;
+  String? get imageName => _imageName;
 
-  // List<String?>? _brand;
-  // List<String?>? get brand => _brand;
-  //
-  // List<String?>? _gen;
-  // List<String?>? get gen => _gen;
-  //
-  // List<String?>? _model;
-  // List<String?>? get model => _model;
-  List<TextEditingController> _brand = [];
+  final List<TextEditingController> _brand = [];
   List<TextEditingController> get brand => _brand;
 
-
-  List<TextEditingController> _generation = [];
+  final List<TextEditingController> _generation = [];
   List<TextEditingController> get generation => _generation;
 
-  List<TextEditingController> _model = [];
+  final List<TextEditingController> _model = [];
   List<TextEditingController> get model => _model;
 
-  List<String> _chargeType = [];
+  final List<String> _chargeType = [];
   List<String> get chargeType => _chargeType;
 
+  final List<TypeCharge> _containersList = [
+    TypeCharge(typeChargingList: [TypeCharging(typeCharging: AppData.itemtype.first, index: _indexCon)])
+  ];
 
-  void setFormEv(String? brand, String gen, String model){
-    if(_evForm.isEmpty){
-    _evForm.add(EvChargingFormModel(brand: brand, gen: gen, model: model));
-    }
-  }
+  List<TypeCharge> get containersList => _containersList;
 
-
-  void getBrandTextCtr(){
-    if(_brand.isEmpty){
-        _brand.add(TextEditingController());
-    }
-  }
-
-  void getGenTextCtr(){
-    if(_generation.isEmpty){
-        _generation.add(TextEditingController());
-    }
-  }
-  void getModelTextCtr(){
-    if(_model.isEmpty){
-        _model.add(TextEditingController());
-    }
-  }
-
-  void addLength(){
-    _lengthDropdown++;
+  set setIndex(int val) {
+    _indexCon = val;
     notifyListeners();
   }
 
-  void delLength(){
-    _lengthDropdown--;
+  setImageUrl(String? imageUrl) {
+    _imageUrl = imageUrl;
+    notifyListeners();
+  }
+
+  setImageName(String? imageName) {
+    _imageName = imageName;
+    notifyListeners();
+  }
+
+  void dropDown(int index1, int index2, String value) {
+    _containersList[index1].typeChargingList[index2].typeCharging = value;
+    notifyListeners();
+  }
+
+  void getBrandTextCtr() {
+    if (_brand.isEmpty) {
+      _brand.add(TextEditingController());
+    }
+  }
+
+  void getModelTextCtr() {
+    if (_model.isEmpty) {
+      _model.add(TextEditingController());
+    }
+  }
+  void getGenTextCtr() {
+    if (_generation.isEmpty) {
+      _generation.add(TextEditingController());
+    }
+  }
+
+  void addLength(int index) {
+    setIndex = index;
+    _containersList[index].typeChargingList.add(TypeCharging(typeCharging: AppData.itemtype.first, index: _indexCon));
+    notifyListeners();
+  }
+
+  void delLength(int index) {
+    _containersList[index].typeChargingList.removeLast();
     notifyListeners();
   }
 
   void increment() {
-    _count++;
-    _brand.add(TextEditingController());
-    _generation.add(TextEditingController());
-    _model.add(TextEditingController());
+    if (_containersList.length < 4) {
+      setIndex = containersList.length;
+      _containersList
+          .add(TypeCharge(typeChargingList: [TypeCharging(typeCharging: AppData.itemtype.first, index: _indexCon)]));
+      _brand.add(TextEditingController());
+      _generation.add(TextEditingController());
+      _model.add(TextEditingController());
+    }
     notifyListeners();
   }
 
-  void addChargeType(String? val){
+  void addChargeType(String? val) {
     _chargeType.add(val!);
   }
 
   void lopTu() {
-    _count--;
+    _containersList.removeLast();
     notifyListeners();
   }
+
+  void clearContainner() {
+    _imageUrl = null;
+    _imageName = null;
+    _containersList.clear();
+    _brand.clear();
+    _generation.clear();
+    _model.clear();
+    _indexCon = 0;
+    notifyListeners();
+  }
+}
+
+class TypeCharging {
+  int index;
+  String typeCharging;
+  TypeCharging({required this.typeCharging, required this.index});
+}
+
+class TypeCharge {
+  List<TypeCharging> typeChargingList;
+
+  TypeCharge({required this.typeChargingList});
 }

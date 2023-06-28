@@ -7,9 +7,14 @@ class InfoChargProvider extends ChangeNotifier {
   GetInfoChargModels? _chargModels;
   GetInfoChargModels? get getchargmodels => _chargModels;
   bool get isload => _isload;
+
   Future<void> getchargprovider() async {
     _isload = true;
     _chargModels = await getinfocharg();
+    if (_chargModels != null) {
+      print(_chargModels!.data.first.latLocation);
+      print(_chargModels!.data.first.lngLacation);
+    }
     _isload = false;
     notifyListeners();
   }

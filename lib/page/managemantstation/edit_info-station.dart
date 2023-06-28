@@ -1,9 +1,14 @@
 // ignore: file_names
+// ignore_for_file: must_be_immutable
+
+import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';
 import 'package:ev_charging/page/managemantstation/page/body_edit_station.dart';
 import 'package:flutter/material.dart';
 
 class EditInfoStation extends StatefulWidget {
-  const EditInfoStation({super.key});
+  DataGetInfoCharg? models;
+  List<Constainner>? controllers;
+  EditInfoStation({super.key, required this.models,required this.controllers});
 
   @override
   State<EditInfoStation> createState() => _EditInfoStationState();
@@ -32,7 +37,10 @@ class _EditInfoStationState extends State<EditInfoStation> {
           ),
         ),
       ),
-      body: BodyEditStation(),
+      body: BodyEditStation(
+        models: widget.models,
+        containner: widget.controllers,
+      ),
     );
   }
 }
