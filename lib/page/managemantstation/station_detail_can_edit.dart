@@ -3,6 +3,7 @@ import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/Maps/detail_map.dart';
 import 'package:ev_charging/page/managemantstation/edit_info-station.dart';
 import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';
+import 'package:ev_charging/utils/set_image_charger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -126,7 +127,7 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                                       ),
                                     ),
                                     Text(
-                                      "${widget.models!.name}",
+                                      widget.models!.name,
                                       style: TextStyle(
                                         fontSize: 12.sp,
                                         color: EV_Colors.whitecolor,
@@ -202,19 +203,6 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                       ),
                     ],
                   ),
-
-                  // Text(
-                  //   "ຮ້ານ ກາເຟສີນຸກ",
-                  //   style: TextStyle(color: Colors.black, fontSize: 12.sp),
-                  // ),
-                  // Text(
-                  //   "ຮ້ານ ປັ່ນໝາກໄມ້",
-                  //   style: TextStyle(color: Colors.black, fontSize: 12.sp),
-                  // ),
-                  // Text(
-                  //   "ຮ້ານ ຂາຍເຄື່ອງທົ່ວໄປ",
-                  //   style: TextStyle(color: Colors.black, fontSize: 12.sp),
-                  // )
                 ],
               ),
             ),
@@ -233,7 +221,7 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "ຕູ້ທີ:${index += 1}",
+                              "ຕູ້ທີ:${index+1}",
                               style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                             ),
                             Text(
@@ -256,22 +244,32 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                               ),
                             ),
                             Row(
-                              children: [
-                                Column(
+                              children: List.generate(widget.models!.constainner[index].typeCharge.length, (i) {
+                                print(" $index");
+                                print(i);
+                                return Column(
                                   children: [
-                                    SvgPicture.asset("images/EV Charger-02.svg"),
-                                    Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
-                                    //Text("120KW/T DC"),
+                                    SvgPicture.asset(image(widget.models!.constainner[index].typeCharge[i].typeCharging)),
+                                    Text(widget.models!.constainner[index].typeCharge[i].typeCharging),
                                   ],
-                                ),
-                                Column(
-                                  children: [
-                                    SvgPicture.asset("images/EV Charger-03.svg"),
-                                    Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
-                                    //Text("120KW/T DC"),
-                                  ],
-                                )
-                              ],
+                                );
+                              })
+                              // [
+                              //   Column(
+                              //     children: [
+                              //       SvgPicture.asset("images/EV Charger-02.svg"),
+                              //       Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
+                              //       //Text("120KW/T DC"),
+                              //     ],
+                              //   ),
+                              //   Column(
+                              //     children: [
+                              //       SvgPicture.asset("images/EV Charger-03.svg"),
+                              //       Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
+                              //       //Text("120KW/T DC"),
+                              //     ],
+                              //   )
+                              // ],
                             ),
                           ],
                         ),
