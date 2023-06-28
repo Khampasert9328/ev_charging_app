@@ -21,7 +21,9 @@ class _EVDrawerBodyState extends State<EVDrawerBody> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         ListTile(
+          widget.token == null
+              ? SizedBox()
+              : ListTile(
                   onTap: () {
                     Navigator.push(
                       context,

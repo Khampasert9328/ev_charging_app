@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/constant/color.dart';
-
 import 'package:ev_charging/page/home/component/buttonlogout.dart';
 import 'package:ev_charging/page/home/component/drawerbody.dart';
 import 'package:ev_charging/page/home/component/drawerheader.dart';
@@ -23,25 +21,21 @@ class HomeMaps extends StatefulWidget {
 
 class _HomeMapsState extends State<HomeMaps> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
-  String? token;
-  String connectionStatus = "---";
 
   late StreamSubscription subscription;
-  void checktoken() async {
-    if (token == null) {
-      Provider.of<AuthProvider>(context, listen: false).checklogin();
-      token = context.read<AuthProvider>().token;
-    }
-  }
+  String? token;
+  String? startapp;
+  String connectionStatus = "---";
+  Widget? routewidget;
 
   @override
   void initState() {
-    subscription = Connectivity()
-        .onConnectivityChanged
-        .listen((ConnectivityResult result) {
+    //checklogin(context);
+    subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       checkStatus();
     });
-    checktoken();
+    context.read<AuthProvider>().checklogin();
+
     super.initState();
   }
 
@@ -80,6 +74,7 @@ class _HomeMapsState extends State<HomeMaps> {
 
   @override
   Widget build(BuildContext context) {
+   token = context.read<AuthProvider>().token;
     return SafeArea(
       child: Scaffold(
         key: _globalKey,
@@ -133,15 +128,14 @@ class _HomeMapsState extends State<HomeMaps> {
               child: Container(
                 height: 35.h,
                 width: 40.w,
-                decoration: BoxDecoration(
-                    color: EV_Colors.yellowbtncolor,
-                    borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: IconButton(
                       onPressed: () {
-                        print("token====$token");
-
-                        _globalKey.currentState!.openDrawer();
+                       setState(() {
+                          _globalKey.currentState!.openDrawer();
+                       });
+                       
                       },
                       icon: const Icon(
                         FontAwesomeIcons.barsStaggered,

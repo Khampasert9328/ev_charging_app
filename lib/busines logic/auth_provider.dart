@@ -1,12 +1,7 @@
 import 'package:ev_charging/constant/prefer.dart';
-import 'package:ev_charging/models/auth/login_models.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {
-  LoginModels? _models;
-  LoginModels? get models => _models;
-  bool _isloading = false;
-  bool get loading => _isloading;
 
   String? _token;
   String? _role;
@@ -19,9 +14,9 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> clearalltoken(String? val) async {
-    _token = val;
-    _role = val;
+  Future<void> clearalltoken() async {
+    _token = null;
+    _role = null;
     notifyListeners();
   }
 }
