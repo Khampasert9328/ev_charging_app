@@ -99,7 +99,7 @@ class _SummaryState extends State<Summary> {
                   ListView.builder(
                       physics: ScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: model2.containersList.length,
+                      itemCount: model2.model.length,
                       itemBuilder: (context, index) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

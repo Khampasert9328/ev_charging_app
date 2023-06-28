@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -26,7 +25,8 @@ class _SimpleMapsState extends State<SimpleMaps> {
 
   @override
   void initState() {
-    _kMapCenter = LatLng(double.parse(context.read<InfoLocationProvider>().latitude??"0"), double.parse(context.read<InfoLocationProvider>().longtitude??"0"));
+    _kMapCenter = LatLng(double.parse(context.read<InfoLocationProvider>().latitude ?? "0"),
+        double.parse(context.read<InfoLocationProvider>().longtitude ?? "0"));
     super.initState();
   }
 
@@ -37,63 +37,65 @@ class _SimpleMapsState extends State<SimpleMaps> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: (){
-          Navigator.pop(context, true);
-        }, icon: const Icon(Icons.arrow_back_ios)),
-        title: const Text('ແຜນທີ່'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
+        centerTitle: true,
+        title: const Text(
+          "ແຜນທີ່",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
       ),
       body: Stack(
         children: [
           GoogleMap(
-            mapType: MapType.hybrid,
-            initialCameraPosition: CameraPosition(target: _kMapCenter!, zoom: 20.0, tilt: 0, bearing: 0),
+            mapType: MapType.normal,
+            initialCameraPosition: CameraPosition(target: _kMapCenter!, zoom: 11.0, tilt: 0, bearing: 0),
             // mapType: MapType.normal,
-            onTap: (LatLng latLng){
+            onTap: (LatLng latLng) {
               onTap = true;
-                Marker fMarker = Marker(
-                  markerId: const MarkerId('1'),
-                  position: LatLng(latLng.latitude, latLng.longitude),
-                  icon: BitmapDescriptor.defaultMarker,
-                );
-                markers.add(fMarker);
-                id = id + 0;
-                setState(() {
-
+              Marker fMarker = Marker(
+                markerId: const MarkerId('1'),
+                position: LatLng(latLng.latitude, latLng.longitude),
+                icon: BitmapDescriptor.defaultMarker,
+              );
+              markers.add(fMarker);
+              id = id + 0;
+              setState(() {
                 model.setLatitude(latLng.latitude.toString());
-                  model.setLongitude(latLng.longitude.toString());
-                });
+                model.setLongitude(latLng.longitude.toString());
+              });
             },
-            onCameraMove: (object) async{
+            onCameraMove: (object) async {
               mapController = await _controller.future;
-              update = CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(double.parse(model.latitude!),
-                  double.parse(model.longtitude!)), zoom: 11.0));
+              update = CameraUpdate.newCameraPosition(CameraPosition(
+                  target: LatLng(double.parse(model.latitude!), double.parse(model.longtitude!)), zoom: 11.0));
             },
-            onMapCreated: (GoogleMapController controller){
+            onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
             },
-            markers: onTap == true ? markers.map((e) => e).toSet() : {
-              Marker(
-                markerId: const MarkerId("marker1"),
-                position: _kMapCenter!,
-                draggable: true,
-                onDragEnd: (value) {
-                  // value is the new position
-                },
-                icon: BitmapDescriptor.defaultMarker,
-              )
-            },
+            markers: onTap == true
+                ? markers.map((e) => e).toSet()
+                : {
+                    Marker(
+                      markerId: const MarkerId("marker1"),
+                      position: _kMapCenter!,
+                      draggable: true,
+                      onDragEnd: (value) {
+                        // value is the new position
+                      },
+                      icon: BitmapDescriptor.defaultMarker,
+                    )
+                  },
           ),
-          Positioned(
-            left: 30,
-            bottom: 30,
-            child: FloatingActionButton.extended(
-            backgroundColor: EV_Colors.yellowbtncolor,
-            onPressed: () {
-              Navigator.pop(context, true);
-            },
-            icon: const Icon(Icons.place),
-            label: const Text("ປັກໝຸດ"),
-          ),)
+          
         ],
       ),
     );
