@@ -231,37 +231,61 @@ class _BodyEditStationState extends State<BodyEditStation> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "ຈຳນວນຕູ້ສາກ",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
+                       Text(
+                      "ຈຳນວນຕູ້ສາກ",
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 7.h,
+                    ),
+                    Container(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey[200],
                         ),
-                        SizedBox(
-                          height: 7.h,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey[200],
-                          ),
-                          child: DropdownButton(
-                              isExpanded: true,
-                              underline: const SizedBox(),
-                              hint: const Text('ເພີ່ມຈຳນວນຕູ້ສາກ'),
-                              value: count,
-                              items: item.map((e) {
-                                return DropdownMenuItem<String>(value: e, child: Text(e.toString()));
-                              }).toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                  count = value.toString();
-                                  length = int.parse(value.toString());
-                                });
-                              }),
-                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            //Text(models.containersList.length.toString()),
+                            Spacer(),
+                            Row(
+                              children: [
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll<Color>(EV_Colors.yellowbtncolor)),
+                                  onPressed: () {
+                                    //models.increment();
+                                  },
+                                  child: Text(
+                                    "ເພີ່ມ",
+                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll<Color>(EV_Colors.yellowbtncolor)),
+                                    onPressed: () {
+                                      // if (models.containersList.length > 1) {
+                                      //   models.brand.removeAt(models.containersList.length - 1);
+                                      //   models.model.removeAt(models.containersList.length - 1);
+                                      //   models.generation.removeAt(models.containersList.length - 1);
+                                      //   // data.removeAt(models.count-1);
+                                      //   models.lopTu();
+                                      // }
+                                    },
+                                    child: Text(
+                                      "ລົບ",
+                                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                                    )),
+                              ],
+                            )
+                          ],
+                        )),
                       ],
                     ),
                   ),
@@ -386,41 +410,55 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                   SizedBox(
                                     height: 5.h,
                                   ),
-                                  ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: typecharg.length,
-                                      itemBuilder: (context, index) {
-                                        return Row(children: [
-                                          Expanded(
-                                            child: TextFormField(
-                                              keyboardType: TextInputType.text,
-                                              cursorColor: Colors.grey,
-                                              initialValue: typecharg[index].typeCharging,
-                                              decoration: InputDecoration(
-                                                border: OutlineInputBorder(
-                                                  borderSide: BorderSide.none,
-                                                  borderRadius: BorderRadius.circular(10),
-                                                ),
-                                                filled: true,
-                                                fillColor: Colors.grey[200],
-                                              ),
-                                            ),
-                                          ),
-                                          lengthtext == 1
-                                              ? SizedBox()
-                                              : GestureDetector(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      lengthtext -= 1;
-                                                    });
-                                                  },
-                                                  child: const Icon(
-                                                    Icons.remove_circle_outline,
-                                                    color: Colors.red,
-                                                  ),
-                                                )
-                                        ]);
-                                      }),
+
+                                  //dropdown ປະເພດຫົວສາກ
+
+
+                              //     Column(
+                              //   children:
+                              //       List.generate(models.containersList[index1].typeChargingList.length, (index2) {
+                              //     return Row(
+                              //       children: [
+                              //         Expanded(
+                              //           child: Container(
+                              //             margin: EdgeInsets.only(bottom: 10),
+                              //             padding: const EdgeInsets.only(
+                              //               left: 10,
+                              //               right: 10,
+                              //             ),
+                              //             decoration: BoxDecoration(
+                              //               borderRadius: BorderRadius.circular(10),
+                              //               color: Colors.grey[200],
+                              //             ),
+                              //             child: DropdownButton(
+                              //                 isExpanded: true,
+                              //                 underline: const SizedBox(),
+                              //                 hint: const Text('ເລືອກປະເພດຫົວສາກ'),
+                              //                 value:
+                              //                     models.containersList[index1].typeChargingList[index2].typeCharging,
+                              //                 items: AppData.itemtype.map((e) {
+                              //                   return DropdownMenuItem(value: e, child: Text(e));
+                              //                 }).toList(),
+                              //                 onChanged: (value) {
+                              //                   models.dropDown(index1, index2, value.toString());
+                              //                 }),
+                              //           ),
+                              //         ),
+                              //         models.containersList[index1].typeChargingList.length == 1
+                              //             ? const SizedBox()
+                              //             : GestureDetector(
+                              //                 onTap: () {
+                              //                   models.delLength(index1);
+                              //                 },
+                              //                 child: const Icon(
+                              //                   Icons.remove_circle_outline,
+                              //                   color: Colors.red,
+                              //                 ),
+                              //               )
+                              //       ],
+                              //     );
+                              //   }),
+                              // ),
                                   SizedBox(
                                     height: 16.h,
                                   ),

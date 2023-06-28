@@ -1,16 +1,12 @@
 import 'dart:async';
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/constant/prefer.dart';
-
 import 'package:ev_charging/page/home/component/buttonlogout.dart';
 import 'package:ev_charging/page/home/component/drawerbody.dart';
 import 'package:ev_charging/page/home/component/drawerheader.dart';
 import 'package:ev_charging/page/home/component/showmaps.dart';
-import 'package:ev_charging/page/register/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -31,16 +27,6 @@ class _HomeMapsState extends State<HomeMaps> {
   String? startapp;
   String connectionStatus = "---";
   Widget? routewidget;
-
-  // void checklogin(context) async {
-  //   token = await PreFer().getToken();
-  //   startapp = await PreFer().getFirstTimeApp();
-  //   if (token == null && startapp == null) {
-  //     routewidget = LoginScreen();
-  //   } else {
-  //     routewidget = HomeMaps();
-  //   }
-  // }
 
   @override
   void initState() {

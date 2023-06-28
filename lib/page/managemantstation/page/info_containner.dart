@@ -39,7 +39,6 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
   // int length = 1;
   int lengthdropdown = 1;
 
-
   String? valueitemtype;
 
   String? valueitem;
@@ -116,12 +115,20 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                             Row(
                               children: [
                                 ElevatedButton(
-                                    onPressed: () {
-                                      models.increment();
-                                    },
-                                    child: Text("+")),
+                                  style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll<Color>(EV_Colors.yellowbtncolor)),
+                                  onPressed: () {
+                                    models.increment();
+                                  },
+                                  child: Text(
+                                    "ເພີ່ມ",
+                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                  ),
+                                ),
                                 const SizedBox(width: 10),
                                 ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll<Color>(EV_Colors.yellowbtncolor)),
                                     onPressed: () {
                                       if (models.containersList.length > 1) {
                                         models.brand.removeAt(models.containersList.length - 1);
@@ -131,12 +138,14 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                         models.lopTu();
                                       }
                                     },
-                                    child: Text("-")),
+                                    child: Text(
+                                      "ລົບ",
+                                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                                    )),
                               ],
                             )
                           ],
-                        )
-                        ),
+                        )),
                   ],
                 ),
               ),
@@ -188,12 +197,10 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 height: 5.h,
                               ),
                               TextFormInfo(
-                                ontap: (value) {
-                                },
+                                ontap: (value) {},
                                 text: "ປ້ອນຊື່ຍີ່ຫໍ້",
                                 controller: models.brand[index1],
-                                onchange: () {
-                                },
+                                onchange: () {},
                               ),
                               SizedBox(
                                 height: 7.h,
@@ -209,8 +216,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 height: 5.h,
                               ),
                               TextFormInfo(
-                                ontap: (value) {
-                                },
+                                ontap: (value) {},
                                 text: "ປ້ອນຊື່ລຸ້ນ",
                                 controller: models.generation[index1],
                                 onchange: () {
@@ -231,12 +237,10 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 height: 5.h,
                               ),
                               TextFormInfo(
-                                ontap: (value) {
-                                },
+                                ontap: (value) {},
                                 text: "ປ້ອນຊື່ໂມເດລ",
                                 controller: models.model[index1],
-                                onchange: () {
-                                },
+                                onchange: () {},
                               ),
                               SizedBox(
                                 height: 7.h,
@@ -252,51 +256,49 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 height: 5.h,
                               ),
                               Column(
-                                children: List.generate(models.containersList[index1].typeChargingList.length,
-                                        (index2) {
-                                      return Row(
-                                        children: [
-                                          Expanded(
-                                            child: Container(
-                                              margin: EdgeInsets.only(bottom: 10),
-                                              padding: const EdgeInsets.only(
-                                                left: 10,
-                                                right: 10,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(10),
-                                                color: Colors.grey[200],
-                                              ),
-                                              child: DropdownButton(
-                                                  isExpanded: true,
-                                                  underline: const SizedBox(),
-                                                  hint: const Text(
-                                                      'ເລືອກປະເພດຫົວສາກ'),
-                                                  value: models.containersList[index1].typeChargingList[index2].typeCharging,
-                                                  items: AppData.itemtype.map((e) {
-                                                    return DropdownMenuItem(
-                                                        value: e, child: Text(e));
-                                                  }).toList(),
-                                                  onChanged: (value) {
-                                                    models.dropDown(index1, index2, value.toString());
-                                                  }),
-                                            ),
+                                children:
+                                    List.generate(models.containersList[index1].typeChargingList.length, (index2) {
+                                  return Row(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          padding: const EdgeInsets.only(
+                                            left: 10,
+                                            right: 10,
                                           ),
-                                          models.containersList[index1].typeChargingList.length == 1
-                                              ? const SizedBox()
-                                              : GestureDetector(
-                                            onTap: () {
-                                              models.delLength(index1);
-                                            },
-                                            child: const Icon(
-                                              Icons.remove_circle_outline,
-                                              color: Colors.red,
-                                            ),
-                                          )
-                                        ],
-                                      );
-                                    }),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: Colors.grey[200],
+                                          ),
+                                          child: DropdownButton(
+                                              isExpanded: true,
+                                              underline: const SizedBox(),
+                                              hint: const Text('ເລືອກປະເພດຫົວສາກ'),
+                                              value:
+                                                  models.containersList[index1].typeChargingList[index2].typeCharging,
+                                              items: AppData.itemtype.map((e) {
+                                                return DropdownMenuItem(value: e, child: Text(e));
+                                              }).toList(),
+                                              onChanged: (value) {
+                                                models.dropDown(index1, index2, value.toString());
+                                              }),
+                                        ),
+                                      ),
+                                      models.containersList[index1].typeChargingList.length == 1
+                                          ? const SizedBox()
+                                          : GestureDetector(
+                                              onTap: () {
+                                                models.delLength(index1);
+                                              },
+                                              child: const Icon(
+                                                Icons.remove_circle_outline,
+                                                color: Colors.red,
+                                              ),
+                                            )
+                                    ],
+                                  );
+                                }),
                               ),
                               SizedBox(
                                 height: 16.h,
@@ -304,27 +306,27 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                               models.containersList[index1].typeChargingList.length == 2
                                   ? SizedBox()
                                   : GestureDetector(
-                                onTap: () {
-                                    models.addLength(index1);
-                                },
-                                child: DottedBorder(
-                                  color: EV_Colors.yellowbtncolor,
-                                  radius: const Radius.circular(10),
-                                  child: Container(
-                                      alignment: Alignment.center,
-                                      height: 45.h,
-                                      width: double.infinity,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.white,
+                                      onTap: () {
+                                        models.addLength(index1);
+                                      },
+                                      child: DottedBorder(
+                                        color: EV_Colors.yellowbtncolor,
+                                        radius: const Radius.circular(10),
+                                        child: Container(
+                                            alignment: Alignment.center,
+                                            height: 45.h,
+                                            width: double.infinity,
+                                            decoration: const BoxDecoration(
+                                              color: Colors.white,
+                                            ),
+                                            child: const Text(
+                                              "+ ເພີ່ມປະເພດຫົວສາກ",
+                                              style: TextStyle(
+                                                color: EV_Colors.yellowbtncolor,
+                                              ),
+                                            )),
                                       ),
-                                      child: const Text(
-                                        "+ ເພີ່ມປະເພດຫົວສາກ",
-                                        style: TextStyle(
-                                          color: EV_Colors.yellowbtncolor,
-                                        ),
-                                      )),
-                                ),
-                              ),
+                                    ),
                             ],
                           ),
                         ),
@@ -362,86 +364,87 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                     SizedBox(
                       height: 7.h,
                     ),
-                    models.imageUrl == null ? Container(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey[200],
-                      ),
-                      child: GestureDetector(
-                        onTap: (){
-                          if (Platform.isIOS) {
-                            SelectImageIOs().selectImage(context,
-                                ///open gallery
-                                    () async {
-                                  Navigator.pop(context);
-                                  await PickImage.onOpenFile(
-                                      ImageSource.gallery, context)
-                                      .then((value) {
-                                    setState(() {
-                                      models.setImageName(value!.imageKey);
-                                      models.setImageUrl(value.urlImage);
-                                    });
-                                  });
-                                },
-                              /// open camera
-                                  () async {
-                                Navigator.pop(context);
-                                await PickImage.onOpenFile(
-                                    ImageSource.camera, context)
-                                    .then((value) {
-                                  setState(() {
-                                    models.setImageName(value!.imageKey);
-                                    models.setImageUrl(value.urlImage);
-                                  });
-                                });
-                              },
-                            );
-                          } else if (Platform.isAndroid) {
-                            SelectImageAndroid.selectImageAndroid(context,
-                                /// open camera
-                                    () async {
-                                  Navigator.pop(context);
-                                  await PickImage.onOpenFile(ImageSource.camera, context)
-                                      .then((value) {
-                                    setState(() {
-                                      models.setImageName(value!.imageKey);
-                                      models.setImageUrl(value.urlImage);
-                                    });
-                                  });
-                                },
+                    models.imageUrl == null
+                        ? Container(
+                            padding: const EdgeInsets.only(left: 10, right: 10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey[200],
+                            ),
+                            child: GestureDetector(
+                              onTap: () {
+                                if (Platform.isIOS) {
+                                  SelectImageIOs().selectImage(
+                                    context,
 
-                                /// open gallery
+                                    ///open gallery
                                     () async {
-                                  Navigator.pop(context);
-                                  await PickImage.onOpenFile(ImageSource.gallery, context)
-                                      .then((value) {
-                                    setState(() {
-                                      models.setImageName(value!.imageKey);
-                                      models.setImageUrl(value.urlImage);
+                                      Navigator.pop(context);
+                                      await PickImage.onOpenFile(ImageSource.gallery, context).then((value) {
+                                        setState(() {
+                                          models.setImageName(value!.imageKey);
+                                          models.setImageUrl(value.urlImage);
+                                        });
+                                      });
+                                    },
+
+                                    /// open camera
+                                    () async {
+                                      Navigator.pop(context);
+                                      await PickImage.onOpenFile(ImageSource.camera, context).then((value) {
+                                        setState(() {
+                                          models.setImageName(value!.imageKey);
+                                          models.setImageUrl(value.urlImage);
+                                        });
+                                      });
+                                    },
+                                  );
+                                } else if (Platform.isAndroid) {
+                                  SelectImageAndroid.selectImageAndroid(context,
+
+                                      /// open camera
+                                      () async {
+                                    Navigator.pop(context);
+                                    await PickImage.onOpenFile(ImageSource.camera, context).then((value) {
+                                      setState(() {
+                                        models.setImageName(value!.imageKey);
+                                        models.setImageUrl(value.urlImage);
+                                      });
+                                    });
+                                  },
+
+                                      /// open gallery
+                                      () async {
+                                    Navigator.pop(context);
+                                    await PickImage.onOpenFile(ImageSource.gallery, context).then((value) {
+                                      setState(() {
+                                        models.setImageName(value!.imageKey);
+                                        models.setImageUrl(value.urlImage);
+                                      });
                                     });
                                   });
-                                });
-                          }                        },
-                        child: Container(
-                          height: 70.h,
-                          decoration: BoxDecoration(color: Colors.grey[200]),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.image,
-                                color: Colors.grey,
+                                }
+                              },
+                              child: Container(
+                                height: 70.h,
+                                decoration: BoxDecoration(color: Colors.grey[200]),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.image,
+                                      color: Colors.grey,
+                                    ),
+                                    SizedBox(
+                                      width: 10.w,
+                                    ),
+                                    Text("ອັບໂຫຼດຮູບພາບ")
+                                  ],
+                                ),
                               ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Text("ອັບໂຫຼດຮູບພາບ")
-                            ],
-                          ),
-                        ),
-                      ),
-                    ) : Image.network(models.imageUrl!, fit: BoxFit.fill),
+                            ),
+                          )
+                        : Image.network(models.imageUrl!, fit: BoxFit.fill),
                   ],
                 ),
               ),
