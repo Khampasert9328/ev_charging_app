@@ -17,19 +17,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String? valueitem;
   String? selectLanguge;
   String? token;
-  @override
-  void initState() {
-    checktoken();
 
-    super.initState();
-  }
-
-  void checktoken() async {
-    if (token == null) {
-      Provider.of<AuthProvider>(context, listen: false).checklogin();
-      token = context.read<AuthProvider>().token;
-    }
-  }
+  
 
   void onlangugeselect(String languges) {
     setState(() {

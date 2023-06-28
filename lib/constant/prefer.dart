@@ -7,6 +7,18 @@ class PreFer {
   String role = "role";
   String lat = 'lat';
   String long = 'long';
+  String startapp = "start";
+
+  /// set and get first time use this app
+  Future<void> firsTimeApp(String val) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setString(startapp, val);
+  }
+
+  Future<String?> getFirstTimeApp() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getString(startapp);
+  }
 
   Future<void> setLat(num val) async {
     preferences = await SharedPreferences.getInstance();

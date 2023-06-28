@@ -1,9 +1,9 @@
-import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/constant/prefer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ButtonLogOut extends StatefulWidget {
   const ButtonLogOut({super.key});
@@ -13,16 +13,21 @@ class ButtonLogOut extends StatefulWidget {
 }
 
 class _ButtonLogOutState extends State<ButtonLogOut> {
+  logOut() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     //final clear = context.read<AuthProvider>();
     return GestureDetector(
       onTap: () async {
-        PreFer().cleartoken();
-        PreFer().clearrole();
-        AuthProvider().clearalltoken();
-        setState(() {
-          Navigator.pop(context);
+        SharedPreferences pre = await SharedPreferences.getInstance();
+        await pre.clear().then((value) async {
+          setState(() {
+            Navigator.pop(context);
+          });
         });
       },
       child: Container(

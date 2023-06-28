@@ -1,4 +1,5 @@
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/page/register/forgot_password.dart';
 import 'package:ev_charging/service/auth/login_service.dart';
 import 'package:flutter/material.dart';
@@ -40,26 +41,22 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
       bottomNavigationBar: GestureDetector(
-        onTap: () {
+        onTap: () async {
           if (_key.currentState!.validate()) {
             TextInput.finishAutofillContext();
             loginservice(email!.text, pwd!.text, context);
+            await PreFer().firsTimeApp("done");
           }
         },
         child: Container(
-         margin: EdgeInsets.only(right: 20, left: 20, bottom: 10),
+          margin: EdgeInsets.only(right: 20, left: 20, bottom: 10),
           alignment: Alignment.center,
           height: 60.h,
           width: double.infinity,
-          decoration: BoxDecoration(
-              color: EV_Colors.yellowbtncolor,
-              borderRadius: BorderRadius.circular(10)),
+          decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
           child: Text(
             "ເຂົ້າສູ່ລະບົບ",
-            style: TextStyle(
-                fontSize: 20.sp,
-                color: EV_Colors.whitecolor,
-                fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20.sp, color: EV_Colors.whitecolor, fontWeight: FontWeight.bold),
           ),
         ),
       ),
@@ -105,8 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: email,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(10)),
+                                borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
                             prefixIcon: const Icon(Icons.email_outlined),
                             filled: true,
                             fillColor: Colors.grey[200],
@@ -146,22 +142,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             fillColor: Colors.grey[200],
                             hintText: "ລະຫັດຜ່ານ",
                             border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(10)),
+                                borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
                           ),
                         ),
                         TextButton(
                           onPressed: () {
-                            
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => const ForgotPassword()));
+                            Navigator.push(context, MaterialPageRoute(builder: (_) => const ForgotPassword()));
                           },
                           child: Text(
                             "ລືມລະຫັດຜ່ານ?",
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 15.sp),
+                            style: TextStyle(color: Colors.black, fontSize: 15.sp),
                           ),
                         ),
                       ],

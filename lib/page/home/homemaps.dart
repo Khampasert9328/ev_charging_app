@@ -2,17 +2,17 @@ import 'dart:async';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/constant/prefer.dart';
 
 import 'package:ev_charging/page/home/component/buttonlogout.dart';
 import 'package:ev_charging/page/home/component/drawerbody.dart';
 import 'package:ev_charging/page/home/component/drawerheader.dart';
 import 'package:ev_charging/page/home/component/showmaps.dart';
+import 'package:ev_charging/page/register/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 class HomeMaps extends StatefulWidget {
   const HomeMaps({super.key});
@@ -23,25 +23,30 @@ class HomeMaps extends StatefulWidget {
 
 class _HomeMapsState extends State<HomeMaps> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
-  String? token;
-  String connectionStatus = "---";
 
   late StreamSubscription subscription;
-  void checktoken() async {
-    if (token == null) {
-      Provider.of<AuthProvider>(context, listen: false).checklogin();
-      token = context.read<AuthProvider>().token;
+  String? token;
+  String? startapp;
+  String connectionStatus = "---";
+  Widget? routewidget;
+
+  void checklogin(context) async {
+    token = await PreFer().getToken();
+    startapp = await PreFer().getFirstTimeApp();
+    if (token == null && startapp == null) {
+      routewidget = LoginScreen();
+    } else {
+      routewidget = HomeMaps();
     }
   }
 
   @override
   void initState() {
-    subscription = Connectivity()
-        .onConnectivityChanged
-        .listen((ConnectivityResult result) {
+    checklogin(context);
+    subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       checkStatus();
     });
-    checktoken();
+
     super.initState();
   }
 
@@ -133,9 +138,7 @@ class _HomeMapsState extends State<HomeMaps> {
               child: Container(
                 height: 35.h,
                 width: 40.w,
-                decoration: BoxDecoration(
-                    color: EV_Colors.yellowbtncolor,
-                    borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: IconButton(
                       onPressed: () {
