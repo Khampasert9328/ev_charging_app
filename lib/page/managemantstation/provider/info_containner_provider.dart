@@ -1,28 +1,38 @@
 import 'package:easy_stepper/easy_stepper.dart';
+import 'package:ev_charging/constant/data.dart';
 
 class InfoContainerProvider extends ChangeNotifier {
+  static int _indexCon = 0;
+  static int get indexCon => _indexCon;
+
   String? _imageUrl;
-  String? _imaName;
-  int _count = 1;
-  int get count => _count;
+  String? get imageUrl => _imageUrl;
 
-  int _lengthDropdown = 1;
+  String? _imageName;
+  String? get imageName => _imageName;
 
-  int get lengthDropdown => _lengthDropdown;
-
-  List<TextEditingController> _brand = [];
+  final List<TextEditingController> _brand = [];
   List<TextEditingController> get brand => _brand;
 
-  List<TextEditingController> _generation = [];
+  final List<TextEditingController> _generation = [];
   List<TextEditingController> get generation => _generation;
 
-  List<TextEditingController> _model = [];
+  final List<TextEditingController> _model = [];
   List<TextEditingController> get model => _model;
 
-  List<String> _chargeType = [];
+  final List<String> _chargeType = [];
   List<String> get chargeType => _chargeType;
-  String? get imageUrl => _imageUrl;
-  String? get imageName => _imaName;
+
+  final List<TypeCharge> _containersList = [
+    TypeCharge(typeChargingList: [TypeCharging(typeCharging: AppData.itemtype.first, index: _indexCon)])
+  ];
+
+  List<TypeCharge> get containersList => _containersList;
+
+  set setIndex(int val) {
+    _indexCon = val;
+    notifyListeners();
+  }
 
   setImageUrl(String? imageUrl) {
     _imageUrl = imageUrl;
@@ -30,7 +40,12 @@ class InfoContainerProvider extends ChangeNotifier {
   }
 
   setImageName(String? imageName) {
-    _imaName = imageName;
+    _imageName = imageName;
+    notifyListeners();
+  }
+
+  void dropDown(int index1, int index2, String value) {
+    _containersList[index1].typeChargingList[index2].typeCharging = value;
     notifyListeners();
   }
 
@@ -40,33 +55,37 @@ class InfoContainerProvider extends ChangeNotifier {
     }
   }
 
+  void getModelTextCtr() {
+    if (_model.isEmpty) {
+      _model.add(TextEditingController());
+    }
+  }
   void getGenTextCtr() {
     if (_generation.isEmpty) {
       _generation.add(TextEditingController());
     }
   }
 
-  void getModelTextCtr() {
-    if (_model.isEmpty) {
-      _model.add(TextEditingController());
-    }
-  }
-
-  void addLength() {
-    _lengthDropdown++;
+  void addLength(int index) {
+    setIndex = index;
+    _containersList[index].typeChargingList.add(TypeCharging(typeCharging: AppData.itemtype.first, index: _indexCon));
     notifyListeners();
   }
 
-  void delLength() {
-    _lengthDropdown--;
+  void delLength(int index) {
+    _containersList[index].typeChargingList.removeLast();
     notifyListeners();
   }
 
   void increment() {
-    _count++;
-    _brand.add(TextEditingController());
-    _generation.add(TextEditingController());
-    _model.add(TextEditingController());
+    if (_containersList.length < 4) {
+      setIndex = containersList.length;
+      _containersList
+          .add(TypeCharge(typeChargingList: [TypeCharging(typeCharging: AppData.itemtype.first, index: _indexCon)]));
+      _brand.add(TextEditingController());
+      _generation.add(TextEditingController());
+      _model.add(TextEditingController());
+    }
     notifyListeners();
   }
 
@@ -75,19 +94,30 @@ class InfoContainerProvider extends ChangeNotifier {
   }
 
   void lopTu() {
-    _count--;
+    _containersList.removeLast();
     notifyListeners();
   }
 
   void clearContainner() {
     _imageUrl = null;
-    _imaName = null;
-    _count = 1;
-    _lengthDropdown = 1;
-    _brand = [];
-    _generation = [];
-    _model = [];
-    _chargeType = [];
+    _imageName = null;
+    _containersList.clear();
+    _brand.clear();
+    _generation.clear();
+    _model.clear();
+    _indexCon = 0;
     notifyListeners();
   }
+}
+
+class TypeCharging {
+  int index;
+  String typeCharging;
+  TypeCharging({required this.typeCharging, required this.index});
+}
+
+class TypeCharge {
+  List<TypeCharging> typeChargingList;
+
+  TypeCharge({required this.typeChargingList});
 }

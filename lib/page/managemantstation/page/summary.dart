@@ -91,7 +91,7 @@ class _SummaryState extends State<Summary> {
                     ),
                   ),
                   Text(
-                    "ຈຳນວນ: ${model2.count} ຕູ້",
+                    "ຈຳນວນ: ${model2.containersList.length} ຕູ້",
                     style: TextStyle(
                       fontSize: 12.sp,
                     ),
@@ -99,7 +99,7 @@ class _SummaryState extends State<Summary> {
                   ListView.builder(
                       physics: ScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: model2.brand.length,
+                      itemCount: model2.containersList.length,
                       itemBuilder: (context, index) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,10 +133,16 @@ class _SummaryState extends State<Summary> {
                               ],
                             ),
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text("ປະເພດຫົວສາກ:"),
-                                Text(model2.chargeType[index]),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: List.generate(model2.containersList[index].typeChargingList.length,
+                                          (i) => Text(model2.containersList[index].typeChargingList[i].typeCharging)),
+                                )
                               ],
                             ),
                             SizedBox(

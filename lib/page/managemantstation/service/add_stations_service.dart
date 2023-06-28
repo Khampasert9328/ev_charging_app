@@ -12,105 +12,108 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-class AddStationService {
+class AddStationService{
   static Future addStationService(context) async {
-    final model = Provider.of<InfoContainerProvider>(context, listen: false);
-    final modellocation = Provider.of<InfoLocationProvider>(context, listen: false);
-    final modelcompany = Provider.of<InfoCompanyProvider>(context, listen: false);
+    final modelContainer = Provider.of<InfoContainerProvider>(context, listen: false);
+    final modelLocation = Provider.of<InfoLocationProvider>(context, listen: false);
+    final modelCompany = Provider.of<InfoCompanyProvider>(context, listen: false);
     String? token = await PreFer().getToken();
-    String? province = modellocation.province!.replaceAll("(", "").replaceAll(")", "");
-    String? city = modellocation.city!.replaceAll("(", "").replaceAll(")", "");
-    String? village = modellocation.village!.replaceAll("(", "").replaceAll(")", "");
+    String? province = modelLocation.province!.replaceAll("(", "").replaceAll(")", "");
+    String? city = modelLocation.city!.replaceAll("(", "").replaceAll(")", "");
+    String? village = modelLocation.village!.replaceAll("(", "").replaceAll(")", "");
 
     List<Map<String, dynamic>> container = [];
-    List<Map<String, dynamic>> chargeType = [];
-    List<Map<String, dynamic>> facilities = [];
-    for (var i in modellocation.listplace) {
-      facilities.add({"facilitie": i});
-    }
-    for (var i in model.chargeType) {
-      chargeType.add({
-        "type_charging": i,
+    List<Map<String, dynamic>> facility = [];
+
+
+      for (int i = 0; i < modelContainer.containersList.length; i++) {
+        container.add(
+            {
+              "count": "ຕູ້ທີ${i + 1}",
+              "brand": modelContainer.brand[i].text,
+              "generation": modelContainer.generation[i].text,
+              "model": modelContainer.model[i].text,
+              "type_charge" : [
+                for(var j in modelContainer.containersList[i].typeChargingList) {
+                  "type_charging" : j.index == i ? j.typeCharging : ""
+                  }
+              ],
+            });
+      }
+
+      for(var i in modelLocation.listplace){
+          facility.add({
+            "facilitie" : i
+          });
+      }
+
+      String payload = jsonEncode({
+        "name": modelCompany.namcompany,
+        "imagecpn": modelCompany.imageUrl,
+        "amount": modelContainer.containersList.length,
+        "pictureplace": modelContainer.imageUrl,
+        "province": province,
+        "district": city,
+        "village": village,
+        "nameplace": modelLocation.nameplace,
+        "lat_location": modelLocation.latitude,
+        "lng_lacation": modelLocation.longtitude,
+        "constainner": container,
+        "facilities": facility,
+        // [
+        //   {
+        //     "facilitie": "cafe",
+        //     "_id": "64893be4053a02656d9837b0"
+        //   },
+        //   {
+        //     "facilitie": "minibig C",
+        //     "_id": "64893be4053a02656d9837b1"
+        //   },
+        //   {
+        //     "facilitie": "ຮ້ານ ອາຫານຈີນ",
+        //     "_id": "64893be4053a02656d9837b1"
+        //   },
+        //   {
+        //     "facilitie": "ຮ້ານອາຫານກິນດື່ມ",
+        //     "_id": "64893be4053a02656d9837b1"
+        //   },
+        //   {
+        //     "facilitie": "ຮ້ານອາຫານຫວຽດ",
+        //     "_id": "64893be4053a02656d9837b1"
+        //   },
+        //   {
+        //     "facilitie": "ຮ້ານອາຫານຝຣັ່ງ",
+        //     "_id": "64893be4053a02656d9837b1"
+        //   }
+        // ]
       });
-    }
 
-    for (int i = 0; i < model.count; i++) {
-      container.add(
-        {
-          "count": "ຕູ້ທີ${i + 1}",
-          "brand": model.brand[i].text,
-          "generation": model.generation[i].text,
-          "model": model.model[i].text,
-          "type_charge": chargeType
-        },
-      );
-    }
-    void printLongString(String text) {
-      final RegExp pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
-      pattern.allMatches(text).forEach((RegExpMatch match) => print(match.group(0)));
-    }
+      showDialog(context: context, builder: (_){
+        return const LoadingDialog(title: 'ກຳລັງດຳເນີນການ',);
+      });
 
-    String payload = jsonEncode({
-      "name": "${modelcompany.namcompany}",
-      "imagecpn": "${modelcompany.imageUrl}",
-      "amount": model.count,
-      "pictureplace": "${model.imageUrl}",
-      "province": province,
-      "district": city,
-      "village": village,
-      "nameplace": modellocation.nameplace,
-      "lat_location": modellocation.latitude,
-      "lng_lacation": modellocation.longtitude,
-      "constainner": container,
-      "facilities": facilities,
-    });
-
-    printLongString(payload.toString());
-
-    showDialog(
-        context: context,
-        builder: (_) {
-          return const LoadingDialog(
-            title: 'ກຳລັງດຳເນີນການ',
-          );
-        });
-
-    final res = await http.post(
-      Uri.parse(AppDomain.addStation),
+      final res = await http.post(Uri.parse(AppDomain.addStation),
       headers: {
-        "accept": "text/plain",
-        "Authorization": "Bearer $token",
-        "Content-Type": "application/json",
-      },
-      body: payload,
-    );
-    if (res.statusCode == 201) {
-      Navigator.pop(context);
-      showDialog(
-          context: context,
-          builder: (_) {
-            return DialogSucces(
-                title: 'ເພີ່ມຂໍ້ມູນສຳເລັດ',
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => const ManagemaentStation()));
-                  model.clearContainner();
-                  modelcompany.clearInfoCompany();
-                  modellocation.clearInfolocation();
-                });
+          "accept":"text/plain",
+          "Authorization" : "Bearer $token",
+          "Content-Type" : "application/json",
+        },
+        body: payload,
+      );
+      if(res.statusCode == 201){
+        Navigator.pop(context);
+        showDialog(context: context, builder: (_){
+          return DialogSucces(title: 'ເພີ່ມຂໍ້ມູນສຳເລັດ', onTap: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ManagemaentStation()));
+            // Navigator.pop(context);
           });
-    } else {
-      Navigator.pop(context);
-      showDialog(
-          context: context,
-          builder: (context) {
-            return DialogError(
-                title: 'ເກີດຂໍ້ຜິດພາດ',
-                onTap: () {
-                  Navigator.pop(context);
-                });
+        });
+      }else{
+        Navigator.pop(context);
+        showDialog(context: context, builder: (context){
+          return DialogError(title: 'ເກີດຂໍ້ຜິດພາດ', onTap: (){
+            Navigator.pop(context);
           });
-    }
-  }
-}
+        });
+      }
+  }}

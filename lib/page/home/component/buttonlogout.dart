@@ -1,5 +1,4 @@
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/constant/prefer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,6 +27,10 @@ class _ButtonLogOutState extends State<ButtonLogOut> {
           setState(() {
             Navigator.pop(context);
           });
+        });
+       
+        setState(() {
+          Navigator.pop(context);
         });
       },
       child: Container(

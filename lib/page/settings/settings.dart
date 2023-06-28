@@ -1,4 +1,4 @@
-import 'package:ev_charging/busines%20logic/auth_provider.dart';
+
 import 'package:ev_charging/busines%20logic/setlanguge_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/settings/changepassword.dart';
