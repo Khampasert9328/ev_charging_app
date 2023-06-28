@@ -8,6 +8,9 @@ import 'package:ev_charging/page/managemantstation/service/add_stations_service.
 import 'package:flutter/cupertino.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/info_containner_provider.dart';
 
 class BodyAddStation extends StatefulWidget {
   const BodyAddStation({super.key});
@@ -223,9 +226,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
         );
 
       case 1:
-        return InfoContainnaer(
-         
-        );
+        return const InfoContainnaer();
 
       case 2:
         return const InfoLocationStation();

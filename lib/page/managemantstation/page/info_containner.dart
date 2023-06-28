@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:ev_charging/constant/color.dart';
@@ -6,7 +8,12 @@ import 'package:ev_charging/page/managemantstation/page/textformfield/textform.d
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+
+import '../../../utils/select_image_android.dart';
+import '../../../utils/select_image_ios.dart';
+import '../service/pick_image.dart';
 
 class InfoContainnaer extends StatefulWidget {
   const InfoContainnaer({super.key});
@@ -354,30 +361,86 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                     SizedBox(
                       height: 7.h,
                     ),
-                    Container(
+                    models.imageUrl == null ? Container(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey[200],
                       ),
-                      child: Container(
-                        height: 70.h,
-                        decoration: BoxDecoration(color: Colors.grey[200]),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.image,
-                              color: Colors.grey,
-                            ),
-                            SizedBox(
-                              width: 10.w,
-                            ),
-                            Text("ອັບໂຫຼດຮູບພາບ")
-                          ],
+                      child: GestureDetector(
+                        onTap: (){
+                          if (Platform.isIOS) {
+                            SelectImageIOs().selectImage(context,
+                                ///open gallery
+                                    () async {
+                                  Navigator.pop(context);
+                                  await PickImage.onOpenFile(
+                                      ImageSource.gallery, context)
+                                      .then((value) {
+                                    setState(() {
+                                      models.setImageName(value!.imageKey);
+                                      models.setImageUrl(value.urlImage);
+                                    });
+                                  });
+                                },
+                              /// open camera
+                                  () async {
+                                Navigator.pop(context);
+                                await PickImage.onOpenFile(
+                                    ImageSource.camera, context)
+                                    .then((value) {
+                                  setState(() {
+                                    models.setImageName(value!.imageKey);
+                                    models.setImageUrl(value.urlImage);
+                                  });
+                                });
+                              },
+                            );
+                          } else if (Platform.isAndroid) {
+                            SelectImageAndroid.selectImageAndroid(context,
+                                /// open camera
+                                    () async {
+                                  Navigator.pop(context);
+                                  await PickImage.onOpenFile(ImageSource.camera, context)
+                                      .then((value) {
+                                    setState(() {
+                                      models.setImageName(value!.imageKey);
+                                      models.setImageUrl(value.urlImage);
+                                    });
+                                  });
+                                },
+
+                                /// open gallery
+                                    () async {
+                                  Navigator.pop(context);
+                                  await PickImage.onOpenFile(ImageSource.gallery, context)
+                                      .then((value) {
+                                    setState(() {
+                                      models.setImageName(value!.imageKey);
+                                      models.setImageUrl(value.urlImage);
+                                    });
+                                  });
+                                });
+                          }                        },
+                        child: Container(
+                          height: 70.h,
+                          decoration: BoxDecoration(color: Colors.grey[200]),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.image,
+                                color: Colors.grey,
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Text("ອັບໂຫຼດຮູບພາບ")
+                            ],
+                          ),
                         ),
                       ),
-                    ),
+                    ) : Image.network(models.imageUrl!, fit: BoxFit.fill),
                   ],
                 ),
               ),

@@ -7,11 +7,10 @@ import 'package:ev_charging/page/managemantstation/provider/info_company_provide
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
 import 'package:ev_charging/page/onboardingscreen/onboardingsreen.dart';
+import 'package:provider/provider.dart';
+import 'page/home/provider/getchargebyid_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-
-import 'page/home/provider/getchargebyid_provider.dart';
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();

@@ -1,70 +1,93 @@
 import 'dart:convert';
+import 'package:ev_charging/constant/domain.dart';
+import 'package:ev_charging/constant/prefer.dart';
+import 'package:ev_charging/page/managemantstation/all_item.dart';
+import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
+import 'package:ev_charging/widget/dialog/dialogerror.dart';
+import 'package:ev_charging/widget/dialog/dialogsucces.dart';
+import 'package:ev_charging/widget/dialog/loadingscreen.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+
+import '../managementstation.dart';
+import '../provider/info_company_provider.dart';
+import '../provider/infon_location_provider.dart';
 
 class AddStationService{
   static Future addStationService(context) async {
-    final model = Provider.of<InfoContainerProvider>(context, listen: false);
-    final modellocation = Provider.of<InfoLocationProvider>(context, listen: false);
-    final modelcompany = Provider.of<InfoCompanyProvider>(context, listen: false);
+    final modelContainer = Provider.of<InfoContainerProvider>(context, listen: false);
+    final modelLocation = Provider.of<InfoLocationProvider>(context, listen: false);
+    final modelCompany = Provider.of<InfoCompanyProvider>(context, listen: false);
     String? token = await PreFer().getToken();
-    String? province = modellocation.province!.replaceAll("(", "").replaceAll(")", "");
-    String? city = modellocation.city!.replaceAll("(", "").replaceAll(")", "");
-    String? village = modellocation.village!.replaceAll("(", "").replaceAll(")", "");
+    String? province = modelLocation.province!.replaceAll("(", "").replaceAll(")", "");
+    String? city = modelLocation.city!.replaceAll("(", "").replaceAll(")", "");
+    String? village = modelLocation.village!.replaceAll("(", "").replaceAll(")", "");
 
     List<Map<String, dynamic>> container = [];
+    List<Map<String, dynamic>> facility = [];
 
-      for (int i = 0; i < model.containersList.length; i++) {
+
+      for (int i = 0; i < modelContainer.containersList.length; i++) {
         container.add(
             {
               "count": "ຕູ້ທີ${i + 1}",
-              "brand": model.brand[i].text,
-              "generation": model.generation[i].text,
-              "model": model.model[i].text,
+              "brand": modelContainer.brand[i].text,
+              "generation": modelContainer.generation[i].text,
+              "model": modelContainer.model[i].text,
               "type_charge" : [
-                for(var j in model.containersList[i].typeChargingList) {
+                for(var j in modelContainer.containersList[i].typeChargingList) {
                   "type_charging" : j.index == i ? j.typeCharging : ""
                   }
               ],
             });
       }
 
+      for(var i in modelLocation.listplace){
+          facility.add({
+            "facilitie" : i
+          });
+      }
+
       String payload = jsonEncode({
-        "name": "Tah test",
-        "imagecpn": "https://ad-bucket.sgp1.digitaloceanspaces.com/saveimagecharg/vpk8ae1686974891696.jpg",
-        "amount": 3,
-        "pictureplace": "https://ad-bucket.sgp1.digitaloceanspaces.com/saveimagecharg/l5qor1686975024299.jpeg",
-        "province": "ສະຫວັນນະເຂດ",
-        "district": "ໍຊົນບູລີ",
-        "village": "ສອງຄອນ",
-        "nameplace": "ວິທະຍາໄລສະຫວັນນະເຂດ",
-        "lat_location": 17000000,
-        "lng_lacation": 1600000000,
+        "name": modelCompany.namcompany,
+        "imagecpn": modelCompany.imageUrl,
+        "amount": modelContainer.containersList.length,
+        "pictureplace": modelContainer.imageUrl,
+        "province": province,
+        "district": city,
+        "village": village,
+        "nameplace": modelLocation.nameplace,
+        "lat_location": modelLocation.latitude,
+        "lng_lacation": modelLocation.longtitude,
         "constainner": container,
-        "facilities": [
-          {
-            "facilitie": "cafe",
-            "_id": "64893be4053a02656d9837b0"
-          },
-          {
-            "facilitie": "minibig C",
-            "_id": "64893be4053a02656d9837b1"
-          },
-          {
-            "facilitie": "ຮ້ານ ອາຫານຈີນ",
-            "_id": "64893be4053a02656d9837b1"
-          },
-          {
-            "facilitie": "ຮ້ານອາຫານກິນດື່ມ",
-            "_id": "64893be4053a02656d9837b1"
-          },
-          {
-            "facilitie": "ຮ້ານອາຫານຫວຽດ",
-            "_id": "64893be4053a02656d9837b1"
-          },
-          {
-            "facilitie": "ຮ້ານອາຫານຝຣັ່ງ",
-            "_id": "64893be4053a02656d9837b1"
-          }
-        ]
+        "facilities": facility,
+        // [
+        //   {
+        //     "facilitie": "cafe",
+        //     "_id": "64893be4053a02656d9837b0"
+        //   },
+        //   {
+        //     "facilitie": "minibig C",
+        //     "_id": "64893be4053a02656d9837b1"
+        //   },
+        //   {
+        //     "facilitie": "ຮ້ານ ອາຫານຈີນ",
+        //     "_id": "64893be4053a02656d9837b1"
+        //   },
+        //   {
+        //     "facilitie": "ຮ້ານອາຫານກິນດື່ມ",
+        //     "_id": "64893be4053a02656d9837b1"
+        //   },
+        //   {
+        //     "facilitie": "ຮ້ານອາຫານຫວຽດ",
+        //     "_id": "64893be4053a02656d9837b1"
+        //   },
+        //   {
+        //     "facilitie": "ຮ້ານອາຫານຝຣັ່ງ",
+        //     "_id": "64893be4053a02656d9837b1"
+        //   }
+        // ]
       });
 
       showDialog(context: context, builder: (_){
@@ -83,7 +106,7 @@ class AddStationService{
         Navigator.pop(context);
         showDialog(context: context, builder: (_){
           return DialogSucces(title: 'ເພີ່ມຂໍ້ມູນສຳເລັດ', onTap: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AllItem()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ManagemaentStation()));
             // Navigator.pop(context);
           });
         });

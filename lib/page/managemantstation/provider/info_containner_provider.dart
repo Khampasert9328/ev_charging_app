@@ -6,6 +6,13 @@ class InfoContainerProvider extends ChangeNotifier {
   static int _indexCon = 0;
   static int get indexCon => _indexCon;
 
+  String? _imageUrl;
+  String? get imageUrl => _imageUrl;
+
+  String? _imageName;
+  String? get imageName => _imageName;
+
+
   final List<TextEditingController> _brand = [];
   List<TextEditingController> get brand => _brand;
 
@@ -28,6 +35,16 @@ class InfoContainerProvider extends ChangeNotifier {
 
   set setIndex(int val){
     _indexCon = val;
+    notifyListeners();
+  }
+
+  setImageUrl(String? imageUrl) {
+    _imageUrl = imageUrl;
+    notifyListeners();
+  }
+
+  setImageName(String? imageName) {
+    _imageName = imageName;
     notifyListeners();
   }
 
