@@ -1,5 +1,6 @@
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/all_item.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -41,8 +42,8 @@ class _ManagemaentStationState extends State<ManagemaentStation>
             ),
           ),
           centerTitle: true,
-          title: const Text(
-            "ຈັດການຂໍ້ມູນສະຖານີສາກ",
+          title:  Text(
+            translation(context).managementstation,
             style: TextStyle(
               color: Colors.black,
             ),
@@ -55,7 +56,7 @@ class _ManagemaentStationState extends State<ManagemaentStation>
             indicatorWeight: 5,
             tabs: [
               Text(
-                "ລາຍການທັ້ງໝົດ",
+                translation(context).allitem,
                 style: TextStyle(
                   fontSize: 16.sp,
                 ),

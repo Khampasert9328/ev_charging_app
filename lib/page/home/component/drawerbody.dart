@@ -1,6 +1,7 @@
 import 'package:ev_charging/page/managemantstation/managementstation.dart';
 import 'package:ev_charging/page/settings/settings.dart';
 import 'package:ev_charging/page/stationall/stationall.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -34,7 +35,7 @@ class _EVDrawerBodyState extends State<EVDrawerBody> {
                   },
                   leading: SvgPicture.asset("images/icon_management_info.svg"),
                   title: Text(
-                    "ຈັດການຂໍ້ມູນສະຖານີ",
+                    translation(context).managementstation,
                     style: TextStyle(
                       fontSize: 18.sp,
                     ),
@@ -44,7 +45,7 @@ class _EVDrawerBodyState extends State<EVDrawerBody> {
             onTap: () {},
             leading: SvgPicture.asset("images/icon_location.svg"),
             title: Text(
-              "ແຜນທີ່",
+              translation(context).maps,
               style: TextStyle(
                 fontSize: 18.sp,
               ),
@@ -61,7 +62,7 @@ class _EVDrawerBodyState extends State<EVDrawerBody> {
             },
             leading: SvgPicture.asset("images/icon_station.svg"),
             title: Text(
-              "ສະຖານີສາກທັງໝົດ",
+              translation(context).chargestation,
               style: TextStyle(
                 fontSize: 18.sp,
               ),
@@ -78,7 +79,7 @@ class _EVDrawerBodyState extends State<EVDrawerBody> {
             },
             leading: SvgPicture.asset("images/icon _setting.svg"),
             title: Text(
-              "ຕັ້ງຄ່າ",
+              translation(context).setting,
               style: TextStyle(
                 fontSize: 18.sp,
               ),
@@ -88,7 +89,7 @@ class _EVDrawerBodyState extends State<EVDrawerBody> {
             onTap: () {},
             leading: SvgPicture.asset("images/icon_info.svg"),
             title: Text(
-              "ກ່ຽວກັບ",
+              translation(context).about,
               style: TextStyle(
                 fontSize: 18.sp,
               ),

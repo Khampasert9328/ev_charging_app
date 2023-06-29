@@ -59,6 +59,8 @@ dependencies:
   page_transition: ^2.0.9
   google_map_marker_animation: ^0.0.1
   sliding_sheet: ^0.5.2
+  flutter_localization: ^0.1.12
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +78,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

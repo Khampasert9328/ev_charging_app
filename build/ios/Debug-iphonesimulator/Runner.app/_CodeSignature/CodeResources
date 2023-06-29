@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		giNkCicMunojp8u4sj7XQDD2B20=
+		k+T/1jKqY/6x5iscDaQNkNp74g8=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		IAHxpb0qYq/tAZG+iR2TyyhdEX0=
+		iPRAKCK9rY4OcTO3cBWkUa1f+wY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		1tAGgPvO5p0diOO0iV8GUNGcNt4=
+		oo++lIa5T4I42Kna2xcDMd5JfAo=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -178,7 +178,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		N2Z3Nu5a2dlwQEFcSPa/PloAc3Y=
+		a5hNH53c/rzZZEJXGuDzsMUU7oM=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/awesome_snackbar_content/assets/back.svg</key>
 		<data>
@@ -459,6 +459,18 @@
 		<key>Frameworks/connectivity_plus.framework/connectivity_plus</key>
 		<data>
 		QqZLRpAnfdk9z6dPu3YHvADWsWc=
+		</data>
+		<key>Frameworks/flutter_localization.framework/Info.plist</key>
+		<data>
+		UsnOULLv3KpNjxda/RG1N9crw8I=
+		</data>
+		<key>Frameworks/flutter_localization.framework/_CodeSignature/CodeResources</key>
+		<data>
+		gKAvVTlB480X+QM14UA7eJpU9tU=
+		</data>
+		<key>Frameworks/flutter_localization.framework/flutter_localization</key>
+		<data>
+		/yYH5Dk2lTa3HgOS2K1Suxy4kHA=
 		</data>
 		<key>Frameworks/geolocator_apple.framework/Info.plist</key>
 		<data>
@@ -1418,7 +1430,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			nuT/Qr1bcOGfewMMedeefLb5X/Zl5UD0TSUpgtvCwe4=
+			uI7xyfwNaO5wREV8+5RqiznQpu6mUU5u7J+EfSb2uh0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1432,7 +1444,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			dVnxoxuuMi8Vly74GrPKexmnoVeVSXxh0im1NbLfGYM=
+			hwFbkLpPLncu30ldJo7Gtsz3FtlOjuNdHXMlIpCD4/o=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -1460,7 +1472,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0ZIE4vZFck69uls5kRE9AYx9Syxx78M0ydwO3eomu5U=
+			4icWTJ2dA2GqpLJXziqJrQhO1OA00t6RMgRqGBwUs5o=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -1649,7 +1661,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VVDeXyaVsX4dhvAWc7xIb1cmiw/d/P8rEPGDQkNIRZg=
+			grlsWsJcEx+ALa3H+mKR5wuGpyMmOxvYEh7WAkVprRQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/awesome_snackbar_content/assets/back.svg</key>
@@ -2140,6 +2152,27 @@
 			<key>hash2</key>
 			<data>
 			mK0yU/JCgOhK3D0qSzlUzB744+SB1TEFIT6vDG6LssM=
+			</data>
+		</dict>
+		<key>Frameworks/flutter_localization.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			lbRYlQo+LVOfSlw7pBddHMEEo85nohIXAD+uMrL1N68=
+			</data>
+		</dict>
+		<key>Frameworks/flutter_localization.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			6rex50Agy9Wwy6/wwaGB7mPj7OX6nbYhOT835OIlRLI=
+			</data>
+		</dict>
+		<key>Frameworks/flutter_localization.framework/flutter_localization</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			I1E4AubkMhqhvgcpg2cqL8hW3gj7/woN4tvfLa+RllY=
 			</data>
 		</dict>
 		<key>Frameworks/geolocator_apple.framework/Info.plist</key>

@@ -5,6 +5,7 @@ import 'package:ev_charging/page/managemantstation/page/info_containner.dart';
 import 'package:ev_charging/page/managemantstation/page/info_location_station.dart';
 import 'package:ev_charging/page/managemantstation/page/summary.dart';
 import 'package:ev_charging/page/managemantstation/service/add_stations_service.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,7 +48,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
                 width: double.infinity,
                 decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
                 child: Text(
-                  "ຕໍ່ໄປ",
+                  translation(context).next,
                   style: TextStyle(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
@@ -74,7 +75,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
                       width: double.infinity,
                       decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(10)),
                       child: Text(
-                        "ກັບຄືນ",
+                        translation(context).back,
                         style: TextStyle(
                           fontSize: 20.sp,
                           fontWeight: FontWeight.bold,
@@ -115,7 +116,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
                               decoration: BoxDecoration(
                                   color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
                               child: Text(
-                                "ເພີ່ມ",
+                                translation(context).addinfomation,
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
@@ -132,7 +133,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
                             decoration:
                                 BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
                             child: Text(
-                              "ຕໍ່ໄປ",
+                              translation(context).next,
                               style: TextStyle(
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.bold,
@@ -183,22 +184,22 @@ class _BodyAddStationState extends State<BodyAddStation> {
                   internalPadding: 15,
                   loadingAnimation: 'images/loading_circle.json',
                   showLoadingAnimation: true,
-                  steps: const [
+                  steps:  [
                     EasyStep(
                       icon: Icon(CupertinoIcons.person_alt_circle_fill),
-                      title: 'ຂໍ້ມູນເຈົ້າຂອງ',
+                      title: translation(context).infomationowner,
                     ),
                     EasyStep(
                       icon: Icon(CupertinoIcons.lock_circle),
-                      title: 'ຂໍ້ມູນຕູ້ສາກ',
+                      title: translation(context).infomationcharge,
                     ),
                     EasyStep(
                       icon: Icon(CupertinoIcons.location_solid),
-                      title: 'ຂໍ້ມູນທີ່ຕັ້ງ',
+                      title: translation(context).infomationlocation,
                     ),
                     EasyStep(
                       icon: Icon(CupertinoIcons.doc_chart_fill),
-                      title: 'ສະຫຼຸບ',
+                      title: translation(context).summary,
                     ),
                   ],
                   onStepReached: (index) => setState(() => activeStep = index),

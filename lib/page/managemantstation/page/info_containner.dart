@@ -6,6 +6,7 @@ import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/constant/data.dart';
 import 'package:ev_charging/page/managemantstation/page/textformfield/textform.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
@@ -92,7 +93,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "ຈຳນວນຕູ້ສາກ",
+                      translation(context).amount,
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
@@ -121,7 +122,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                     models.increment();
                                   },
                                   child: Text(
-                                    "ເພີ່ມ",
+                                    translation(context).add,
                                     style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -139,7 +140,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                       }
                                     },
                                     child: Text(
-                                      "ລົບ",
+                                      translation(context).delete,
                                       style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
                                     )),
                               ],
@@ -163,7 +164,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "ຕູ້ທີ ${item[index1]}",
+                        "${translation(context).containnerchange} ${item[index1]}",
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
@@ -187,7 +188,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "ຍີ່ຫໍ້",
+                               translation(context).branch,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.bold,
@@ -206,7 +207,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 height: 7.h,
                               ),
                               Text(
-                                "ລຸ້ນ",
+                                translation(context).generation,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.bold,
@@ -227,7 +228,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 height: 7.h,
                               ),
                               Text(
-                                "ໂມເດລ",
+                                translation(context).models,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.bold,
@@ -246,7 +247,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 height: 7.h,
                               ),
                               Text(
-                                "ປະເພດຫົວສາກ",
+                                translation(context).addchargetype,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.bold,
@@ -274,7 +275,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                           child: DropdownButton(
                                               isExpanded: true,
                                               underline: const SizedBox(),
-                                              hint: const Text('ເລືອກປະເພດຫົວສາກ'),
+                                              hint:  Text(translation(context).choosechargetype),
                                               value:
                                                   models.containersList[index1].typeChargingList[index2].typeCharging,
                                               items: AppData.itemtype.map((e) {
@@ -319,8 +320,8 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                             decoration: const BoxDecoration(
                                               color: Colors.white,
                                             ),
-                                            child: const Text(
-                                              "+ ເພີ່ມປະເພດຫົວສາກ",
+                                            child:  Text(
+                                              translation(context).addchargetype,
                                               style: TextStyle(
                                                 color: EV_Colors.yellowbtncolor,
                                               ),
@@ -355,7 +356,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "ຮູບພາບສະຖານທີ່",
+                      translation(context).imageplace,
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
@@ -438,7 +439,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                     SizedBox(
                                       width: 10.w,
                                     ),
-                                    Text("ອັບໂຫຼດຮູບພາບ")
+                                    Text(translation(context).uploadimage)
                                   ],
                                 ),
                               ),

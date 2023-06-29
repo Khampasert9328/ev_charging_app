@@ -41,7 +41,13 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
         actions: [
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) => EditInfoStation(models: widget.models,controllers: widget.models!.constainner,)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => EditInfoStation(
+                            models: widget.models,
+                            controllers: widget.models!.constainner,
+                          )));
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -50,28 +56,34 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
           )
         ],
       ),
-       bottomNavigationBar: GestureDetector(
-          onTap: () async {
-            Navigator.push(context, PageTransition(child:  DetailMaps(lat: widget.models!.latLocation,long: widget.models!.lngLacation,), type: PageTransitionType.fade));
-          },
-          child: Container(
-            margin: EdgeInsets.only(right: 10, left: 10, bottom: 20),
-            alignment: Alignment.center,
-            height: 46.h,
-            width: double.infinity,
-            decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
-            child: Text(
-              "ເບິ່ງຕຳແໜ່ງ",
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
-                color: EV_Colors.whitecolor,
-              ),
+      bottomNavigationBar: GestureDetector(
+        onTap: () async {
+          Navigator.push(
+              context,
+              PageTransition(
+                  child: DetailMaps(
+                    lat: widget.models!.latLocation,
+                    long: widget.models!.lngLacation,
+                  ),
+                  type: PageTransitionType.fade));
+        },
+        child: Container(
+          margin: EdgeInsets.only(right: 10, left: 10, bottom: 20),
+          alignment: Alignment.center,
+          height: 46.h,
+          width: double.infinity,
+          decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
+          child: Text(
+            "ເບິ່ງຕຳແໜ່ງ",
+            style: TextStyle(
+              fontSize: 20.sp,
+              fontWeight: FontWeight.bold,
+              color: EV_Colors.whitecolor,
             ),
           ),
         ),
+      ),
       body: SingleChildScrollView(
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -221,7 +233,7 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "ຕູ້ທີ:${index+1}",
+                              "ຕູ້ທີ:${index + 1}",
                               style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                             ),
                             Text(
@@ -244,32 +256,18 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                               ),
                             ),
                             Row(
-                              children: List.generate(widget.models!.constainner[index].typeCharge.length, (i) {
-                                print(" $index");
-                                print(i);
-                                return Column(
-                                  children: [
-                                    SvgPicture.asset(image(widget.models!.constainner[index].typeCharge[i].typeCharging)),
-                                    Text(widget.models!.constainner[index].typeCharge[i].typeCharging),
-                                  ],
-                                );
-                              })
-                              // [
-                              //   Column(
-                              //     children: [
-                              //       SvgPicture.asset("images/EV Charger-02.svg"),
-                              //       Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
-                              //       //Text("120KW/T DC"),
-                              //     ],
-                              //   ),
-                              //   Column(
-                              //     children: [
-                              //       SvgPicture.asset("images/EV Charger-03.svg"),
-                              //       Text("${widget.models!.constainner[0].typeCharge[0].typeCharging}"),
-                              //       //Text("120KW/T DC"),
-                              //     ],
-                              //   )
-                              // ],
+                              children: List.generate(
+                                widget.models!.constainner[index].typeCharge.length,
+                                (i) {
+                                  return Column(
+                                    children: [
+                                      SvgPicture.asset(
+                                          image(widget.models!.constainner[index].typeCharge[i].typeCharging)),
+                                      Text(widget.models!.constainner[index].typeCharge[i].typeCharging),
+                                    ],
+                                  );
+                                },
+                              ),
                             ),
                           ],
                         ),

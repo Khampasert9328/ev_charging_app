@@ -226,6 +226,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_localization">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_localization-0.1.12/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_localizations">
           <value>
             <list>
@@ -932,6 +939,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_blurhash-0.7.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_cache_manager-3.3.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_lints-2.0.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_localization-0.1.12/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.15/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_screenutil-5.7.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_svg-2.0.5/lib" />

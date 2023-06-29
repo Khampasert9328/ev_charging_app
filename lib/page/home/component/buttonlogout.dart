@@ -1,5 +1,6 @@
 import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +39,7 @@ class _ButtonLogOutState extends State<ButtonLogOut> {
         width: double.infinity,
         decoration: BoxDecoration(color: EV_Colors.redbtncolor, borderRadius: BorderRadius.circular(10)),
         child: Text(
-          "ອອກຈາກລະບົບ",
+          translation(context).logout,
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.bold,
