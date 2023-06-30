@@ -2,18 +2,10 @@
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/page/managemantstation/models/cily/city_models.dart';
 import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';
-import 'package:ev_charging/page/managemantstation/models/province/province_models.dart';
-import 'package:ev_charging/page/managemantstation/models/village/village_models.dart';
 import 'package:ev_charging/page/managemantstation/page/textformfield/textform.dart';
-import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
-import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
-import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
 import 'package:ev_charging/page/managemantstation/provider/update_info_provider.dart';
 import 'package:ev_charging/page/managemantstation/service/update_station_service.dart';
-import 'package:ev_charging/widget/dialog/loading.dart';
-import 'package:ev_charging/widget/dropdown/dropwonwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -30,28 +22,7 @@ class BodyEditStation extends StatefulWidget {
 }
 
 class _BodyEditStationState extends State<BodyEditStation> {
-  //
-  // String? valueItemType;
-  // String? valueItem;
-  // int lengthDropdown = 1;
-  // int lengthText = 1;
-  // TextEditingController brand = TextEditingController();
-  // TextEditingController generation = TextEditingController();
-  // TextEditingController model = TextEditingController();
-  // final nameCompany = TextEditingController();
-  // TextEditingController _namePlace = TextEditingController();
-  // TextEditingController _nameFacilities = TextEditingController();
-  //
-  // // List<TypeCharge> typecharg = [];
-  // String? count;
-  // String? provinces;
-  // String? district;
-  // String? village;
-  // String? namePlace;
-  // String? imageLogo;
-  // String? imageplace;
-  //
-  // int? length;
+
 
   void getTextController(){
     final info = context.read<UpdateInfoProvider>();
@@ -72,12 +43,12 @@ class _BodyEditStationState extends State<BodyEditStation> {
     final data = widget.models;
 
     info.namePlace.text = data!.nameplace;
-    info.nameCpn.text = data!.name;
-    info.setImageStation(data!.pictureplace);
-    info.setImageCpn(data!.imagecpn);
+    info.nameCpn.text = data.name;
+    info.setImageStation(data.pictureplace);
+    info.setImageCpn(data.imagecpn);
 
 
-    for(int i = 0; i < data!.facilities.length; i++){
+    for(int i = 0; i < data.facilities.length; i++){
      info.addFacilities();
      info.facilities[i].text = data.facilities[i].facilitie;
     }
@@ -302,14 +273,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                 SizedBox(
                   height: 15.h,
                 ),
-                // ListView.builder(
-                //     shrinkWrap: true,
-                //     physics: ScrollPhysics(),
-                //     itemCount: model.containersList.length,
-                //     itemBuilder: (context, index) {
-                //
-                //     }),
-
+               
                 Column(
                   children: List.generate(widget.models!.constainner.length, (index) {
                     return Column(
@@ -354,22 +318,9 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                   controller: model.brand[index],
                                   onchange: () {},
                                   ontap: (val){
-                                    // model.brand[index].text = val;
                                   },
                                 ),
-                                // TextFormField(
-                                //   keyboardType: TextInputType.emailAddress,
-                                //   cursorColor: Colors.grey,
-                                //   initialValue: model.brand[index].text,
-                                //   decoration: InputDecoration(
-                                //     border: OutlineInputBorder(
-                                //       borderSide: BorderSide.none,
-                                //       borderRadius: BorderRadius.circular(10),
-                                //     ),
-                                //     filled: true,
-                                //     fillColor: Colors.grey[200],
-                                //   ),
-                                // ),
+                              
                                 SizedBox(
                                   height: 7.h,
                                 ),
@@ -390,22 +341,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                   ontap: (val){
                                     model.gen[index].text = val;                                    },
                                 ),
-                                // TextFormField(
-                                //   keyboardType: TextInputType.emailAddress,
-                                //   cursorColor: Colors.grey,
-                                //   initialValue: model.gen[index].text,
-                                //   decoration: InputDecoration(
-                                //     border: OutlineInputBorder(
-                                //       borderSide: BorderSide.none,
-                                //       borderRadius: BorderRadius.circular(10),
-                                //     ),
-                                //     filled: true,
-                                //     fillColor: Colors.grey[200],
-                                //   ),
-                                //   onChanged: (val){
-                                //     model.gen[index].text = val;
-                                //   },
-                                // ),
+                               
                                 SizedBox(
                                   height: 7.h,
                                 ),
@@ -441,70 +377,6 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                   height: 5.h,
                                 ),
 
-                                // Column(
-                                //   children: List.generate(
-                                //       model.containersList[index]
-                                //           .typeCharge.length,
-                                //     // widget.models!.constainner[index].typeCharge.length,
-                                //           (index2) {
-                                //         String valueItem = 'asdnkjas';
-                                //     return Row(
-                                //       children: [
-                                //         Expanded(
-                                //           child: Container(
-                                //             margin:
-                                //                 EdgeInsets.only(bottom: 10),
-                                //             padding: const EdgeInsets.only(
-                                //               left: 10,
-                                //               right: 10,
-                                //             ),
-                                //             decoration: BoxDecoration(
-                                //               borderRadius:
-                                //                   BorderRadius.circular(10),
-                                //               color: Colors.grey[200],
-                                //             ),
-                                //             child: DropdownButton(
-                                //                 isExpanded: true,
-                                //                 underline: const SizedBox(),
-                                //                 hint: const Text(
-                                //                     'ເລືອກປະເພດຫົວສາກ'),
-                                //                 value:
-                                //                 model
-                                //                     .containersList[index]
-                                //                     .typeCharge[index2]
-                                //                 .typeCharging,
-                                //                 items:
-                                //                     AppData.typeChargeItem.map((e) {
-                                //                   return DropdownMenuItem(
-                                //                       value: e,
-                                //                       child: Text(e));
-                                //                 }).toList(),
-                                //                 onChanged: (value) {
-                                //                   model.dropDown(
-                                //                       index,
-                                //                       index2,
-                                //                       value.toString());
-                                //                 }),
-                                //           ),
-                                //         ),
-                                //         // model.containersList[index]
-                                //         //             .typeChargingList
-                                //         //             .length ==
-                                //         //         1
-                                //         //     ? const SizedBox()
-                                //         //     : GestureDetector(
-                                //         //         onTap: () {
-                                //         //           model.delLength(index);
-                                //         //         },
-                                //         //         child: const Icon(
-                                //         //           Icons.remove_circle_outline,
-                                //         //           color: Colors.red,
-                                //         //         ),
-                                //         //       )
-                                //       ],
-                                //     );
-                                //   }),
-                                // ),
                                 SizedBox(
                                   height: 16.h,
                                 ),
@@ -585,22 +457,9 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                   controller: model.brand[oldIndex - newChargeIndex],
                                   onchange: () {},
                                   ontap: (val){
-                                    // model.brand[index].text = val;
                                   },
                                 ),
-                                // TextFormField(
-                                //   keyboardType: TextInputType.emailAddress,
-                                //   cursorColor: Colors.grey,
-                                //   initialValue: model.brand[index].text,
-                                //   decoration: InputDecoration(
-                                //     border: OutlineInputBorder(
-                                //       borderSide: BorderSide.none,
-                                //       borderRadius: BorderRadius.circular(10),
-                                //     ),
-                                //     filled: true,
-                                //     fillColor: Colors.grey[200],
-                                //   ),
-                                // ),
+                              
                                 SizedBox(
                                   height: 7.h,
                                 ),
@@ -619,25 +478,9 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                   controller: model.gen[oldIndex - newChargeIndex],
                                   onchange: () {},
                                   ontap: (val){
-                                    // model.gen[index].text = val;
                                     },
                                 ),
-                                // TextFormField(
-                                //   keyboardType: TextInputType.emailAddress,
-                                //   cursorColor: Colors.grey,
-                                //   initialValue: model.gen[index].text,
-                                //   decoration: InputDecoration(
-                                //     border: OutlineInputBorder(
-                                //       borderSide: BorderSide.none,
-                                //       borderRadius: BorderRadius.circular(10),
-                                //     ),
-                                //     filled: true,
-                                //     fillColor: Colors.grey[200],
-                                //   ),
-                                //   onChanged: (val){
-                                //     model.gen[index].text = val;
-                                //   },
-                                // ),
+                               
                                 SizedBox(
                                   height: 7.h,
                                 ),
@@ -719,20 +562,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                                 }),
                                           ),
                                         ),
-                                        // model.containersList[index]
-                                        //             .typeChargingList
-                                        //             .length ==
-                                        //         1
-                                        //     ? const SizedBox()
-                                        //     : GestureDetector(
-                                        //         onTap: () {
-                                        //           model.delLength(index);
-                                        //         },
-                                        //         child: const Icon(
-                                        //           Icons.remove_circle_outline,
-                                        //           color: Colors.red,
-                                        //         ),
-                                        //       )
+                                       
                                       ],
                                     );
                                   }),
@@ -878,102 +708,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Text(
-                        //   "ແຂວງ",
-                        //   style: TextStyle(
-                        //     fontSize: 14.sp,
-                        //     fontWeight: FontWeight.bold,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 7.h,
-                        // ),
-                        // DropDownWidget(
-                        //   item: ProVinceModel.province.map((Map value) {
-                        //     return DropdownMenuItem<String>(
-                        //       value: value["_id"],
-                        //       child: Text(value["pro_name"]),
-                        //     );
-                        //   }).toList(),
-                        //   value: provinces,
-                        //   onChange: (String? value) {},
-                        //   hint: widget.models!.province,
-                        //   validator: (value) {
-                        //     if (value == null || value == "") {
-                        //       return 'ກະລຸນາເລືອກຂໍ້ມູນ';
-                        //     }
-                        //     return null;
-                        //   },
-                        // ),
-                        // SizedBox(
-                        //   height: 5.h,
-                        // ),
-                        // Text(
-                        //   "ເມືອງ",
-                        //   style: TextStyle(
-                        //     fontSize: 14.sp,
-                        //     fontWeight: FontWeight.bold,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 7.h,
-                        // ),
-                        // Container(
-                        //   padding: const EdgeInsets.only(left: 10, right: 10),
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(10),
-                        //     color: Colors.grey[200],
-                        //   ),
-                        //   child: DropDownWidget(
-                        //     item: CityModel.city
-                        //         .where(
-                        //             (element) => element["pro_id"] == provinces)
-                        //         .map((Map value) {
-                        //       return DropdownMenuItem<String>(
-                        //           value: value["_id"],
-                        //           child: Text(value["dist_name"]));
-                        //     }).toList(),
-                        //     value: district,
-                        //     onChange: (String? value) {},
-                        //     hint: widget.models!.district,
-                        //     validator: (value) {
-                        //       if (value == null || value == "") {
-                        //         return 'ກະລຸນາເລືອກຂໍ້ມູນ';
-                        //       }
-                        //       return null;
-                        //     },
-                        //   ),
-                        // ),
-                        // Text(
-                        //   "ບ້ານ",
-                        //   style: TextStyle(
-                        //     fontSize: 14.sp,
-                        //     fontWeight: FontWeight.bold,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 7.h,
-                        // ),
-                        // DropDownWidget(
-                        //   item: Village.village
-                        //       .where(
-                        //           (element) => element["dist_id"] == district)
-                        //       .map<DropdownMenuItem<String>>((value) {
-                        //     return DropdownMenuItem<String>(
-                        //       value: value["_id"],
-                        //       child: Text(value["vill_name"]),
-                        //     );
-                        //   }).toList(),
-                        //   value: village,
-                        //   onChange: (String? value) {},
-                        //   hint: widget.models!.village,
-                        //   validator: (value) {
-                        //     if (value == null || value == "") {
-                        //       return 'ກະລຸນາເລືອກຂໍ້ມູນ';
-                        //     }
-                        //     return null;
-                        //   },
-                        // ),
+                  
                         SizedBox(
                           height: 5.h,
                         ),

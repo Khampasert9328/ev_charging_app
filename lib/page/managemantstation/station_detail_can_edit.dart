@@ -58,6 +58,10 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
       ),
       bottomNavigationBar: GestureDetector(
         onTap: () async {
+          print("lat===${widget.models!.latLocation}");
+          print("lang===${widget.models!.lngLacation}");
+          //17.964365734890155
+          //102.63405089656558
           Navigator.push(
               context,
               PageTransition(

@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import '../../../constant/domain.dart';
 import '../../../constant/prefer.dart';
 import '../../../widget/dialog/dialogerror.dart';
-import '../../../widget/dialog/dialogsucces.dart';
 import '../../../widget/dialog/loading.dart';
 import '../../../widget/dialog/loadingscreen.dart';
 import '../managementstation.dart';
@@ -62,12 +61,12 @@ class UpdateStationService{
         "imagecpn": model.imageCpn,
         "amount": model.containersList.length,
         "pictureplace": model.imageStation,
-        "province": data?.province,
-        "district": data?.district,
-        "village": data?.village,
+        "province": data.province,
+        "district": data.district,
+        "village": data.village,
         "nameplace": model.namePlace.text,
-        "lat_location": data?.latLocation,
-        "lng_lacation": data?.lngLacation,
+        "lat_location": data.latLocation,
+        "lng_lacation": data.lngLacation,
         "constainner": oldContainer,
         "facilities": facility
     });
@@ -92,11 +91,7 @@ class UpdateStationService{
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ManagemaentStation()));
 
       });
-      // showDialog(context: context, builder: (_){
-      //   return DialogSucces(title: 'ເພີ່ມຂໍ້ມູນສຳເລັດ', onTap: (){
-      //     // Navigator.pop(context);
-      //   });
-      // });
+     
     }else{
       print(oldContainer);
       Navigator.pop(context);
