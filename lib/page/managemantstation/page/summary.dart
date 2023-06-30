@@ -5,6 +5,7 @@ import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -48,7 +49,7 @@ class _SummaryState extends State<Summary> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "ເຈົ້າຂອງບໍລິສັດ:",
+                    translation(context).owner,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
@@ -58,7 +59,7 @@ class _SummaryState extends State<Summary> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "ຊື່ບໍລິສັດ:",
+                        translation(context).company,
                         style: TextStyle(
                           fontSize: 12.sp,
                         ),
@@ -72,7 +73,7 @@ class _SummaryState extends State<Summary> {
                     ],
                   ),
                   Text(
-                    "ໂລໂກ້:",
+                    translation(context).logocompany,
                     style: TextStyle(
                       fontSize: 12.sp,
                     ),
@@ -84,14 +85,14 @@ class _SummaryState extends State<Summary> {
                   ),
                   Divider(),
                   Text(
-                    "ຂໍ້ມູນຕູ້ສາກ",
+                    translation(context).infomationcharge,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    "ຈຳນວນ: ${model2.containersList.length} ຕູ້",
+                    "${translation(context).amount}: ${model2.containersList.length} ${translation(context).containnerchange}",
                     style: TextStyle(
                       fontSize: 12.sp,
                     ),
@@ -105,7 +106,7 @@ class _SummaryState extends State<Summary> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "ຕູ້ທີ:${index + 1}",
+                              "${translation(context).containnerchange}:${index + 1}",
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.bold,
@@ -114,21 +115,21 @@ class _SummaryState extends State<Summary> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("ຍີ່ຫໍ້ຕູ້:"),
+                                Text(translation(context).branch),
                                 Text(model2.brand[index].text),
                               ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("ລຸ້ນ:"),
+                                Text(translation(context).generation),
                                 Text(model2.generation[index].text),
                               ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("ໂມເດລ:"),
+                                Text(translation(context).models),
                                 Text(model2.model[index].text),
                               ],
                             ),
@@ -136,7 +137,7 @@ class _SummaryState extends State<Summary> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("ປະເພດຫົວສາກ:"),
+                                Text(translation(context).chargetype),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -152,7 +153,7 @@ class _SummaryState extends State<Summary> {
                         );
                       }),
                   Text(
-                    "ຮູບພາບສະຖານທີ່:",
+                    translation(context).imageplace,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
@@ -165,7 +166,7 @@ class _SummaryState extends State<Summary> {
                   ),
                   Divider(),
                   Text(
-                    "ຂໍ້ມູນທີ່ຕັ້ງ:",
+                    translation(context).infomationlocation,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
@@ -174,27 +175,27 @@ class _SummaryState extends State<Summary> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("ແຂວງ:"),
+                      Text(translation(context).province),
                       Text(model3.province!.replaceAll("(", "").replaceAll(")", "")),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("ເມືອງ:"),
+                      Text(translation(context).district),
                       Text(model3.city!.replaceAll("(", "").replaceAll(")", "")),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("ບ້ານ:"),
+                      Text(translation(context).village),
                       Text(model3.village!.replaceAll("(", "").replaceAll(")", "")),
                     ],
                   ),
                   Divider(),
                   Text(
-                    "ຕ່ຳແໜ່ງທີ່ຕັ້ງ:",
+                    translation(context).location,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
@@ -244,7 +245,7 @@ class _SummaryState extends State<Summary> {
                           )),
                    Divider(),
                   Text(
-                    "ສິ່ງອຳນວຍຄວາມສະດວກ:",
+                    translation(context).facility,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,

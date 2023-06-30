@@ -5,6 +5,7 @@ import 'package:ev_charging/busines%20logic/infocharg/info_charg_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/add_station.dart';
 import 'package:ev_charging/page/managemantstation/station_detail_can_edit.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +46,7 @@ class _AllItemState extends State<AllItem> {
             width: double.infinity,
             decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
             child: Text(
-              "ເພີ່ມຂໍ້ມູນສະຖານີໃໝ່",
+              translation(context).addinfomation,
               style: TextStyle(
                 fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
@@ -68,8 +69,8 @@ class _AllItemState extends State<AllItem> {
                       width: 50.w,
                     ))
                   : model.getchargmodels == null
-                      ? const Center(
-                          child: Text("ບໍ່ມີຂໍ້ມູນ"),
+                      ?  Center(
+                          child: Text(translation(context).nodata),
                         )
                       : ListView.builder(
                           itemCount: model.getchargmodels!.data.length,
@@ -131,7 +132,7 @@ class _AllItemState extends State<AllItem> {
                                               Row(
                                                 children: [
                                                   Text(
-                                                    "ເຈົ້າຂອງ: ",
+                                                    "${translation(context).owner}: ",
                                                     style: TextStyle(
                                                       fontSize: 12.sp,
                                                     ),
@@ -145,14 +146,14 @@ class _AllItemState extends State<AllItem> {
                                               Row(
                                                 children: [
                                                   Text(
-                                                    "ສະຖານທີ່: ",
+                                                    "${translation(context).place}: ",
                                                     style: TextStyle(
                                                       fontSize: 12.sp,
                                                     ),
                                                   ),
                                                   Flexible(
                                                     child: Text(
-                                                      "ແຂວງ ${data.province} ເມືອງ ${data.district} ບ້ານ ${data.village}",
+                                                      "${translation(context).province} ${data.province} ${translation(context).district} ${data.district} ${translation(context).village} ${data.village}",
                                                       style: TextStyle(
                                                         fontSize: 12.sp,
                                                         color: EV_Colors.yellowbtncolor,

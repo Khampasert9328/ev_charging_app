@@ -4,9 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ev_charging/busines%20logic/infocharg/info_charg_provider.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/home/provider/getchargebyid_provider.dart';
+import 'package:ev_charging/utils/set_image_charger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_map_marker_animation/widgets/animarker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -221,7 +223,21 @@ class _ShowMapsState extends State<ShowMaps> {
                               Text(
                                 "ໂມເດລ: ${data.model}",
                                 style: TextStyle(fontSize: 14.sp),
-                              )
+                              ),
+                              Row(
+                                children: List.generate(
+                                  //model!.constainner[index].typeCharge.length,
+                                  data.typeCharge.length,
+                                  (i) {
+                                    return Column(
+                                      children: [
+                                        SvgPicture.asset(image(data.typeCharge[i].typeCharging)),
+                                        Text(data.typeCharge[i].typeCharging),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
                             ],
                           );
                         }),

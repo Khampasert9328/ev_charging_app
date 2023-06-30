@@ -1,5 +1,6 @@
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/register/login.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,7 +27,7 @@ class _EVDrawerHeaderState extends State<EVDrawerHeader> {
             color: EV_Colors.yellowbtncolor,
             borderRadius: BorderRadius.circular(10)),
         child: Text(
-          "ເຂົ້າສູ່ລະບົບ",
+          translation(context).login,
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.bold,

@@ -1,10 +1,10 @@
-
-import 'package:ev_charging/busines%20logic/setlanguge_provider.dart';
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/main.dart';
 import 'package:ev_charging/page/settings/changepassword.dart';
+import 'package:ev_charging/utils/translate/language.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -14,27 +14,20 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  String? valueitem;
-  String? selectLanguge;
   String? token;
-
-  
-
-  void onlangugeselect(String languges) {
-    setState(() {
-      selectLanguge = languges;
-    });
-  }
-
-  List item = [
-    "LA",
-    "EN",
-  ];
+  // @override
+  // void initState() {
+  //   PreFer().getToken().then((value) async {
+  //     Map<String, dynamic> playload = Jwt.parseJwt(value!);
+  //   String? addmin = playload["id"];
+  //   });
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final providerService =
-        Provider.of<SetLangugesProvider>(context, listen: false);
+    //final providerService = Provider.of<SetLangugesProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -47,15 +40,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
         centerTitle: true,
-        title: const Text(
-          "ການຕັ້ງຄ່າ",
-          style: TextStyle(
+        title: Text(
+          translation(context).setting,
+          style: const TextStyle(
             color: Colors.black,
           ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             ListTile(
@@ -68,9 +61,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "ປ່ຽນພາສາ",
-                    style:
-                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                    translation(context).changelanguage,
+                    style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 10, right: 10),
@@ -78,16 +70,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
                         border: Border.all(color: Colors.black)),
-                    child: DropdownButton(
+                    child: DropdownButton<Language>(
                         underline: const SizedBox(),
-                        hint: const Text('ເລືອກພາສາ'),
-                        value: valueitem,
-                        items: item.map((e) {
-                          return DropdownMenuItem(value: e, child: Text(e));
-                        }).toList(),
-                        onChanged: (value) async {
-                          valueitem = await providerService
-                              .setLangugePreference("$value");
+                        hint: Text(
+                          translation(context).chooselanguage,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        items: Language.languagelist()
+                            .map<DropdownMenuItem<Language>>(
+                              (e) => DropdownMenuItem<Language>(
+                                value: e,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      e.flag,
+                                      style: TextStyle(fontSize: 30),
+                                    ),
+                                    Text(e.name)
+                                  ],
+                                ),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (language) async {
+                          if (language != null) {
+                            Locale locale = await setLocale(language.languageCode!);
+                            MyApp.setLocale(context, Locale(locale.toString()));
+                          }
                         }),
                   ),
                 ],
@@ -97,8 +106,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ? const SizedBox()
                 : ListTile(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => ChangePassword()));
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => ChangePassword()));
                     },
                     leading: const Icon(
                       Icons.lock_outline,
@@ -106,8 +114,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     title: Text(
                       "ປ່ຽນລະຫັດຜ່ານ",
-                      style: TextStyle(
-                          fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                     ),
                   )
           ],

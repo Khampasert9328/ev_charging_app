@@ -1,4 +1,5 @@
 import 'package:ev_charging/page/managemantstation/component/body_add_station.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:flutter/material.dart';
 
 class AddStation extends StatefulWidget {
@@ -23,9 +24,9 @@ class _AddStationState extends State<AddStation> {
             ),
           ),
           centerTitle: true,
-          title: const Text(
-            "ເພີ່ມຂໍ້ມູນ",
-            style: TextStyle(
+          title:  Text(
+            translation(context).addinfomationstation,
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold
             ),

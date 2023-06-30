@@ -11,6 +11,7 @@ import 'package:ev_charging/page/managemantstation/models/cily/city_models.dart'
 import 'package:ev_charging/page/managemantstation/models/province/province_models.dart';
 import 'package:ev_charging/page/managemantstation/models/village/village_models.dart';
 import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:ev_charging/widget/dropdown/dropwonwidget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -47,12 +48,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
   String? valueitem;
   bool onOpenvil = false;
   int lengthtext = 1;
-  // List province = [
-  //   "ຫົວສາກ A",
-  //   "ຫົວສາກ B",
-  //   "ຫົວສາກ C",
-  //   "ຫົວສາກ D",
-  // ];
+  
   _getLocation() async {
     final model = context.read<InfoLocationProvider>();
     loading = true;
@@ -113,7 +109,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "ແຂວງ",
+                   translation(context).province,
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
@@ -170,7 +166,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                     height: 5.h,
                   ),
                   Text(
-                    "ເມືອງ",
+                    translation(context).district,
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
@@ -229,7 +225,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                     ),
                   ),
                   Text(
-                    "ບ້ານ",
+                    translation(context).village,
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
@@ -271,7 +267,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                     height: 5.h,
                   ),
                   Text(
-                    "ຊື່ສະຖານທີ່",
+                    translation(context).placename,
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
@@ -313,7 +309,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "ສິ່ງອຳນວຍຄວາມສະດວກ",
+                    translation(context).facility,
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
@@ -329,7 +325,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                         return Row(children: [
                           Expanded(
                             child: TextFormInfo(
-                              text: "ຕົວຢ່າງ: ຮ້ານ Amazon cafe",
+                              text: "${translation(context).example}: ຮ້ານ Amazon cafe",
                               controller: nameplacilitie,
                               onchange: () {},
                               ontap: (value) {
@@ -372,8 +368,8 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                           decoration: const BoxDecoration(
                             color: Colors.white,
                           ),
-                          child: const Text(
-                            "+ ເພີ່ມສະຖານທີ່",
+                          child:  Text(
+                            translation(context).addplace,
                             style: TextStyle(
                               color: EV_Colors.yellowbtncolor,
                             ),
@@ -405,7 +401,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "ຕ່ຳແໜ່ງທີ່ຕັ້ງ",
+                    translation(context).location,
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
@@ -462,7 +458,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
-                        "ເລືອກຕ່ຳແໜ່ງ",
+                        translation(context).chooselocation,
                         style: TextStyle(
                           fontSize: 18.sp,
                           color: Colors.white,
