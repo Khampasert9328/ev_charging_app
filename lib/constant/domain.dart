@@ -11,5 +11,6 @@ class AppDomain {
   static String getinfocharg = '$domain/chargin/getinfochargall';
 
   static String addStation = '$domain/chargin/insertinfocharg';
+  static String updateStation = '$domain/chargin/updateinfocharg/';
   static String getchargebyid = '$domain/chargin/getchargbyid';
 }

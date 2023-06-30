@@ -39,7 +39,6 @@ class _EditInfoStationState extends State<EditInfoStation> {
       ),
       body: BodyEditStation(
         models: widget.models,
-        containner: widget.controllers,
       ),
     );
   }

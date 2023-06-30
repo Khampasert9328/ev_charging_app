@@ -11,8 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-import '../../../utils/select_image_android.dart';
-import '../../../utils/select_image_ios.dart';
+import '../../../utils/select_image_or_camera.dart';
 import '../service/pick_image.dart';
 
 class InfoContainnaer extends StatefulWidget {
@@ -314,7 +313,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                               hint: Text(translation(context).choosechargetype),
                                               value:
                                                   models.containersList[index1].typeChargingList[index2].typeCharging,
-                                              items: AppData.itemtype.map((e) {
+                                              items: AppData.typeChargeItem.map((e) {
                                                 return DropdownMenuItem(value: e, child: Text(e));
                                               }).toList(),
                                               onChanged: (value) {
@@ -410,8 +409,8 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                             ),
                             child: GestureDetector(
                               onTap: () {
-                                if (Platform.isIOS) {
-                                  SelectImageIOs().selectImage(
+                                 {
+                                  SelectImage().selectImage(
                                     context,
 
                                     ///open gallery
@@ -424,7 +423,6 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                         });
                                       });
                                     },
-
                                     /// open camera
                                     () async {
                                       Navigator.pop(context);
@@ -436,30 +434,6 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                       });
                                     },
                                   );
-                                } else if (Platform.isAndroid) {
-                                  SelectImageAndroid.selectImageAndroid(context,
-
-                                      /// open camera
-                                      () async {
-                                    Navigator.pop(context);
-                                    await PickImage.onOpenFile(ImageSource.camera, context).then((value) {
-                                      setState(() {
-                                        models.setImageName(value!.imageKey);
-                                        models.setImageUrl(value.urlImage);
-                                      });
-                                    });
-                                  },
-
-                                      /// open gallery
-                                      () async {
-                                    Navigator.pop(context);
-                                    await PickImage.onOpenFile(ImageSource.gallery, context).then((value) {
-                                      setState(() {
-                                        models.setImageName(value!.imageKey);
-                                        models.setImageUrl(value.urlImage);
-                                      });
-                                    });
-                                  });
                                 }
                               },
                               child: Container(
