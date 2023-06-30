@@ -320,29 +320,29 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                   ),
                   ListView.builder(
                       shrinkWrap: true,
-                      itemCount: models.lengthplace,
+                      itemCount: models.facilities.length,
                       itemBuilder: (context, index) {
                         return Row(children: [
                           Expanded(
                             child: TextFormInfo(
                               text: "${translation(context).example}: ຮ້ານ Amazon cafe",
-                              controller: nameplacilitie,
+                              controller: models.facilities[index],
                               onchange: () {},
                               ontap: (value) {
-                                if (models.listplace.isEmpty) {
-                                  models.addlistplace(value);
-                                }
-                                setState(() {
-                                  models.listplace[index] = value.toString();
-                                });
+                                // if (models.facilities.isEmpty) {
+                                //   models.addlistplace(value);
+                                // }
+                                // setState(() {
+                                //   models.facilities[index] = value.toString();
+                                // });
                               },
                             ),
                           ),
-                          models.lengthplace == 1
-                              ? SizedBox()
+                          models.facilities.length == 1
+                              ? const SizedBox()
                               : GestureDetector(
                                   onTap: () {
-                                    models.deletelengthplace();
+                                    models.delFacilities(index);
                                   },
                                   child: const Icon(
                                     Icons.remove_circle_outline,
@@ -356,7 +356,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      models.addlengthplace();
+                      models.addFacilities();
                     },
                     child: DottedBorder(
                       color: EV_Colors.yellowbtncolor,

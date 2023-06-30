@@ -13,8 +13,21 @@ class InfoLocationProvider extends ChangeNotifier {
   List<String> _listplace = [];
   List<String> get listplace => _listplace;
 
+  final List<TextEditingController> _facilities = [TextEditingController()];
+  List<TextEditingController> get facilities  => _facilities;
+
   String? get latitude => _latitude;
   String? get longtitude => _longtitude;
+
+  void addFacilities(){
+    _facilities.add(TextEditingController());
+    notifyListeners();
+  }
+
+  void delFacilities(int index){
+    _facilities.removeAt(index);
+    notifyListeners();
+  }
 
   void addlengthplace() {
     _lengthplace++;
