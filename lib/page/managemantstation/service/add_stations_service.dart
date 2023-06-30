@@ -41,9 +41,9 @@ class AddStationService{
             });
       }
 
-      for(var i in modelLocation.listplace){
+      for(var i in modelLocation.facilities){
           facility.add({
-            "facilitie" : i
+            "facilitie" : i.text
           });
       }
 
