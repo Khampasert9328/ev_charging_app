@@ -1,13 +1,10 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:io';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
 import 'package:ev_charging/page/managemantstation/service/pick_image.dart';
-import 'package:ev_charging/utils/select_image_android.dart';
-import 'package:ev_charging/utils/select_image_ios.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ev_charging/utils/select_image_or_camera.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -207,20 +204,7 @@ class _OwnerCompanyState extends State<OwnerCompany> {
                         ),
                         child: GestureDetector(
                           onTap: () {
-                            if (Platform.isIOS) {
-                              SelectImageIOs().selectImage(context,
-                                  /// open camera
-                                  () async {
-                                Navigator.pop(context);
-                                await PickImage.onOpenFile(
-                                        ImageSource.camera, context)
-                                    .then((value) {
-                                  setState(() {
-                                    models.setImageName(value!.imageKey);
-                                    models.setImageUrl(value.urlImage);
-                                  });
-                                });
-                              },
+                              SelectImage().selectImage(context,
                                   ///open gallery
                                   () async {
                                 Navigator.pop(context);
@@ -232,33 +216,20 @@ class _OwnerCompanyState extends State<OwnerCompany> {
                                     models.setImageUrl(value.urlImage);
                                   });
                                 });
-                              });
-                            } else if (Platform.isAndroid) {
-                              SelectImageAndroid.selectImageAndroid(context,
-                                      /// open camera
-                                      () async {
-                                    Navigator.pop(context);
-                                    await PickImage.onOpenFile(ImageSource.camera, context)
-                                        .then((value) {
-                                      setState(() {
-                                        models.setImageName(value!.imageKey);
-                                        models.setImageUrl(value.urlImage);
-                                      });
-                                    });
-                                  },
-
-                                  /// open gallery
-                                  () async {
+                              },
+                                /// open camera
+                                    () async {
                                   Navigator.pop(context);
-                                  await PickImage.onOpenFile(ImageSource.gallery, context)
+                                  await PickImage.onOpenFile(
+                                      ImageSource.camera, context)
                                       .then((value) {
                                     setState(() {
                                       models.setImageName(value!.imageKey);
                                       models.setImageUrl(value.urlImage);
                                     });
                                   });
-                                });
-                            }
+                                },
+                              );
                           },
                           child: Container(
                               height: 100.h,

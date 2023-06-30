@@ -24,7 +24,7 @@ class InfoContainerProvider extends ChangeNotifier {
   List<String> get chargeType => _chargeType;
 
   final List<TypeCharge> _containersList = [
-    TypeCharge(typeChargingList: [TypeCharging(typeCharging: AppData.itemtype.first, index: _indexCon)])
+    TypeCharge(typeChargingList: [TypeCharging(typeCharging: AppData.typeChargeItem.first, index: _indexCon)])
   ];
 
   List<TypeCharge> get containersList => _containersList;
@@ -68,7 +68,7 @@ class InfoContainerProvider extends ChangeNotifier {
 
   void addLength(int index) {
     setIndex = index;
-    _containersList[index].typeChargingList.add(TypeCharging(typeCharging: AppData.itemtype.first, index: _indexCon));
+    _containersList[index].typeChargingList.add(TypeCharging(typeCharging: AppData.typeChargeItem.first, index: _indexCon));
     notifyListeners();
   }
 
@@ -81,7 +81,7 @@ class InfoContainerProvider extends ChangeNotifier {
     if (_containersList.length < 4) {
       setIndex = containersList.length;
       _containersList
-          .add(TypeCharge(typeChargingList: [TypeCharging(typeCharging: AppData.itemtype.first, index: _indexCon)]));
+          .add(TypeCharge(typeChargingList: [TypeCharging(typeCharging: AppData.typeChargeItem.first, index: _indexCon)]));
       _brand.add(TextEditingController());
       _generation.add(TextEditingController());
       _model.add(TextEditingController());
