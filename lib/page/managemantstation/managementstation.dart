@@ -62,7 +62,7 @@ class _ManagemaentStationState extends State<ManagemaentStation>
                 ),
               ),
               Text(
-                "ຕົວກອງ",
+                translation(context).filter,
                 style: TextStyle(
                   fontSize: 16.sp,
                 ),

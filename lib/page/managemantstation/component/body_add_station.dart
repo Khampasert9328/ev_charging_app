@@ -88,18 +88,18 @@ class _BodyAddStationState extends State<BodyAddStation> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                      for(var i in context.read<InfoContainerProvider>().containersList){
-                        for(var j in i.typeChargingList){
+                      for (var i in context.read<InfoContainerProvider>().containersList) {
+                        for (var j in i.typeChargingList) {
                           print(j.typeCharging);
                         }
                       }
-                        // print(context.read<InfoContainerProvider>().containersList);
+                      // print(context.read<InfoContainerProvider>().containersList);
 
                       setState(() {
                         if (activeStep < 3) {
                           activeStep++;
                         }
-                        });
+                      });
                     },
                     child: activeStep >= 3
                         ? GestureDetector(
@@ -184,7 +184,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
                   internalPadding: 15,
                   loadingAnimation: 'images/loading_circle.json',
                   showLoadingAnimation: true,
-                  steps:  [
+                  steps: [
                     EasyStep(
                       icon: Icon(CupertinoIcons.person_alt_circle_fill),
                       title: translation(context).infomationowner,
@@ -202,7 +202,12 @@ class _BodyAddStationState extends State<BodyAddStation> {
                       title: translation(context).summary,
                     ),
                   ],
-                  onStepReached: (index) => setState(() => activeStep = index),
+                  onStepReached: (index) {
+                    if (_key.currentState!.validate()) {
+                       setState(() => activeStep = index);
+                    }
+                   
+                  },
                 ),
               ),
               SizedBox(
@@ -227,9 +232,7 @@ class _BodyAddStationState extends State<BodyAddStation> {
         );
 
       case 1:
-        return InfoContainnaer(
-         
-        );
+        return InfoContainnaer();
 
       case 2:
         return const InfoLocationStation();

@@ -66,7 +66,6 @@ class _BodyEditStationState extends State<BodyEditStation> {
   void initState() {
     final location = context.read<InfoLocationProvider>();
     final container = context.read<InfoContainerProvider>();
-    final company = context.read<InfoCompanyProvider>();
 
     namcompany.text = widget.models!.name;
     count = widget.models!.amount.toString();
@@ -329,7 +328,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                       // for (var i in widget.models!.constainner) {
                       //   typecharg = i.typeCharge;
                       // }
-                      final data = container.containersList[index];
+                    
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

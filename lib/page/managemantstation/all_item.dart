@@ -69,8 +69,8 @@ class _AllItemState extends State<AllItem> {
                       width: 50.w,
                     ))
                   : model.getchargmodels == null
-                      ? const Center(
-                          child: Text("ບໍ່ມີຂໍ້ມູນ"),
+                      ?  Center(
+                          child: Text(translation(context).nodata),
                         )
                       : ListView.builder(
                           itemCount: model.getchargmodels!.data.length,
@@ -132,7 +132,7 @@ class _AllItemState extends State<AllItem> {
                                               Row(
                                                 children: [
                                                   Text(
-                                                    "ເຈົ້າຂອງ: ",
+                                                    "${translation(context).owner}: ",
                                                     style: TextStyle(
                                                       fontSize: 12.sp,
                                                     ),
@@ -146,14 +146,14 @@ class _AllItemState extends State<AllItem> {
                                               Row(
                                                 children: [
                                                   Text(
-                                                    "ສະຖານທີ່: ",
+                                                    "${translation(context).place}: ",
                                                     style: TextStyle(
                                                       fontSize: 12.sp,
                                                     ),
                                                   ),
                                                   Flexible(
                                                     child: Text(
-                                                      "ແຂວງ ${data.province} ເມືອງ ${data.district} ບ້ານ ${data.village}",
+                                                      "${translation(context).province} ${data.province} ${translation(context).district} ${data.district} ${translation(context).village} ${data.village}",
                                                       style: TextStyle(
                                                         fontSize: 12.sp,
                                                         color: EV_Colors.yellowbtncolor,

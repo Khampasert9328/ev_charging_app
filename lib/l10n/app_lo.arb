@@ -6,6 +6,7 @@
     "setting":"ຕັ້ງຄ່າ",
     "about":"ກ່ຽວກັບ",
     "logout":"ອອກຈາກລະບົບ",
+    "login":"ເຂົ້າສູ່ລະບົບ",
     "allitem":"ລາຍການທັງໝົດ",
     "addinfomation":"ເພີ່ມຂໍ້ມູນສະຖານີ",
     "addinfomationstation":"ເພີ່ມຂໍ້ມູນຕູ້ສາກ",
@@ -41,6 +42,15 @@
     "chooselocation":"ເລືອກຕຳແໜ່ງ",
     "infomationcharge":"ຂໍ້ມູນຕູ້ສາກ",
     "summary":"ສະຫຼຸບ",
-    "choosechargetype":"ເລືອກປະເພດຫົວສາກ"
+    "choosechargetype":"ເລືອກປະເພດຫົວສາກ",
+    "email":"ອີເມລ",
+    "password":"ລະຫັດຜ່ານ",
+    "forgotpassword":"ລືມລະຫັດຜ່ານ?",
+    "sendemail":"ກຳລັງສົ່ງອີເມລ",
+    "loading":"ກຳລັງເຂົ້າສູ່ລະບົບ...",
+    "chooselanguage":"ເລືອກພາສາ",
+    "checkemail":"ກວດສອບອີເມລຂອງເຈົ້າ",
+    "changepassword":"ກຳລັງປ່ຽນລະຫັດຜ່ານ...",
+    "filter":"ຕົວກອງ"
 
 }

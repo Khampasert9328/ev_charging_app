@@ -2,6 +2,7 @@ import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/page/register/forgot_password.dart';
 import 'package:ev_charging/service/auth/login_service.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,8 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         centerTitle: true,
-        title: const Text(
-          "ເຂົ້າສູ່ລະບົບ",
+        title:  Text(
+         translation(context).login,
           style: TextStyle(
             color: Colors.black,
           ),
@@ -55,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
           width: double.infinity,
           decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
           child: Text(
-            "ເຂົ້າສູ່ລະບົບ",
+            translation(context).login,
             style: TextStyle(fontSize: 20.sp, color: EV_Colors.whitecolor, fontWeight: FontWeight.bold),
           ),
         ),
@@ -106,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             prefixIcon: const Icon(Icons.email_outlined),
                             filled: true,
                             fillColor: Colors.grey[200],
-                            hintText: "ອີເມລ",
+                            hintText: translation(context).email,
                           ),
                         ),
                         SizedBox(
@@ -140,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             filled: true,
                             fillColor: Colors.grey[200],
-                            hintText: "ລະຫັດຜ່ານ",
+                            hintText: translation(context).password,
                             border: OutlineInputBorder(
                                 borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
                           ),
@@ -150,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(context, MaterialPageRoute(builder: (_) => const ForgotPassword()));
                           },
                           child: Text(
-                            "ລືມລະຫັດຜ່ານ?",
+                            translation(context).forgotpassword,
                             style: TextStyle(color: Colors.black, fontSize: 15.sp),
                           ),
                         ),

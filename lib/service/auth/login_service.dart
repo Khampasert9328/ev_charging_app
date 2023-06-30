@@ -9,6 +9,7 @@ import 'package:ev_charging/models/auth/ForgotPassword.dart';
 import 'package:ev_charging/models/auth/login_models.dart';
 import 'package:ev_charging/page/home/homemaps.dart';
 import 'package:ev_charging/page/register/login.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:ev_charging/widget/dialog/dialogerror.dart';
 import 'package:ev_charging/widget/dialog/dialogsucces.dart';
 import 'package:ev_charging/widget/dialog/loadingscreen.dart';
@@ -22,7 +23,7 @@ Future<void> loginservice(String email, String password, context) async {
         barrierDismissible: false,
         context: context,
         builder: (_) {
-          return LoadingDialog(title: "ກຳລັງເຂົ້າສູ່ລະບົບ...");
+          return LoadingDialog(title: translation(context).loading);
         });
     String url = AppDomain.login;
     Object body = jsonEncode(
@@ -73,7 +74,7 @@ Future<void> forgotpassword(String email, context) async {
         barrierDismissible: false,
         context: context,
         builder: (_) {
-          return LoadingDialog(title: "ກຳລັງສົ່ງອີເມລ...");
+          return LoadingDialog(title: translation(context).sendemail);
         });
     String url = AppDomain.forgotpassword;
     Object body = jsonEncode(
@@ -101,7 +102,7 @@ Future<void> forgotpassword(String email, context) async {
           context: context,
           builder: (_) {
             return DialogSucces(
-              title: "ກາລຸນາກວດສອບອີເມລຂອງທ່ານ",
+              title: translation(context).checkemail,
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
@@ -135,7 +136,7 @@ Future<void> changpassword(context, String password) async {
       barrierDismissible: false,
         context: context,
         builder: (_) {
-          return LoadingDialog(title: "ກຳລັງປ່ຽນລະຫັດຜ່ານ...");
+          return LoadingDialog(title: translation(context).changepassword);
         });
 
     String? token = await PreFer().getToken();

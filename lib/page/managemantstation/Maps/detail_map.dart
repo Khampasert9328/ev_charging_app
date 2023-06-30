@@ -31,9 +31,7 @@ class _DetailMapsState extends State<DetailMaps> {
       ui.FrameInfo fi = await codec.getNextFrame();
       return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
     }
-
     final Uint8List markerIcon = await getBytesFromAsset('images/logocharge.png', 150);
-
     markers.clear();
     setState(() {
       markers.add(
@@ -54,7 +52,6 @@ class _DetailMapsState extends State<DetailMaps> {
 
   @override
   Widget build(BuildContext context) {
-    // _kMapCenter = LatLng(double.parse(model.latitude??"0"), double.parse(model.longitude??"0"));
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

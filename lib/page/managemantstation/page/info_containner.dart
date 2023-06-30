@@ -4,7 +4,6 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/constant/data.dart';
-import 'package:ev_charging/page/managemantstation/page/textformfield/textform.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:ev_charging/utils/translate/language_constants.dart';
 
@@ -128,8 +127,8 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                 ),
                                 const SizedBox(width: 10),
                                 ElevatedButton(
-                                  style: ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll<Color>(EV_Colors.yellowbtncolor)),
+                                    style: ButtonStyle(
+                                        backgroundColor: MaterialStatePropertyAll<Color>(EV_Colors.yellowbtncolor)),
                                     onPressed: () {
                                       if (models.containersList.length > 1) {
                                         models.brand.removeAt(models.containersList.length - 1);
@@ -141,7 +140,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                     },
                                     child: Text(
                                       translation(context).delete,
-                                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                                     )),
                               ],
                             )
@@ -188,7 +187,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                               translation(context).branch,
+                                translation(context).branch,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.bold,
@@ -197,11 +196,24 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                               SizedBox(
                                 height: 5.h,
                               ),
-                              TextFormInfo(
-                                ontap: (value) {},
-                                text: "ປ້ອນຊື່ຍີ່ຫໍ້",
+                              TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                cursorColor: Colors.grey,
+                                obscureText: false,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "ກາລຸນາປ້ອນຍີ່ຫໍ້";
+                                  }
+                                  return null;
+                                },
                                 controller: models.brand[index1],
-                                onchange: () {},
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
+                                  filled: true,
+                                  fillColor: Colors.grey[200],
+                                  hintText: translation(context).branch,
+                                ),
                               ),
                               SizedBox(
                                 height: 7.h,
@@ -216,13 +228,24 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                               SizedBox(
                                 height: 5.h,
                               ),
-                              TextFormInfo(
-                                ontap: (value) {},
-                                text: "ປ້ອນຊື່ລຸ້ນ",
-                                controller: models.generation[index1],
-                                onchange: () {
-                                  // models.addGen = generation?[index].text;
+                              TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                cursorColor: Colors.grey,
+                                obscureText: false,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "ກາລຸນາປ້ອນຍີ່ຫໍ້";
+                                  }
+                                  return null;
                                 },
+                                controller: models.generation[index1],
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
+                                  filled: true,
+                                  fillColor: Colors.grey[200],
+                                  hintText: translation(context).generation,
+                                ),
                               ),
                               SizedBox(
                                 height: 7.h,
@@ -237,11 +260,24 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                               SizedBox(
                                 height: 5.h,
                               ),
-                              TextFormInfo(
-                                ontap: (value) {},
-                                text: "ປ້ອນຊື່ໂມເດລ",
+                              TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                cursorColor: Colors.grey,
+                                obscureText: false,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "ກາລຸນາປ້ອນໂມເດລ";
+                                  }
+                                  return null;
+                                },
                                 controller: models.model[index1],
-                                onchange: () {},
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
+                                  filled: true,
+                                  fillColor: Colors.grey[200],
+                                  hintText: translation(context).models,
+                                ),
                               ),
                               SizedBox(
                                 height: 7.h,
@@ -275,7 +311,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                           child: DropdownButton(
                                               isExpanded: true,
                                               underline: const SizedBox(),
-                                              hint:  Text(translation(context).choosechargetype),
+                                              hint: Text(translation(context).choosechargetype),
                                               value:
                                                   models.containersList[index1].typeChargingList[index2].typeCharging,
                                               items: AppData.itemtype.map((e) {
@@ -320,7 +356,7 @@ class _InfoContainnaerState extends State<InfoContainnaer> {
                                             decoration: const BoxDecoration(
                                               color: Colors.white,
                                             ),
-                                            child:  Text(
+                                            child: Text(
                                               translation(context).addchargetype,
                                               style: TextStyle(
                                                 color: EV_Colors.yellowbtncolor,

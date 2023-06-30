@@ -15,6 +15,14 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   String? token;
+  // @override
+  // void initState() {
+  //   PreFer().getToken().then((value) async {
+  //     Map<String, dynamic> playload = Jwt.parseJwt(value!);
+  //   String? addmin = playload["id"];
+  //   });
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +72,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         border: Border.all(color: Colors.black)),
                     child: DropdownButton<Language>(
                         underline: const SizedBox(),
-                        hint: const Text('ເລືອກພາສາ'),
+                        hint: Text(
+                          translation(context).chooselanguage,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                         items: Language.languagelist()
                             .map<DropdownMenuItem<Language>>(
                               (e) => DropdownMenuItem<Language>(
@@ -85,7 +96,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           if (language != null) {
                             Locale locale = await setLocale(language.languageCode!);
                             MyApp.setLocale(context, Locale(locale.toString()));
-                            
                           }
                         }),
                   ),
