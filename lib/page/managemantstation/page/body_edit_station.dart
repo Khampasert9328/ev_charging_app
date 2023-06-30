@@ -290,7 +290,9 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                         'ເພີ່ມ', (){model.addEvCharger();}
                                     ),
                                     const SizedBox(width: 10),
-                                    model.containersList.isEmpty ? const SizedBox() : _countBtn('ລົບ', (){}),
+                                    model.containersList.isEmpty ? const SizedBox() : _countBtn('ລົບ', (){
+                                      model.delEvCharger();
+                                    }),
                                   ],
                                 )
                               ],

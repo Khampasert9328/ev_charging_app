@@ -6,6 +6,7 @@ import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
+import 'package:ev_charging/page/managemantstation/provider/update_info_provider.dart';
 import 'package:ev_charging/page/onboardingscreen/onboardingsreen.dart';
 import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:provider/provider.dart';
@@ -61,7 +62,8 @@ class _MyAppState extends State<MyApp> {
             ChangeNotifierProvider(create: (_) => InfoContainerProvider()),
             ChangeNotifierProvider(create: (_) => InfoChargProvider()),
             ChangeNotifierProvider(create: (_) => InfoLocationProvider()),
-            ChangeNotifierProvider(create: (_) => GetChargeByIdProvider())
+            ChangeNotifierProvider(create: (_) => GetChargeByIdProvider()),
+            ChangeNotifierProvider(create: (_) => UpdateInfoProvider()),
           ],
           child: MaterialApp(
             title: "Lao Charging Station",
