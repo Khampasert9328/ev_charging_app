@@ -1,7 +1,6 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, unnecessary_null_comparison
 
 import 'dart:async';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -74,7 +73,7 @@ class _DetailMapsState extends State<DetailMaps> {
       ),
       body: Stack(
         children: [
-          widget.lat == null && widget.long == null
+          widget.lat ==null && widget.long == null
               ? Center(
                   child: Image.asset(
                     "images/loading.gif",
