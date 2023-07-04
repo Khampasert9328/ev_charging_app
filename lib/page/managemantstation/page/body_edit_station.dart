@@ -53,6 +53,22 @@ class _BodyEditStationState extends State<BodyEditStation> {
   //
   // int? length;
 
+  String value = '';
+  bool isOnPress = false;
+
+  void loopContainer(){
+    final info = context.read<UpdateInfoProvider>();
+   if(info.containersList.isEmpty){
+     for(int i = 0; i < widget.models!.constainner.length; i++){
+       info.containersList.add(UpdateTypeCharge(typeChargingList: [
+         for(int j = 0; j < widget.models!.constainner[i].typeCharge.length; j++)
+           UpdateTypeCharging(typeCharging: widget.models!.constainner[i].typeCharge[j].typeCharging, index: i)
+       ]));
+      }
+   }}
+
+
+
   void getTextController(){
     final info = context.read<UpdateInfoProvider>();
     for(int i = 0; i < widget.models!.constainner.length; i++){
@@ -76,22 +92,21 @@ class _BodyEditStationState extends State<BodyEditStation> {
     info.setImageStation(data!.pictureplace);
     info.setImageCpn(data!.imagecpn);
 
-
     for(int i = 0; i < data!.facilities.length; i++){
-     info.addFacilities();
-     info.facilities[i].text = data.facilities[i].facilitie;
+      info.addFacilities();
+      info.facilities[i].text = data.facilities[i].facilitie;
     }
   }
 
   @override
   void initState() {
+    final info = context.read<UpdateInfoProvider>();
+
+    loopContainer();
     getTextController();
     getInfoDetail();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      print(widget.models!.constainner.length);
-      print(context.read<UpdateInfoProvider>().containersList.length);
-    });
     super.initState();
+    print("value:${info.containersList[0].typeChargingList[0].typeCharging}");
   }
 
   @override
@@ -100,7 +115,8 @@ class _BodyEditStationState extends State<BodyEditStation> {
       return Scaffold(
         bottomNavigationBar: GestureDetector(
           onTap: () async {
-            UpdateStationService.updateStationService(context, widget.models!.id, widget.models);
+            UpdateStationService.updateStationService(
+                context, widget.models!.id, widget.models);
           },
           child: Container(
             margin: const EdgeInsets.only(right: 10, left: 10, bottom: 20),
@@ -130,7 +146,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                 Text(
                   "ຂໍ້ມູນເຈົ້າຂອງ",
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 9.h,
@@ -244,7 +260,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                 Text(
                   "ຂໍ້ມູນຕູ້ສາກ",
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 Container(
                   width: double.infinity,
@@ -282,15 +298,24 @@ class _BodyEditStationState extends State<BodyEditStation> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("${widget.models!.constainner.length + model.containersList.length}"),
+                                Text("${model.containersList.length}"),
                                 Spacer(),
                                 Row(
                                   children: [
                                     _countBtn(
-                                        'ເພີ່ມ', (){model.addEvCharger();}
+                                        'ເພີ່ມ', () {
+                                      model.addEvCharger();
+                                      for(int i = 0; i< model.containersList.length; i++){
+                                        print(i);
+                                        print(model.containersList.length);
+                                      }
+                                    }
                                     ),
                                     const SizedBox(width: 10),
-                                    model.containersList.isEmpty ? const SizedBox() : _countBtn('ລົບ', (){
+                                    model.containersList.isEmpty
+                                        ? const SizedBox()
+                                        :
+                                    _countBtn('ລົບ', () {
                                       model.delEvCharger();
                                     }),
                                   ],
@@ -304,476 +329,477 @@ class _BodyEditStationState extends State<BodyEditStation> {
                 SizedBox(
                   height: 15.h,
                 ),
-                // ListView.builder(
-                //     shrinkWrap: true,
-                //     physics: ScrollPhysics(),
-                //     itemCount: model.containersList.length,
-                //     itemBuilder: (context, index) {
+
+                Column(
+                  children: List.generate(
+                      model.containersList.length,
+                      // widget.models!.constainner.length,
+                          (index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "ຕູ້ທີ ${index + 1}",
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: EV_Colors.whitecolor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 7,
+                                    color: Colors.black.withOpacity(0.1),
+                                  )
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "ຍີ່ຫໍ້",
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    TextFormInfo(
+                                      text: "",
+                                      controller: model.brand[index],
+                                      onchange: () {},
+                                      ontap: (val) {
+                                        // model.brand[index].text = val;
+                                      },
+                                    ),
+                                    // TextFormField(
+                                    //   keyboardType: TextInputType.emailAddress,
+                                    //   cursorColor: Colors.grey,
+                                    //   initialValue: model.brand[index].text,
+                                    //   decoration: InputDecoration(
+                                    //     border: OutlineInputBorder(
+                                    //       borderSide: BorderSide.none,
+                                    //       borderRadius: BorderRadius.circular(10),
+                                    //     ),
+                                    //     filled: true,
+                                    //     fillColor: Colors.grey[200],
+                                    //   ),
+                                    // ),
+                                    SizedBox(
+                                      height: 7.h,
+                                    ),
+                                    Text(
+                                      "ລຸ້ນ",
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    TextFormInfo(
+                                      text: "",
+                                      controller: model.gen[index],
+                                      onchange: () {},
+                                      ontap: (val) {
+                                        model.gen[index].text = val;
+                                      },
+                                    ),
+                                    // TextFormField(
+                                    //   keyboardType: TextInputType.emailAddress,
+                                    //   cursorColor: Colors.grey,
+                                    //   initialValue: model.gen[index].text,
+                                    //   decoration: InputDecoration(
+                                    //     border: OutlineInputBorder(
+                                    //       borderSide: BorderSide.none,
+                                    //       borderRadius: BorderRadius.circular(10),
+                                    //     ),
+                                    //     filled: true,
+                                    //     fillColor: Colors.grey[200],
+                                    //   ),
+                                    //   onChanged: (val){
+                                    //     model.gen[index].text = val;
+                                    //   },
+                                    // ),
+                                    SizedBox(
+                                      height: 7.h,
+                                    ),
+                                    Text(
+                                      "ໂມເດລ",
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+                                    TextFormInfo(
+                                      text: "ປ້ອນຊື່ໂມເດລ",
+                                      controller: model.model[index],
+                                      onchange: () {},
+                                      ontap: (val) {
+                                        model.model[index].text = val;
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 7.h,
+                                    ),
+                                    Text(
+                                      "ປະເພດຫົວສາກ",
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5.h,
+                                    ),
+
+                                    Column(
+                                      children: List.generate(
+                                        // widget.models!.constainner[index].typeCharge.length,
+                                          model.containersList[index]
+                                              .typeChargingList.length,
+                                              (index2) {
+                                            return Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Container(
+                                                    margin:
+                                                    EdgeInsets.only(bottom: 10),
+                                                    padding: const EdgeInsets
+                                                        .only(
+                                                      left: 10,
+                                                      right: 10,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                      BorderRadius.circular(10),
+                                                      color: Colors.grey[200],
+                                                    ),
+                                                    child: DropdownButton(
+                                                        isExpanded: true,
+                                                        underline: const SizedBox(),
+                                                        hint: const Text(
+                                                            'ເລືອກປະເພດຫົວສາກ'),
+                                                        value:
+                                                        // model
+                                                        //     .containersList[index]
+                                                        //     .typeChargingList.isEmpty ?
+                                                        //     widget.models!
+                                                        //     .constainner[index]
+                                                        //     .typeCharge[index2]
+                                                        //     .typeCharging
+                                                        //     :
+                                                        model
+                                                            .containersList[index]
+                                                            .typeChargingList[index2]
+                                                            .typeCharging,
+                                                        items:
+                                                        AppData.typeChargeItem
+                                                            .map((e) {
+                                                          return DropdownMenuItem(
+                                                              value: e,
+                                                              child: Text(e));
+                                                        }).toList(),
+                                                        onChanged: (value) {
+                                                          model.dropDown(index, index2, value.toString());
+                                                        }),
+                                                  ),
+                                                ),
+                                                // model.containersList[index]
+                                                //             .typeChargingList
+                                                //             .length ==
+                                                //         1
+                                                //     ? const SizedBox()
+                                                //     : GestureDetector(
+                                                //         onTap: () {
+                                                //           model.delLength(index);
+                                                //         },
+                                                //         child: const Icon(
+                                                //           Icons.remove_circle_outline,
+                                                //           color: Colors.red,
+                                                //         ),
+                                                //       )
+                                              ],
+                                            );
+                                          }),
+                                    ),
+                                    SizedBox(
+                                      height: 16.h,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                          model.addLength(index);
+                                      },
+                                      child: DottedBorder(
+                                        color: EV_Colors.yellowbtncolor,
+                                        radius: const Radius.circular(10),
+                                        child: Container(
+                                            alignment: Alignment.center,
+                                            height: 45.h,
+                                            width: double.infinity,
+                                            decoration: const BoxDecoration(
+                                              color: Colors.white,
+                                            ),
+                                            child: const Text(
+                                              "+ ເພີ່ມປະເພດຫົວສາກ",
+                                              style: TextStyle(
+                                                color: EV_Colors.yellowbtncolor,
+                                              ),
+                                            )),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        );
+                      }),
+                ),
+                // Column(
+                //   children: List.generate(model.containersList.length, (newChargeIndex) {
+                //     int oldIndex = widget.models!.constainner.length;
+                //     return Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           "ຕູ້ທີ ${oldIndex + 1}",
+                //           style: TextStyle(
+                //             fontSize: 14.sp,
+                //             fontWeight: FontWeight.bold,
+                //           ),
+                //         ),
+                //         Container(
+                //           width: double.infinity,
+                //           decoration: BoxDecoration(
+                //             borderRadius: BorderRadius.circular(10),
+                //             color: EV_Colors.whitecolor,
+                //             boxShadow: [
+                //               BoxShadow(
+                //                 blurRadius: 7,
+                //                 color: Colors.black.withOpacity(0.1),
+                //               )
+                //             ],
+                //           ),
+                //           child: Padding(
+                //             padding: const EdgeInsets.all(20.0),
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 Text(
+                //                   "ຍີ່ຫໍ້",
+                //                   style: TextStyle(
+                //                     fontSize: 14.sp,
+                //                     fontWeight: FontWeight.bold,
+                //                   ),
+                //                 ),
+                //                 SizedBox(
+                //                   height: 5.h,
+                //                 ),
+                //                 TextFormInfo(
+                //                   text: "",
+                //                   controller: model.brand[oldIndex - newChargeIndex],
+                //                   onchange: () {},
+                //                   ontap: (val){
+                //                     // model.brand[index].text = val;
+                //                   },
+                //                 ),
+                //                 // TextFormField(
+                //                 //   keyboardType: TextInputType.emailAddress,
+                //                 //   cursorColor: Colors.grey,
+                //                 //   initialValue: model.brand[index].text,
+                //                 //   decoration: InputDecoration(
+                //                 //     border: OutlineInputBorder(
+                //                 //       borderSide: BorderSide.none,
+                //                 //       borderRadius: BorderRadius.circular(10),
+                //                 //     ),
+                //                 //     filled: true,
+                //                 //     fillColor: Colors.grey[200],
+                //                 //   ),
+                //                 // ),
+                //                 SizedBox(
+                //                   height: 7.h,
+                //                 ),
+                //                 Text(
+                //                   "ລຸ້ນ",
+                //                   style: TextStyle(
+                //                     fontSize: 14.sp,
+                //                     fontWeight: FontWeight.bold,
+                //                   ),
+                //                 ),
+                //                 SizedBox(
+                //                   height: 5.h,
+                //                 ),
+                //                 TextFormInfo(
+                //                   text: "",
+                //                   controller: model.gen[oldIndex - newChargeIndex],
+                //                   onchange: () {},
+                //                   ontap: (val){
+                //                     // model.gen[index].text = val;
+                //                     },
+                //                 ),
+                //                 // TextFormField(
+                //                 //   keyboardType: TextInputType.emailAddress,
+                //                 //   cursorColor: Colors.grey,
+                //                 //   initialValue: model.gen[index].text,
+                //                 //   decoration: InputDecoration(
+                //                 //     border: OutlineInputBorder(
+                //                 //       borderSide: BorderSide.none,
+                //                 //       borderRadius: BorderRadius.circular(10),
+                //                 //     ),
+                //                 //     filled: true,
+                //                 //     fillColor: Colors.grey[200],
+                //                 //   ),
+                //                 //   onChanged: (val){
+                //                 //     model.gen[index].text = val;
+                //                 //   },
+                //                 // ),
+                //                 SizedBox(
+                //                   height: 7.h,
+                //                 ),
+                //                 Text(
+                //                   "ໂມເດລ",
+                //                   style: TextStyle(
+                //                     fontSize: 14.sp,
+                //                     fontWeight: FontWeight.bold,
+                //                   ),
+                //                 ),
+                //                 SizedBox(
+                //                   height: 5.h,
+                //                 ),
+                //                 TextFormInfo(
+                //                   text: "ປ້ອນຊື່ໂມເດລ",
+                //                   controller: model.model[oldIndex - newChargeIndex],
+                //                   onchange: () {},
+                //                   ontap: (val){
+                //                     // model.model[index].text = val;
+                //                   },
+                //                 ),
+                //                 SizedBox(
+                //                   height: 7.h,
+                //                 ),
+                //                 Text(
+                //                   "ປະເພດຫົວສາກ",
+                //                   style: TextStyle(
+                //                     fontSize: 14.sp,
+                //                     fontWeight: FontWeight.bold,
+                //                   ),
+                //                 ),
+                //                 SizedBox(
+                //                   height: 5.h,
+                //                 ),
                 //
-                //     }),
-
-                Column(
-                  children: List.generate(widget.models!.constainner.length, (index) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "ຕູ້ທີ ${index + 1}",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: EV_Colors.whitecolor,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 7,
-                                color: Colors.black.withOpacity(0.1),
-                              )
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "ຍີ່ຫໍ້",
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                TextFormInfo(
-                                  text: "",
-                                  controller: model.brand[index],
-                                  onchange: () {},
-                                  ontap: (val){
-                                    // model.brand[index].text = val;
-                                  },
-                                ),
-                                // TextFormField(
-                                //   keyboardType: TextInputType.emailAddress,
-                                //   cursorColor: Colors.grey,
-                                //   initialValue: model.brand[index].text,
-                                //   decoration: InputDecoration(
-                                //     border: OutlineInputBorder(
-                                //       borderSide: BorderSide.none,
-                                //       borderRadius: BorderRadius.circular(10),
-                                //     ),
-                                //     filled: true,
-                                //     fillColor: Colors.grey[200],
-                                //   ),
-                                // ),
-                                SizedBox(
-                                  height: 7.h,
-                                ),
-                                Text(
-                                  "ລຸ້ນ",
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                TextFormInfo(
-                                  text: "",
-                                  controller: model.gen[index],
-                                  onchange: () {},
-                                  ontap: (val){
-                                    model.gen[index].text = val;                                    },
-                                ),
-                                // TextFormField(
-                                //   keyboardType: TextInputType.emailAddress,
-                                //   cursorColor: Colors.grey,
-                                //   initialValue: model.gen[index].text,
-                                //   decoration: InputDecoration(
-                                //     border: OutlineInputBorder(
-                                //       borderSide: BorderSide.none,
-                                //       borderRadius: BorderRadius.circular(10),
-                                //     ),
-                                //     filled: true,
-                                //     fillColor: Colors.grey[200],
-                                //   ),
-                                //   onChanged: (val){
-                                //     model.gen[index].text = val;
-                                //   },
-                                // ),
-                                SizedBox(
-                                  height: 7.h,
-                                ),
-                                Text(
-                                  "ໂມເດລ",
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                TextFormInfo(
-                                  text: "ປ້ອນຊື່ໂມເດລ",
-                                  controller: model.model[index],
-                                  onchange: () {},
-                                  ontap: (val){
-                                    model.model[index].text = val;
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 7.h,
-                                ),
-                                Text(
-                                  "ປະເພດຫົວສາກ",
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-
-                                // Column(
-                                //   children: List.generate(
-                                //       model.containersList[index]
-                                //           .typeCharge.length,
-                                //     // widget.models!.constainner[index].typeCharge.length,
-                                //           (index2) {
-                                //         String valueItem = 'asdnkjas';
-                                //     return Row(
-                                //       children: [
-                                //         Expanded(
-                                //           child: Container(
-                                //             margin:
-                                //                 EdgeInsets.only(bottom: 10),
-                                //             padding: const EdgeInsets.only(
-                                //               left: 10,
-                                //               right: 10,
-                                //             ),
-                                //             decoration: BoxDecoration(
-                                //               borderRadius:
-                                //                   BorderRadius.circular(10),
-                                //               color: Colors.grey[200],
-                                //             ),
-                                //             child: DropdownButton(
-                                //                 isExpanded: true,
-                                //                 underline: const SizedBox(),
-                                //                 hint: const Text(
-                                //                     'ເລືອກປະເພດຫົວສາກ'),
-                                //                 value:
-                                //                 model
-                                //                     .containersList[index]
-                                //                     .typeCharge[index2]
-                                //                 .typeCharging,
-                                //                 items:
-                                //                     AppData.typeChargeItem.map((e) {
-                                //                   return DropdownMenuItem(
-                                //                       value: e,
-                                //                       child: Text(e));
-                                //                 }).toList(),
-                                //                 onChanged: (value) {
-                                //                   model.dropDown(
-                                //                       index,
-                                //                       index2,
-                                //                       value.toString());
-                                //                 }),
-                                //           ),
-                                //         ),
-                                //         // model.containersList[index]
-                                //         //             .typeChargingList
-                                //         //             .length ==
-                                //         //         1
-                                //         //     ? const SizedBox()
-                                //         //     : GestureDetector(
-                                //         //         onTap: () {
-                                //         //           model.delLength(index);
-                                //         //         },
-                                //         //         child: const Icon(
-                                //         //           Icons.remove_circle_outline,
-                                //         //           color: Colors.red,
-                                //         //         ),
-                                //         //       )
-                                //       ],
-                                //     );
-                                //   }),
-                                // ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      model.addLength(index);
-                                    });
-                                  },
-                                  child: DottedBorder(
-                                    color: EV_Colors.yellowbtncolor,
-                                    radius: const Radius.circular(10),
-                                    child: Container(
-                                        alignment: Alignment.center,
-                                        height: 45.h,
-                                        width: double.infinity,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                        ),
-                                        child: const Text(
-                                          "+ ເພີ່ມປະເພດຫົວສາກ",
-                                          style: TextStyle(
-                                            color: EV_Colors.yellowbtncolor,
-                                          ),
-                                        )),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    );
-                  }),
-                ),
-                Column(
-                  children: List.generate(model.containersList.length, (newChargeIndex) {
-                    int oldIndex = widget.models!.constainner.length;
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "ຕູ້ທີ ${oldIndex + 1}",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: EV_Colors.whitecolor,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 7,
-                                color: Colors.black.withOpacity(0.1),
-                              )
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "ຍີ່ຫໍ້",
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                TextFormInfo(
-                                  text: "",
-                                  controller: model.brand[oldIndex - newChargeIndex],
-                                  onchange: () {},
-                                  ontap: (val){
-                                    // model.brand[index].text = val;
-                                  },
-                                ),
-                                // TextFormField(
-                                //   keyboardType: TextInputType.emailAddress,
-                                //   cursorColor: Colors.grey,
-                                //   initialValue: model.brand[index].text,
-                                //   decoration: InputDecoration(
-                                //     border: OutlineInputBorder(
-                                //       borderSide: BorderSide.none,
-                                //       borderRadius: BorderRadius.circular(10),
-                                //     ),
-                                //     filled: true,
-                                //     fillColor: Colors.grey[200],
-                                //   ),
-                                // ),
-                                SizedBox(
-                                  height: 7.h,
-                                ),
-                                Text(
-                                  "ລຸ້ນ",
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                TextFormInfo(
-                                  text: "",
-                                  controller: model.gen[oldIndex - newChargeIndex],
-                                  onchange: () {},
-                                  ontap: (val){
-                                    // model.gen[index].text = val;
-                                    },
-                                ),
-                                // TextFormField(
-                                //   keyboardType: TextInputType.emailAddress,
-                                //   cursorColor: Colors.grey,
-                                //   initialValue: model.gen[index].text,
-                                //   decoration: InputDecoration(
-                                //     border: OutlineInputBorder(
-                                //       borderSide: BorderSide.none,
-                                //       borderRadius: BorderRadius.circular(10),
-                                //     ),
-                                //     filled: true,
-                                //     fillColor: Colors.grey[200],
-                                //   ),
-                                //   onChanged: (val){
-                                //     model.gen[index].text = val;
-                                //   },
-                                // ),
-                                SizedBox(
-                                  height: 7.h,
-                                ),
-                                Text(
-                                  "ໂມເດລ",
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                TextFormInfo(
-                                  text: "ປ້ອນຊື່ໂມເດລ",
-                                  controller: model.model[oldIndex - newChargeIndex],
-                                  onchange: () {},
-                                  ontap: (val){
-                                    // model.model[index].text = val;
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 7.h,
-                                ),
-                                Text(
-                                  "ປະເພດຫົວສາກ",
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-
-                                Column(
-                                  children: List.generate(
-                                      model.containersList[newChargeIndex]
-                                          .typeChargingList.length,
-                                    // widget.models!.constainner[index].typeCharge.length,
-                                          (index2) {
-                                        // String valueItem = 'asdnkjas';
-                                    return Row(
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            margin:
-                                                EdgeInsets.only(bottom: 10),
-                                            padding: const EdgeInsets.only(
-                                              left: 10,
-                                              right: 10,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: Colors.grey[200],
-                                            ),
-                                            child: DropdownButton(
-                                                isExpanded: true,
-                                                underline: const SizedBox(),
-                                                hint: const Text(
-                                                    'ເລືອກປະເພດຫົວສາກ'),
-                                                value:
-                                                model
-                                                    .containersList[newChargeIndex]
-                                                    .typeChargingList[index2]
-                                                .typeCharging,
-                                                items:
-                                                    AppData.typeChargeItem.map((e) {
-                                                  return DropdownMenuItem(
-                                                      value: e,
-                                                      child: Text(e));
-                                                }).toList(),
-                                                onChanged: (value) {
-                                                  model.dropDown(
-                                                      newChargeIndex,
-                                                      index2,
-                                                      value.toString());
-                                                }),
-                                          ),
-                                        ),
-                                        // model.containersList[index]
-                                        //             .typeChargingList
-                                        //             .length ==
-                                        //         1
-                                        //     ? const SizedBox()
-                                        //     : GestureDetector(
-                                        //         onTap: () {
-                                        //           model.delLength(index);
-                                        //         },
-                                        //         child: const Icon(
-                                        //           Icons.remove_circle_outline,
-                                        //           color: Colors.red,
-                                        //         ),
-                                        //       )
-                                      ],
-                                    );
-                                  }),
-                                ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      model.addLength(newChargeIndex);
-                                    });
-                                  },
-                                  child: DottedBorder(
-                                    color: EV_Colors.yellowbtncolor,
-                                    radius: const Radius.circular(10),
-                                    child: Container(
-                                        alignment: Alignment.center,
-                                        height: 45.h,
-                                        width: double.infinity,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                        ),
-                                        child: const Text(
-                                          "+ ເພີ່ມປະເພດຫົວສາກ",
-                                          style: TextStyle(
-                                            color: EV_Colors.yellowbtncolor,
-                                          ),
-                                        )),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    );
-                  }),
-                ),
+                //                 Column(
+                //                   children: List.generate(
+                //                       model.containersList[newChargeIndex]
+                //                           .typeChargingList.length,
+                //                     // widget.models!.constainner[index].typeCharge.length,
+                //                           (index2) {
+                //                         // String valueItem = 'asdnkjas';
+                //                     return Row(
+                //                       children: [
+                //                         Expanded(
+                //                           child: Container(
+                //                             margin:
+                //                                 EdgeInsets.only(bottom: 10),
+                //                             padding: const EdgeInsets.only(
+                //                               left: 10,
+                //                               right: 10,
+                //                             ),
+                //                             decoration: BoxDecoration(
+                //                               borderRadius:
+                //                                   BorderRadius.circular(10),
+                //                               color: Colors.grey[200],
+                //                             ),
+                //                             child: DropdownButton(
+                //                                 isExpanded: true,
+                //                                 underline: const SizedBox(),
+                //                                 hint: const Text(
+                //                                     'ເລືອກປະເພດຫົວສາກ'),
+                //                                 value:
+                //                                 model
+                //                                     .containersList[newChargeIndex]
+                //                                     .typeChargingList[index2]
+                //                                 .typeCharging,
+                //                                 items:
+                //                                     AppData.typeChargeItem.map((e) {
+                //                                   return DropdownMenuItem(
+                //                                       value: e,
+                //                                       child: Text(e));
+                //                                 }).toList(),
+                //                                 onChanged: (value) {
+                //                                   model.dropDown(
+                //                                       newChargeIndex,
+                //                                       index2,
+                //                                       value.toString());
+                //                                 }),
+                //                           ),
+                //                         ),
+                //                         // model.containersList[index]
+                //                         //             .typeChargingList
+                //                         //             .length ==
+                //                         //         1
+                //                         //     ? const SizedBox()
+                //                         //     : GestureDetector(
+                //                         //         onTap: () {
+                //                         //           model.delLength(index);
+                //                         //         },
+                //                         //         child: const Icon(
+                //                         //           Icons.remove_circle_outline,
+                //                         //           color: Colors.red,
+                //                         //         ),
+                //                         //       )
+                //                       ],
+                //                     );
+                //                   }),
+                //                 ),
+                //                 SizedBox(
+                //                   height: 16.h,
+                //                 ),
+                //                 GestureDetector(
+                //                   onTap: () {
+                //                     setState(() {
+                //                       model.addLength(newChargeIndex);
+                //                     });
+                //                   },
+                //                   child: DottedBorder(
+                //                     color: EV_Colors.yellowbtncolor,
+                //                     radius: const Radius.circular(10),
+                //                     child: Container(
+                //                         alignment: Alignment.center,
+                //                         height: 45.h,
+                //                         width: double.infinity,
+                //                         decoration: const BoxDecoration(
+                //                           color: Colors.white,
+                //                         ),
+                //                         child: const Text(
+                //                           "+ ເພີ່ມປະເພດຫົວສາກ",
+                //                           style: TextStyle(
+                //                             color: EV_Colors.yellowbtncolor,
+                //                           ),
+                //                         )),
+                //                   ),
+                //                 )
+                //               ],
+                //             ),
+                //           ),
+                //         )
+                //       ],
+                //     );
+                //   }),
+                // ),
 
                 SizedBox(
                   height: 15.h,
@@ -858,7 +884,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                 Text(
                   "ຂໍ້ມູນສະຖານທີ່",
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 5.h,
@@ -1000,7 +1026,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                             filled: true,
                             fillColor: Colors.grey[200],
                           ),
-                          onChanged: (val){
+                          onChanged: (val) {
                             // model?.namePlace.text = val;
                             print(model.namePlace.text);
                           },
@@ -1040,7 +1066,8 @@ class _BodyEditStationState extends State<BodyEditStation> {
                           height: 7.h,
                         ),
                         Column(
-                          children: List.generate(model.facilities.length, (index) {
+                          children: List.generate(
+                              model.facilities.length, (index) {
                             return Column(
                               children: [
                                 Row(children: [
@@ -1052,7 +1079,8 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(
                                           borderSide: BorderSide.none,
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius: BorderRadius.circular(
+                                              10),
                                         ),
                                         filled: true,
                                         fillColor: Colors.grey[200],
@@ -1111,6 +1139,18 @@ class _BodyEditStationState extends State<BodyEditStation> {
         ),
       );
     });
+  }
+  @override
+  void dispose() {
+    final info = context.read<UpdateInfoProvider>();
+
+    info.containersList.clear();
+    info.facilities.clear();
+    info.namePlace.text = '';
+    info.nameCpn.text = '';
+    info.setImageStation(null);
+    info.setImageCpn(null);
+    super.dispose();
   }
 
   ElevatedButton _countBtn(String? title, VoidCallback onPress) {
