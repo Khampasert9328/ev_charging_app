@@ -1,5 +1,4 @@
 import 'package:easy_stepper/easy_stepper.dart';
-import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';
 
 import '../../../constant/data.dart';
 
@@ -43,7 +42,13 @@ class UpdateInfoProvider extends ChangeNotifier{
 
   void dropDown(int index1, int index2, String value) {
     _containersList[index1].typeChargingList[index2].typeCharging = value;
-    // _containersList[index1].typeCharge[index2].typeCharging = value;
+    notifyListeners();
+  }
+
+  void addValue(int index, int index2) {
+    setIndex = index;
+    _containersList[index].typeChargingList.add(UpdateTypeCharging(typeCharging: AppData.typeChargeItem.first, index: index2));
+
     notifyListeners();
   }
 
@@ -83,7 +88,7 @@ class UpdateInfoProvider extends ChangeNotifier{
   /// pherm tu
   void addEvCharger() {
     // if (_containersList.length < 4) {
-      setIndex = containersList.length;
+      setIndex = _containersList.length;
       _containersList.add(UpdateTypeCharge(typeChargingList: [UpdateTypeCharging(typeCharging: AppData.typeChargeItem.first, index: _indexCon)]));
       _brand.add(TextEditingController());
       _gen.add(TextEditingController());
@@ -136,6 +141,7 @@ class UpdateInfoProvider extends ChangeNotifier{
     _brand.clear();
     _gen.clear();
     _model.clear();
+    _facilities.clear();
     _indexCon = 0;
     notifyListeners();
   }

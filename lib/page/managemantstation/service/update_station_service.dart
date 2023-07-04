@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import '../../../constant/domain.dart';
 import '../../../constant/prefer.dart';
 import '../../../widget/dialog/dialogerror.dart';
-import '../../../widget/dialog/dialogsucces.dart';
 import '../../../widget/dialog/loading.dart';
 import '../../../widget/dialog/loadingscreen.dart';
 import '../managementstation.dart';
@@ -27,30 +26,30 @@ class UpdateStationService{
       });
     }
 
-    for(int i =0; i< data!.constainner.length; i++){
-      oldContainer.add({
-        "count": "ຕູ້ທີ${i+1}",
-        "brand": data.constainner[i].brand,
-        "generation": data.constainner[i].generation,
-        "model": data.constainner[i].model,
-        "type_charge": [
-          for(var j in data.constainner[i].typeCharge){
-            "type_charging" : j.typeCharging
-          }
-        ]
-      });
-    }
+    // for(int i =0; i< data!.constainner.length; i++){
+    //   oldContainer.add({
+    //     "count": "ຕູ້ທີ${i+1}",
+    //     "brand": data.constainner[i].brand,
+    //     "generation": data.constainner[i].generation,
+    //     "model": data.constainner[i].model,
+    //     "type_charge": [
+    //       for(var j in data.constainner[i].typeCharge){
+    //         "type_charging" : j.typeCharging
+    //       }
+    //     ]
+    //   });
+    // }
 
     for (int i = 0; i < model.containersList.length; i++) {
       oldContainer.add(
           {
-            "count": "ຕູ້ທີ${oldContainer.length + i + 1}",
-            "brand": model.brand[oldContainer.length + i].text,
-            "generation": model.gen[oldContainer.length + i].text,
-            "model": model.model[oldContainer.length + i].text,
+            "count": "ຕູ້ທີ${i + 1}",
+            "brand": model.brand[i].text,
+            "generation": model.gen[i].text,
+            "model": model.model[i].text,
             "type_charge" : [
               for(var j in model.containersList[i].typeChargingList) {
-                "type_charging" : j.index == i ? j.typeCharging : ""
+                  "type_charging" : j.index == i ? j.typeCharging : ""
               }
             ],
           });
@@ -85,18 +84,13 @@ class UpdateStationService{
       body: payload,
     );
     if(res.statusCode == 200){
-      print(oldContainer);
       Navigator.pop(context);
       EVDialog().showDialogSuccess(
           context, "ແຈ້ງເຕືອນ", "ແກ້ໄຂຂໍ້ມູນສຳເລັດແລ້ວ", () {
+            model.clearForm();
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ManagemaentStation()));
 
       });
-      // showDialog(context: context, builder: (_){
-      //   return DialogSucces(title: 'ເພີ່ມຂໍ້ມູນສຳເລັດ', onTap: (){
-      //     // Navigator.pop(context);
-      //   });
-      // });
     }else{
       print(oldContainer);
       Navigator.pop(context);
