@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/page/managemantstation/Maps/detail_map.dart';
 import 'package:ev_charging/page/managemantstation/edit_info-station.dart';
 import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';
@@ -18,8 +19,21 @@ class StationDetailCanEdit extends StatefulWidget {
 }
 
 class _StationDetailCanEditState extends State<StationDetailCanEdit> {
+  String? role;
+  @override
+  void initState() {
+    PreFer().getRole().then((value) {
+      setState(() {
+        role = value;
+      });
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -39,29 +53,26 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
           ),
         ),
         actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => EditInfoStation(
-                            models: widget.models,
-                            controllers: widget.models!.constainner,
-                          )));
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SvgPicture.asset("images/Edit.svg"),
-            ),
-          )
+          role == 'admin'
+              ? GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => EditInfoStation(
+                                  models: widget.models,
+                                  controllers: widget.models!.constainner,
+                                )));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: SvgPicture.asset("images/Edit.svg"),
+                  ),
+                ):SizedBox()
         ],
       ),
       bottomNavigationBar: GestureDetector(
         onTap: () async {
-          print("lat===${widget.models!.latLocation}");
-          print("lang===${widget.models!.lngLacation}");
-          //17.964365734890155
-          //102.63405089656558
           Navigator.push(
               context,
               PageTransition(
@@ -240,17 +251,44 @@ class _StationDetailCanEditState extends State<StationDetailCanEdit> {
                               "ຕູ້ທີ:${index + 1}",
                               style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                             ),
-                            Text(
-                              "ຍີ່ຫໍ້: ${data.brand}",
-                              style: TextStyle(fontSize: 16.sp),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "ຍີ່ຫໍ້:",
+                                  style: TextStyle(fontSize: 16.sp),
+                                ),
+                                Text(
+                                  "${data.brand}",
+                                  style: TextStyle(fontSize: 16.sp),
+                                ),
+                              ],
                             ),
-                            Text(
-                              "ລຸ້ນ: ${data.generation}",
-                              style: TextStyle(fontSize: 16.sp),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "ລຸ້ນ:",
+                                  style: TextStyle(fontSize: 16.sp),
+                                ),
+                                Text(
+                                  "${data.generation}",
+                                  style: TextStyle(fontSize: 16.sp),
+                                ),
+                              ],
                             ),
-                            Text(
-                              "ໂມເດລ: ${data.model}",
-                              style: TextStyle(fontSize: 16.sp),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "ໂມເດລ:",
+                                  style: TextStyle(fontSize: 16.sp),
+                                ),
+                                Text(
+                                  "${data.model}",
+                                  style: TextStyle(fontSize: 16.sp),
+                                ),
+                              ],
                             ),
                             Text(
                               "ປະເພດຫົວສາກ:",

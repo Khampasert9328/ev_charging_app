@@ -51,6 +51,9 @@
     "chooselanguage":"ເລືອກພາສາ",
     "checkemail":"ກວດສອບອີເມລຂອງເຈົ້າ",
     "changepassword":"ກຳລັງປ່ຽນລະຫັດຜ່ານ...",
+    "newchangepassword":"ປ່ຽນລະຫັດຜ່ານໃໝ່",
+    "changingpassword":"ປ່ຽນລະຫັດຜ່ານ",
+    "input":"ປ້ອນລະຫັດຜ່ານ",
     "filter":"ຕົວກອງ"
 
 }

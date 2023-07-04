@@ -3,6 +3,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ev_charging/busines%20logic/auth_provider.dart';
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/page/home/component/buttonlogout.dart';
 import 'package:ev_charging/page/home/component/drawerbody.dart';
 import 'package:ev_charging/page/home/component/drawerheader.dart';
@@ -24,6 +25,7 @@ class _HomeMapsState extends State<HomeMaps> {
 
   late StreamSubscription subscription;
   String? token;
+  String? role;
   String? startapp;
   String connectionStatus = "---";
   Widget? routewidget;
@@ -35,6 +37,11 @@ class _HomeMapsState extends State<HomeMaps> {
       checkStatus();
     });
     context.read<AuthProvider>().checklogin();
+    PreFer().getRole().then((value) {
+      setState(() {
+        role = value;
+      });
+    });
 
     super.initState();
   }
@@ -74,7 +81,7 @@ class _HomeMapsState extends State<HomeMaps> {
 
   @override
   Widget build(BuildContext context) {
-   token = context.read<AuthProvider>().token;
+    token = context.read<AuthProvider>().token;
     return SafeArea(
       child: Scaffold(
         key: _globalKey,
@@ -105,7 +112,7 @@ class _HomeMapsState extends State<HomeMaps> {
                 token == null
                     ? SizedBox()
                     : Text(
-                        "ສະເພາະຜູ້ຮັບຜິດຊອບເທົ່ານັ້ນ",
+                        "$role",
                         style: TextStyle(
                           fontSize: 15.sp,
                         ),
@@ -132,10 +139,9 @@ class _HomeMapsState extends State<HomeMaps> {
                 child: Center(
                   child: IconButton(
                       onPressed: () {
-                       setState(() {
+                        setState(() {
                           _globalKey.currentState!.openDrawer();
-                       });
-                       
+                        });
                       },
                       icon: const Icon(
                         FontAwesomeIcons.barsStaggered,
