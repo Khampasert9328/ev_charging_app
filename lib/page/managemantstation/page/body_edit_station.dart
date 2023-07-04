@@ -2,18 +2,10 @@
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:ev_charging/constant/color.dart';
-import 'package:ev_charging/page/managemantstation/models/cily/city_models.dart';
 import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';
-import 'package:ev_charging/page/managemantstation/models/province/province_models.dart';
-import 'package:ev_charging/page/managemantstation/models/village/village_models.dart';
 import 'package:ev_charging/page/managemantstation/page/textformfield/textform.dart';
-import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
-import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
-import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
 import 'package:ev_charging/page/managemantstation/provider/update_info_provider.dart';
 import 'package:ev_charging/page/managemantstation/service/update_station_service.dart';
-import 'package:ev_charging/widget/dialog/loading.dart';
-import 'package:ev_charging/widget/dropdown/dropwonwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -30,28 +22,7 @@ class BodyEditStation extends StatefulWidget {
 }
 
 class _BodyEditStationState extends State<BodyEditStation> {
-  //
-  // String? valueItemType;
-  // String? valueItem;
-  // int lengthDropdown = 1;
-  // int lengthText = 1;
-  // TextEditingController brand = TextEditingController();
-  // TextEditingController generation = TextEditingController();
-  // TextEditingController model = TextEditingController();
-  // final nameCompany = TextEditingController();
-  // TextEditingController _namePlace = TextEditingController();
-  // TextEditingController _nameFacilities = TextEditingController();
-  //
-  // // List<TypeCharge> typecharg = [];
-  // String? count;
-  // String? provinces;
-  // String? district;
-  // String? village;
-  // String? namePlace;
-  // String? imageLogo;
-  // String? imageplace;
-  //
-  // int? length;
+
 
   String value = '';
   bool isOnPress = false;
@@ -88,13 +59,20 @@ class _BodyEditStationState extends State<BodyEditStation> {
     final data = widget.models;
 
     info.namePlace.text = data!.nameplace;
-    info.nameCpn.text = data!.name;
-    info.setImageStation(data!.pictureplace);
-    info.setImageCpn(data!.imagecpn);
+    info.nameCpn.text = data.name;
+    info.setImageStation(data.pictureplace);
+    info.setImageCpn(data.imagecpn);
 
+<<<<<<< HEAD
     for(int i = 0; i < data!.facilities.length; i++){
       info.addFacilities();
       info.facilities[i].text = data.facilities[i].facilitie;
+=======
+
+    for(int i = 0; i < data.facilities.length; i++){
+     info.addFacilities();
+     info.facilities[i].text = data.facilities[i].facilitie;
+>>>>>>> xaiy_ev
     }
   }
 
@@ -329,6 +307,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                 SizedBox(
                   height: 15.h,
                 ),
+<<<<<<< HEAD
 
                 Column(
                   children: List.generate(
@@ -800,6 +779,337 @@ class _BodyEditStationState extends State<BodyEditStation> {
                 //     );
                 //   }),
                 // ),
+=======
+               
+                Column(
+                  children: List.generate(widget.models!.constainner.length, (index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "ຕູ້ທີ ${index + 1}",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: EV_Colors.whitecolor,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 7,
+                                color: Colors.black.withOpacity(0.1),
+                              )
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "ຍີ່ຫໍ້",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                TextFormInfo(
+                                  text: "",
+                                  controller: model.brand[index],
+                                  onchange: () {},
+                                  ontap: (val){
+                                  },
+                                ),
+                              
+                                SizedBox(
+                                  height: 7.h,
+                                ),
+                                Text(
+                                  "ລຸ້ນ",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                TextFormInfo(
+                                  text: "",
+                                  controller: model.gen[index],
+                                  onchange: () {},
+                                  ontap: (val){
+                                    model.gen[index].text = val;                                    },
+                                ),
+                               
+                                SizedBox(
+                                  height: 7.h,
+                                ),
+                                Text(
+                                  "ໂມເດລ",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                TextFormInfo(
+                                  text: "ປ້ອນຊື່ໂມເດລ",
+                                  controller: model.model[index],
+                                  onchange: () {},
+                                  ontap: (val){
+                                    model.model[index].text = val;
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 7.h,
+                                ),
+                                Text(
+                                  "ປະເພດຫົວສາກ",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+
+                                SizedBox(
+                                  height: 16.h,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      model.addLength(index);
+                                    });
+                                  },
+                                  child: DottedBorder(
+                                    color: EV_Colors.yellowbtncolor,
+                                    radius: const Radius.circular(10),
+                                    child: Container(
+                                        alignment: Alignment.center,
+                                        height: 45.h,
+                                        width: double.infinity,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                        ),
+                                        child: const Text(
+                                          "+ ເພີ່ມປະເພດຫົວສາກ",
+                                          style: TextStyle(
+                                            color: EV_Colors.yellowbtncolor,
+                                          ),
+                                        )),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    );
+                  }),
+                ),
+                Column(
+                  children: List.generate(model.containersList.length, (newChargeIndex) {
+                    int oldIndex = widget.models!.constainner.length;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "ຕູ້ທີ ${oldIndex + 1}",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: EV_Colors.whitecolor,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 7,
+                                color: Colors.black.withOpacity(0.1),
+                              )
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "ຍີ່ຫໍ້",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                TextFormInfo(
+                                  text: "",
+                                  controller: model.brand[oldIndex - newChargeIndex],
+                                  onchange: () {},
+                                  ontap: (val){
+                                  },
+                                ),
+                              
+                                SizedBox(
+                                  height: 7.h,
+                                ),
+                                Text(
+                                  "ລຸ້ນ",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                TextFormInfo(
+                                  text: "",
+                                  controller: model.gen[oldIndex - newChargeIndex],
+                                  onchange: () {},
+                                  ontap: (val){
+                                    },
+                                ),
+                               
+                                SizedBox(
+                                  height: 7.h,
+                                ),
+                                Text(
+                                  "ໂມເດລ",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                TextFormInfo(
+                                  text: "ປ້ອນຊື່ໂມເດລ",
+                                  controller: model.model[oldIndex - newChargeIndex],
+                                  onchange: () {},
+                                  ontap: (val){
+                                    // model.model[index].text = val;
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 7.h,
+                                ),
+                                Text(
+                                  "ປະເພດຫົວສາກ",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+
+                                Column(
+                                  children: List.generate(
+                                      model.containersList[newChargeIndex]
+                                          .typeChargingList.length,
+                                    // widget.models!.constainner[index].typeCharge.length,
+                                          (index2) {
+                                        // String valueItem = 'asdnkjas';
+                                    return Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            margin:
+                                                EdgeInsets.only(bottom: 10),
+                                            padding: const EdgeInsets.only(
+                                              left: 10,
+                                              right: 10,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: Colors.grey[200],
+                                            ),
+                                            child: DropdownButton(
+                                                isExpanded: true,
+                                                underline: const SizedBox(),
+                                                hint: const Text(
+                                                    'ເລືອກປະເພດຫົວສາກ'),
+                                                value:
+                                                model
+                                                    .containersList[newChargeIndex]
+                                                    .typeChargingList[index2]
+                                                .typeCharging,
+                                                items:
+                                                    AppData.typeChargeItem.map((e) {
+                                                  return DropdownMenuItem(
+                                                      value: e,
+                                                      child: Text(e));
+                                                }).toList(),
+                                                onChanged: (value) {
+                                                  model.dropDown(
+                                                      newChargeIndex,
+                                                      index2,
+                                                      value.toString());
+                                                }),
+                                          ),
+                                        ),
+                                       
+                                      ],
+                                    );
+                                  }),
+                                ),
+                                SizedBox(
+                                  height: 16.h,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      model.addLength(newChargeIndex);
+                                    });
+                                  },
+                                  child: DottedBorder(
+                                    color: EV_Colors.yellowbtncolor,
+                                    radius: const Radius.circular(10),
+                                    child: Container(
+                                        alignment: Alignment.center,
+                                        height: 45.h,
+                                        width: double.infinity,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                        ),
+                                        child: const Text(
+                                          "+ ເພີ່ມປະເພດຫົວສາກ",
+                                          style: TextStyle(
+                                            color: EV_Colors.yellowbtncolor,
+                                          ),
+                                        )),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    );
+                  }),
+                ),
+>>>>>>> xaiy_ev
 
                 SizedBox(
                   height: 15.h,
@@ -906,102 +1216,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Text(
-                        //   "ແຂວງ",
-                        //   style: TextStyle(
-                        //     fontSize: 14.sp,
-                        //     fontWeight: FontWeight.bold,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 7.h,
-                        // ),
-                        // DropDownWidget(
-                        //   item: ProVinceModel.province.map((Map value) {
-                        //     return DropdownMenuItem<String>(
-                        //       value: value["_id"],
-                        //       child: Text(value["pro_name"]),
-                        //     );
-                        //   }).toList(),
-                        //   value: provinces,
-                        //   onChange: (String? value) {},
-                        //   hint: widget.models!.province,
-                        //   validator: (value) {
-                        //     if (value == null || value == "") {
-                        //       return 'ກະລຸນາເລືອກຂໍ້ມູນ';
-                        //     }
-                        //     return null;
-                        //   },
-                        // ),
-                        // SizedBox(
-                        //   height: 5.h,
-                        // ),
-                        // Text(
-                        //   "ເມືອງ",
-                        //   style: TextStyle(
-                        //     fontSize: 14.sp,
-                        //     fontWeight: FontWeight.bold,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 7.h,
-                        // ),
-                        // Container(
-                        //   padding: const EdgeInsets.only(left: 10, right: 10),
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(10),
-                        //     color: Colors.grey[200],
-                        //   ),
-                        //   child: DropDownWidget(
-                        //     item: CityModel.city
-                        //         .where(
-                        //             (element) => element["pro_id"] == provinces)
-                        //         .map((Map value) {
-                        //       return DropdownMenuItem<String>(
-                        //           value: value["_id"],
-                        //           child: Text(value["dist_name"]));
-                        //     }).toList(),
-                        //     value: district,
-                        //     onChange: (String? value) {},
-                        //     hint: widget.models!.district,
-                        //     validator: (value) {
-                        //       if (value == null || value == "") {
-                        //         return 'ກະລຸນາເລືອກຂໍ້ມູນ';
-                        //       }
-                        //       return null;
-                        //     },
-                        //   ),
-                        // ),
-                        // Text(
-                        //   "ບ້ານ",
-                        //   style: TextStyle(
-                        //     fontSize: 14.sp,
-                        //     fontWeight: FontWeight.bold,
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 7.h,
-                        // ),
-                        // DropDownWidget(
-                        //   item: Village.village
-                        //       .where(
-                        //           (element) => element["dist_id"] == district)
-                        //       .map<DropdownMenuItem<String>>((value) {
-                        //     return DropdownMenuItem<String>(
-                        //       value: value["_id"],
-                        //       child: Text(value["vill_name"]),
-                        //     );
-                        //   }).toList(),
-                        //   value: village,
-                        //   onChange: (String? value) {},
-                        //   hint: widget.models!.village,
-                        //   validator: (value) {
-                        //     if (value == null || value == "") {
-                        //       return 'ກະລຸນາເລືອກຂໍ້ມູນ';
-                        //     }
-                        //     return null;
-                        //   },
-                        // ),
+                  
                         SizedBox(
                           height: 5.h,
                         ),
