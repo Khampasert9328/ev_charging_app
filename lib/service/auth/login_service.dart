@@ -28,7 +28,6 @@ Future<void> loginservice(String email, String password, context) async {
     String url = AppDomain.login;
     Object body = jsonEncode(
       {
-        
         "email": email,
         "password": password,
       },

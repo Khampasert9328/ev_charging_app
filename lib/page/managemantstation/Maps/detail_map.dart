@@ -31,6 +31,7 @@ class _DetailMapsState extends State<DetailMaps> {
       ui.FrameInfo fi = await codec.getNextFrame();
       return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
     }
+
     final Uint8List markerIcon = await getBytesFromAsset('images/logocharge.png', 150);
     markers.clear();
     setState(() {
@@ -75,12 +76,12 @@ class _DetailMapsState extends State<DetailMaps> {
         children: [
           widget.lat == null && widget.long == null
               ? Center(
-                child: Image.asset(
+                  child: Image.asset(
                     "images/loading.gif",
                     height: 50.h,
                     width: 50.w,
                   ),
-              )
+                )
               : GoogleMap(
                   markers: Set<Marker>.of(markers),
                   onMapCreated: _onMapCreate,

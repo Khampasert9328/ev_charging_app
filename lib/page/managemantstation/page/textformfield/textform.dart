@@ -22,6 +22,7 @@ class TextFormInfo extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
+        keyboardType: TextInputType.text,
         onChanged: ontap,
         controller: controller,
         onEditingComplete: onchange,

@@ -3,7 +3,9 @@
 
 import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';
 import 'package:ev_charging/page/managemantstation/page/body_edit_station.dart';
+import 'package:ev_charging/page/managemantstation/provider/update_info_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EditInfoStation extends StatefulWidget {
   DataGetInfoCharg? models;
@@ -15,6 +17,12 @@ class EditInfoStation extends StatefulWidget {
 }
 
 class _EditInfoStationState extends State<EditInfoStation> {
+
+  @override
+  void initState() {
+    // final model = context.read<UpdateInfoProvider>();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +30,7 @@ class _EditInfoStationState extends State<EditInfoStation> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
+            context.read<UpdateInfoProvider>().clearForm();
             Navigator.pop(context);
           },
           icon: const Icon(
