@@ -48,7 +48,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
   String? valueitem;
   bool onOpenvil = false;
   int lengthtext = 1;
-  
+
   _getLocation() async {
     final model = context.read<InfoLocationProvider>();
     loading = true;
@@ -109,7 +109,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                   translation(context).province,
+                    translation(context).province,
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
@@ -276,13 +276,26 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                   SizedBox(
                     height: 7.h,
                   ),
-                  TextFormInfo(
-                    text: "ປ້ອນຊື່ສະຖານທີ່",
-                    controller: nameplace,
-                    onchange: () {},
-                    ontap: (value) {
+                  TextFormField(
+                    onChanged: (value) {
                       models.setNamPlace(value);
                     },
+                    keyboardType: TextInputType.text,
+                    cursorColor: Colors.grey,
+                    obscureText: false,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "ກາລຸນາປ້ອນຊື່ສະຖານທີ່";
+                      }
+                      return null;
+                    },
+                    controller: nameplace,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                      hintText: "ປ້ອນຊື່ສະຖານທີ່",
+                    ),
                   ),
                 ],
               ),
@@ -324,18 +337,24 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                       itemBuilder: (context, index) {
                         return Row(children: [
                           Expanded(
-                            child: TextFormInfo(
-                              text: "${translation(context).example}: ຮ້ານ Amazon cafe",
-                              controller: models.facilities[index],
-                              onchange: () {},
-                              ontap: (value) {
-                                // if (models.facilities.isEmpty) {
-                                //   models.addlistplace(value);
-                                // }
-                                // setState(() {
-                                //   models.facilities[index] = value.toString();
-                                // });
+                            child: TextFormField(
+                              keyboardType: TextInputType.emailAddress,
+                              cursorColor: Colors.grey,
+                              obscureText: false,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "ກາລຸນາປ້ອນຊື່ບໍລິສັດ";
+                                }
+                                return null;
                               },
+                              controller: models.facilities[index],
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
+                                filled: true,
+                                fillColor: Colors.grey[200],
+                                hintText: "ຕົວຢ່າງ: ຮ້ານ Amazon Cafe",
+                              ),
                             ),
                           ),
                           models.facilities.length == 1
@@ -368,7 +387,7 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                           decoration: const BoxDecoration(
                             color: Colors.white,
                           ),
-                          child:  Text(
+                          child: Text(
                             translation(context).addplace,
                             style: TextStyle(
                               color: EV_Colors.yellowbtncolor,
@@ -440,15 +459,15 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                     height: 5.h,
                   ),
                   GestureDetector(
-                    onTap: ()async{
-                      update = await Navigator.push(context, PageTransition(child: const SimpleMaps(), type: PageTransitionType.fade));
-                      if(update == true){
+                    onTap: () async {
+                      update = await Navigator.push(
+                          context, PageTransition(child: const SimpleMaps(), type: PageTransitionType.fade));
+                      if (update == true) {
                         setState(() {
                           _update();
                         });
                       }
                     },
-                    
                     child: Container(
                       alignment: Alignment.center,
                       height: 50.h,

@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
             ChangeNotifierProvider(create: (_) => InfoChargProvider()),
             ChangeNotifierProvider(create: (_) => InfoLocationProvider()),
             ChangeNotifierProvider(create: (_) => GetChargeByIdProvider()),
-            ChangeNotifierProvider(create: (_) => UpdateInfoProvider()),
+            ChangeNotifierProvider(create: (_) =>UpdateInfoProvider())
           ],
           child: MaterialApp(
             title: "Lao Charging Station",

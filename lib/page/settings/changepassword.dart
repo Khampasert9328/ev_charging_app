@@ -1,5 +1,6 @@
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/service/auth/login_service.dart';
+import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,8 +29,8 @@ class _ChangePasswordState extends State<ChangePassword> {
           ),
         ),
         centerTitle: true,
-        title: const Text(
-          "ປ່ຽນລະຫັດຜ່ານ",
+        title:  Text(
+          translation(context).changingpassword,
           style: TextStyle(
             color: Colors.black,
           ),
@@ -86,7 +87,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   ),
                   filled: true,
                   fillColor: Colors.grey[200],
-                  hintText: "ປ້ອນລະຫັດຜ່ານ:",
+                  hintText: translation(context).input,
                   border: InputBorder.none,
                 ),
               ),
@@ -107,7 +108,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       color: EV_Colors.yellowbtncolor,
                       borderRadius: BorderRadius.circular(10)),
                   child: Text(
-                    "ປ່ຽນລະຫັດຜ່ານໃໝ່",
+                    translation(context).newchangepassword,
                     style: TextStyle(
                         fontSize: 20.sp,
                         color: EV_Colors.whitecolor,

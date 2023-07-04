@@ -51,5 +51,8 @@
     "sendemail":"Sending Email...",
     "checkemail":"Checking Your Email ",
     "changepassword":"Change Password",
+    "newchangepassword":"New Change Password",
+    "changingpassword":"Change Password",
+    "input":"Input Password",
     "filter":"Filter"
 }
