@@ -64,7 +64,9 @@ class _ShowMapsState extends State<ShowMaps> {
 
   @override
   void initState() {
-    context.read<InfoChargProvider>().getchargprovider();
+    setState(() {
+      context.read<InfoChargProvider>().getchargprovider();
+    });
     super.initState();
   }
 

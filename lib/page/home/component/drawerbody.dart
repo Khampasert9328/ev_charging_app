@@ -1,3 +1,4 @@
+import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/page/managemantstation/managementstation.dart';
 import 'package:ev_charging/page/settings/settings.dart';
 import 'package:ev_charging/page/stationall/stationall.dart';
@@ -15,6 +16,17 @@ class EVDrawerBody extends StatefulWidget {
 }
 
 class _EVDrawerBodyState extends State<EVDrawerBody> {
+  String? role;
+  @override
+  void initState() {
+    PreFer().getRole().then((value) {
+      setState(() {
+        role = value;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,9 +34,8 @@ class _EVDrawerBodyState extends State<EVDrawerBody> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          widget.token == null
-              ? SizedBox()
-              : ListTile(
+          role == 'admin'
+              ? ListTile(
                   onTap: () {
                     Navigator.push(
                       context,
@@ -40,9 +51,12 @@ class _EVDrawerBodyState extends State<EVDrawerBody> {
                       fontSize: 18.sp,
                     ),
                   ),
-                ),
+                )
+              : SizedBox(),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+            },
             leading: SvgPicture.asset("images/icon_location.svg"),
             title: Text(
               translation(context).maps,

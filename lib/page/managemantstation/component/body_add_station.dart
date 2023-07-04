@@ -204,9 +204,8 @@ class _BodyAddStationState extends State<BodyAddStation> {
                   ],
                   onStepReached: (index) {
                     if (_key.currentState!.validate()) {
-                       setState(() => activeStep = index);
+                      setState(() => activeStep = index);
                     }
-                   
                   },
                 ),
               ),

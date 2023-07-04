@@ -1,4 +1,5 @@
 import 'package:ev_charging/constant/color.dart';
+import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/main.dart';
 import 'package:ev_charging/page/settings/changepassword.dart';
 import 'package:ev_charging/utils/translate/language.dart';
@@ -15,19 +16,18 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   String? token;
-  // @override
-  // void initState() {
-  //   PreFer().getToken().then((value) async {
-  //     Map<String, dynamic> playload = Jwt.parseJwt(value!);
-  //   String? addmin = playload["id"];
-  //   });
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    PreFer().getToken().then((value) async {
+      setState(() {
+        token = value;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    //final providerService = Provider.of<SetLangugesProvider>(context, listen: false);
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -62,7 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Text(
                     translation(context).changelanguage,
-                    style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 14.sp),
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 10, right: 10),
@@ -113,8 +113,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       color: EV_Colors.yellowbtncolor,
                     ),
                     title: Text(
-                      "ປ່ຽນລະຫັດຜ່ານ",
-                      style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      translation(context).changingpassword,
+                      style: TextStyle(fontSize: 14.sp),
                     ),
                   )
           ],

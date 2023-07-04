@@ -28,10 +28,8 @@ Future<void> loginservice(String email, String password, context) async {
     String url = AppDomain.login;
     Object body = jsonEncode(
       {
-        "email": 'xaiy95494979@gmail.com',
-        "password": "178607"
-        // "email": email,
-        // "password": password,
+        "email": email,
+        "password": password,
       },
     );
     final respones = await http.post(
