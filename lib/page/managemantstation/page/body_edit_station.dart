@@ -438,7 +438,6 @@ class _BodyEditStationState extends State<BodyEditStation> {
 
                                     Column(
                                       children: List.generate(
-                                        // widget.models!.constainner[index].typeCharge.length,
                                           model.containersList[index]
                                               .typeChargingList.length,
                                               (index2) {
@@ -488,20 +487,15 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                                         }),
                                                   ),
                                                 ),
-                                                // model.containersList[index]
-                                                //             .typeChargingList
-                                                //             .length ==
-                                                //         1
-                                                //     ? const SizedBox()
-                                                //     : GestureDetector(
-                                                //         onTap: () {
-                                                //           model.delLength(index);
-                                                //         },
-                                                //         child: const Icon(
-                                                //           Icons.remove_circle_outline,
-                                                //           color: Colors.red,
-                                                //         ),
-                                                //       )
+                                               GestureDetector(
+                                                        onTap: () {
+                                                          model.delLength(index);
+                                                        },
+                                                        child: const Icon(
+                                                          Icons.remove_circle_outline,
+                                                          color: Colors.red,
+                                                        ),
+                                                      )
                                               ],
                                             );
                                           }),
