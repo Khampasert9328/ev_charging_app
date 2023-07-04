@@ -61,12 +61,12 @@ class UpdateStationService{
         "imagecpn": model.imageCpn,
         "amount": model.containersList.length,
         "pictureplace": model.imageStation,
-        "province": data.province,
-        "district": data.district,
-        "village": data.village,
+        "province": data?.province,
+        "district": data?.district,
+        "village": data?.village,
         "nameplace": model.namePlace.text,
-        "lat_location": data.latLocation,
-        "lng_lacation": data.lngLacation,
+        "lat_location": data?.latLocation,
+        "lng_lacation": data?.lngLacation,
         "constainner": oldContainer,
         "facilities": facility
     });
@@ -91,10 +91,6 @@ class UpdateStationService{
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ManagemaentStation()));
 
       });
-<<<<<<< HEAD
-=======
-     
->>>>>>> xaiy_ev
     }else{
       print(oldContainer);
       Navigator.pop(context);
