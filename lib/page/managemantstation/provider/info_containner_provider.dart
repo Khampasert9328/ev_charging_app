@@ -1,5 +1,6 @@
-import 'package:easy_stepper/easy_stepper.dart';
+
 import 'package:ev_charging/constant/data.dart';
+import 'package:flutter/material.dart';
 
 class InfoContainerProvider extends ChangeNotifier {
   static int _indexCon = 0;

@@ -3,7 +3,6 @@
 import 'dart:async';
 
 import 'package:dotted_border/dotted_border.dart';
-import 'package:easy_stepper/easy_stepper.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/Maps/simple_map.dart';
 import 'package:ev_charging/page/managemantstation/getlocation/getlocation.dart';
@@ -13,11 +12,11 @@ import 'package:ev_charging/page/managemantstation/models/village/village_models
 import 'package:ev_charging/page/managemantstation/provider/infon_location_provider.dart';
 import 'package:ev_charging/utils/translate/language_constants.dart';
 import 'package:ev_charging/widget/dropdown/dropwonwidget.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'textformfield/textform.dart';
 
 class InfoLocationStation extends StatefulWidget {
   const InfoLocationStation({super.key});
@@ -335,7 +334,8 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                       shrinkWrap: true,
                       itemCount: models.facilities.length,
                       itemBuilder: (context, index) {
-                        return Row(children: [
+                        return Row(
+                          children: [
                           Expanded(
                             child: TextFormField(
                               keyboardType: TextInputType.emailAddress,
@@ -343,14 +343,16 @@ class _InfoLocationStationState extends State<InfoLocationStation> {
                               obscureText: false,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return "ກາລຸນາປ້ອນຊື່ບໍລິສັດ";
+                                  return "ກາລຸນາປ້ອນຊື່ສະຖານທີ່";
                                 }
                                 return null;
                               },
                               controller: models.facilities[index],
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
-                                    borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                                 filled: true,
                                 fillColor: Colors.grey[200],
                                 hintText: "ຕົວຢ່າງ: ຮ້ານ Amazon Cafe",

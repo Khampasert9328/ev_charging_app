@@ -1,10 +1,10 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:easy_stepper/easy_stepper.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_company_provider.dart';
 import 'package:ev_charging/page/managemantstation/service/pick_image.dart';
 import 'package:ev_charging/utils/select_image_or_camera.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';

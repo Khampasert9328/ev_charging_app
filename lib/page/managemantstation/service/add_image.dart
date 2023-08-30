@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:easy_stepper/easy_stepper.dart';
 import 'package:ev_charging/constant/domain.dart';
 import 'package:ev_charging/constant/prefer.dart';
 import 'package:ev_charging/page/managemantstation/models/image_models.dart';
 import 'package:ev_charging/widget/dialog/dialogerror.dart';
 import 'package:ev_charging/widget/dialog/dialogsucces.dart';
 import 'package:ev_charging/widget/dialog/loadingscreen.dart';
+import 'package:flutter/material.dart';
 
 class AddImage {
   static Future addimage(File? image, context) async {

@@ -63,7 +63,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
     info.setImageStation(data.pictureplace);
     info.setImageCpn(data.imagecpn);
 
-    for(int i = 0; i < data!.facilities.length; i++){
+    for(int i = 0; i < data.facilities.length; i++){
       info.addFacilities();
       info.facilities[i].text = data.facilities[i].facilitie;
 
@@ -150,6 +150,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                           height: 7.h,
                         ),
                         TextFormField(
+                          keyboardType: TextInputType.text,
                           cursorColor: Colors.grey,
                           // initialValue: widget.models?.name,
                           controller: model.nameCpn,
@@ -202,24 +203,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                 ),
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.image,
-                                  color: EV_Colors.whitecolor,
-                                ),
-                                SizedBox(
-                                  width: 5.w,
-                                ),
-                                const Text(
-                                  "ແກ້ໄຂຮູບພາບ",
-                                  style: TextStyle(
-                                    color: EV_Colors.whitecolor,
-                                  ),
-                                )
-                              ],
-                            ),
+                            
                           ],
                         )
                       ],
@@ -348,7 +332,7 @@ class _BodyEditStationState extends State<BodyEditStation> {
                                       controller: model.brand[index],
                                       onchange: () {},
                                       ontap: (val) {
-                                        // model.brand[index].text = val;
+                                        model.brand[index].text = val;
                                       },
                                     ),
                                     // TextFormField(

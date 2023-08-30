@@ -1,10 +1,12 @@
 
+
+
 import 'package:dotted_border/dotted_border.dart';
-import 'package:easy_stepper/easy_stepper.dart';
 import 'package:ev_charging/constant/color.dart';
 import 'package:ev_charging/constant/data.dart';
 import 'package:ev_charging/page/managemantstation/provider/info_containner_provider.dart';
 import 'package:ev_charging/utils/translate/language_constants.dart';
+import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';

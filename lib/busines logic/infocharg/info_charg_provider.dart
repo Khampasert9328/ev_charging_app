@@ -1,6 +1,7 @@
-import 'package:easy_stepper/easy_stepper.dart';
+
 import 'package:ev_charging/page/managemantstation/models/get_info_charg_models.dart';
 import 'package:ev_charging/service/infocharge/info_charg_service.dart';
+import 'package:flutter/material.dart';
 
 class InfoChargProvider extends ChangeNotifier {
   bool _isload = false;

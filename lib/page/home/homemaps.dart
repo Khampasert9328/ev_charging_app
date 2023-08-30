@@ -79,6 +79,8 @@ class _HomeMapsState extends State<HomeMaps> {
     }
   }
 
+ 
+
   @override
   Widget build(BuildContext context) {
     token = context.read<AuthProvider>().token;
@@ -131,23 +133,29 @@ class _HomeMapsState extends State<HomeMaps> {
           children: [
             const ShowMaps(),
             Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Container(
-                height: 35.h,
-                width: 40.w,
-                decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
-                child: Center(
-                  child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _globalKey.currentState!.openDrawer();
-                        });
-                      },
-                      icon: const Icon(
-                        FontAwesomeIcons.barsStaggered,
-                        color: Colors.white,
-                      )),
-                ),
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 35.h,
+                    width: 40.w,
+                    decoration: BoxDecoration(color: EV_Colors.yellowbtncolor, borderRadius: BorderRadius.circular(10)),
+                    child: Center(
+                      child: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _globalKey.currentState!.openDrawer();
+                            });
+                          },
+                          icon: const Icon(
+                            FontAwesomeIcons.barsStaggered,
+                            color: Colors.white,
+                          )),
+                    ),
+                  ),
+                  
+                ],
               ),
             ),
           ],

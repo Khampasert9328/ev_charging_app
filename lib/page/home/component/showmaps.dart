@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ev_charging/busines%20logic/infocharg/info_charg_provider.dart';
 import 'package:ev_charging/constant/color.dart';
@@ -13,7 +12,6 @@ import 'package:google_map_marker_animation/widgets/animarker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui' as ui;
-
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 class ShowMaps extends StatefulWidget {
@@ -25,6 +23,7 @@ class ShowMaps extends StatefulWidget {
 
 class _ShowMapsState extends State<ShowMaps> {
   final List<Marker> _marker = [];
+  final List<Polyline> _polyline = [];
   final controller = Completer<GoogleMapController>();
 
   Future<void> _onMapCreate(GoogleMapController controller) async {
@@ -39,6 +38,7 @@ class _ShowMapsState extends State<ShowMaps> {
     final Uint8List markerIcon = await getBytesFromAsset('images/logocharge.png', 150);
 
     _marker.clear();
+    _polyline.clear();
     setState(() {
       for (var i = 0; i < data.length; i++) {
         _marker.add(
@@ -56,6 +56,20 @@ class _ShowMapsState extends State<ShowMaps> {
               ),
             ),
             infoWindow: InfoWindow(title: data[i].name, anchor: Offset(0.2, 0.0)),
+          ),
+        );
+        _polyline.add(
+          Polyline(
+            color: EV_Colors.yellowbtncolor,
+            polylineId: PolylineId(data[i].id),
+            points: <LatLng>[
+              LatLng(
+                double.parse(data[i].latLocation.toString()),
+                double.parse(
+                  data[i].lngLacation.toString(),
+                ),
+              ),
+            ],
           ),
         );
       }
@@ -82,22 +96,27 @@ class _ShowMapsState extends State<ShowMaps> {
       return Container(
         color: Colors.grey,
         child: Animarker(
-          mapId: controller.future.then((value) => value.mapId),
-          curve: Curves.ease,
-          markers: Set<Marker>.of(_marker),
-          child: GoogleMap(
+            mapId: controller.future.then((value) => value.mapId),
+            curve: Curves.ease,
             markers: Set<Marker>.of(_marker),
-            onMapCreated: _onMapCreate,
-            initialCameraPosition: CameraPosition(
-              zoom: 16.0,
-              target: LatLng(
-                double.parse(value.getchargmodels!.data[0].latLocation.toString()),
-                double.parse(value.getchargmodels!.data[0].lngLacation.toString()),
-              ),
-            ),
-            mapType: MapType.normal,
-          ),
-        ),
+            child: Stack(
+              children: [
+                GoogleMap(
+                  polylines: Set<Polyline>.of(_polyline),
+                  myLocationEnabled: true,
+                  markers: Set<Marker>.of(_marker),
+                  onMapCreated: _onMapCreate,
+                  initialCameraPosition: CameraPosition(
+                    zoom: 16.0,
+                    target: LatLng(
+                      double.parse(value.getchargmodels!.data[0].latLocation.toString()),
+                      double.parse(value.getchargmodels!.data[0].lngLacation.toString()),
+                    ),
+                  ),
+                  mapType: MapType.normal,
+                ),
+              ],
+            )),
       );
     }));
   }

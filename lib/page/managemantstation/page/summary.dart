@@ -142,7 +142,7 @@ class _SummaryState extends State<Summary> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: List.generate(model2.containersList[index].typeChargingList.length,
-                                          (i) => Text(model2.containersList[index].typeChargingList[i].typeCharging)),
+                                      (i) => Text(model2.containersList[index].typeChargingList[i].typeCharging)),
                                 )
                               ],
                             ),
@@ -208,7 +208,9 @@ class _SummaryState extends State<Summary> {
                       Text(model3.latitude!),
                     ],
                   ),
-                  SizedBox(height: 5.h,),
+                  SizedBox(
+                    height: 5.h,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -216,9 +218,10 @@ class _SummaryState extends State<Summary> {
                       Text(model3.longtitude!),
                     ],
                   ),
-
-                  SizedBox(height: 5.h,),
-                   loading == true
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  loading == true
                       ? const Center(
                           child: CircularProgressIndicator(),
                         )
@@ -243,7 +246,7 @@ class _SummaryState extends State<Summary> {
                               _controller.complete(controller);
                             },
                           )),
-                   Divider(),
+                  Divider(),
                   Text(
                     translation(context).facility,
                     style: TextStyle(
@@ -253,9 +256,9 @@ class _SummaryState extends State<Summary> {
                   ),
                   ListView.builder(
                       shrinkWrap: true,
-                      itemCount: model3.listplace.length,
+                      itemCount: model3.facilities.length,
                       itemBuilder: ((context, index) {
-                        return Text("-${model3.listplace[index].toString()}");
+                        return Text("-${model3.facilities[index].text}");
                       })),
                 ],
               ),
